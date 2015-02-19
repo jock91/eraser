@@ -1,0 +1,13 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+  Annonces - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	{% include 'ErazrSiteBundle:Erazr:menu.html.twig' %}
+  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  {% block erazr_site_body %}
+  {% endblock %}
+
+{% endblock %}
