@@ -2,17 +2,10 @@
 
 {% extends "ErazrSiteBundle::layout.html.twig" %}
 
-{% block title %}
-	{{ parent() }}
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block content %}
+	<div class="col-md-12">
+		Yo
+	</div>
 {% endblock %}
-
-{% block erazr_site_body %}
-
-	{{dump(posts)}}
-	
-
-
-{% endblock %}
-
-
-

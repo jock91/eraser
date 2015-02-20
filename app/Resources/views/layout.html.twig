@@ -3,72 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{% block title %}Erazr{% endblock %}</title>
-	{% block stylesheets %}
-		<link rel="stylesheet" href="{{asset('bundles/erazrsite/css/bootstrap.min.css')}}">
-		<link rel="stylesheet" href="{{asset('bundles/erazrsite/css/style.min.css')}}" />
-	{% endblock %}
+	<title>{%- block title endblock -%}</title>
+	{% block stylesheets endblock %}
 </head>
 <body class="clearfix">
-	<aside>
-		<header>
-			<h1><a href="#"><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></a></h1>
-		</header>
-		<div class="sideTimer">{{"now"|date('H:i:s')}}</div>
-		<div class="sideProfil">
-			<a href="#" title="Paramètress" class="params"><span class="icon-options"></span></a>
-			<a href="#" title="Profil" class="profil">
-				<img src="{{asset('bundles/erazrsite/img/profil.png')}}" title="Léo Lapujade" alt="Léo Lapujade" />
-				<h2>Léo Lapujade</h2>
-			</a>
-		</div>
-		<nav>
-			<ul>
-				<li><a href="#" title="Mur publique" class="actif"><span class="icon-public-wall"></span>Mur publique</a></li>
-				<li><a href="#" title="Notifications"><span class="icon-notif"></span>Notifications<span class="badge">2</span></a></li>
-			</ul>
-		</nav>
-		<div class="sideFriends">
-			<h3>Amis</h3>
-			<ul>
-				<li><a href="#" title="Kévin Desperries"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="Kévin Desperries" />Kévin Desperries</a></li>
-				<li><a href="#" title="Florian Cabaret"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Florian Cabaret" title="Florian Cabaret" />Florian Cabaret</a></li>
-				<li><a href="#" title="Soheil Sedaghatkish"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Soheil Sedaghatkish" title="Soheil Sedaghatkish" />Soheil Sedaghatkish</a></li>
-			</ul>
-		</div>
-		<div class="sideSearch">
-			<h3>Recherche</h3>
-			<form action="#" method="post" name="searchFriend">
-				<div class="input-group">
-					<span class="input-group-addon"><label for="sf" class="icon-search"></label></span>
-					<input type="search" id="sf" name="sf" class="form-control" placeholder="Rechercher un ami" />
-				</div>
-			</form>
-		</div>
-		<footer>
-			Made with <span class="icon-heart"></span> Groin-Groin Team
-		</footer>
-	</aside>
-	<div id="erazr">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<br/>
-					<input class="form-control" type="text" placeholder="yo"/>
-					<br/>
-				</div>
-			</div>
-		</div>
-	</div>
-{#
-	{% block body %}
-	{% endblock %}
-#}
-	{% block javascripts %}
-		<script type="text/javascript" src="{{asset('bundles/erazrsite/js/jquery.min.js')}}"></script>
-		<script type="text/javascript" src="{{asset('bundles/erazrsite/js/bootstrap.min.js')}}"></script>
-		<script type="text/javascript" src="{{asset('bundles/erazrsite/js/moment.min.js')}}"></script>
-		<script type="text/javascript" src="{{asset('bundles/erazrsite/js/script.min.js')}}"></script>
-	{% endblock %}
+	{%- block body endblock %}
+	{%- block javascripts endblock %}
 </body>
 </html>

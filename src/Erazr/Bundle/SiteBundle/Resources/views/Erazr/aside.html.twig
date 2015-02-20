@@ -1,0 +1,39 @@
+<aside>
+	<header>
+		<h1><a href="#"><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></a></h1>
+	</header>
+	<div class="sideTimer">{{"now"|date('H:i:s')}}</div>
+	<div class="sideProfil">
+		<a href="#" title="Paramètres" class="params"><span class="icon-options"></span></a>
+		<a href="#" title="Profil" class="profil">
+			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" title="Léo Lapujade" alt="Léo Lapujade" />
+			<h2>Léo Lapujade</h2>
+		</a>
+	</div>
+	<nav>
+		<ul>
+			<li><a href="#" title="Mur publique" class="actif"><span class="icon-public-wall"></span>Mur publique</a></li>
+			<li><a href="#" title="Notifications"><span class="icon-notif"></span>Notifications<span class="badge">2</span></a></li>
+		</ul>
+	</nav>
+	<div class="sideFriends">
+		<h3>Amis</h3>
+		<ul>
+			<li><a href="#" title="Kévin Desperries"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="Kévin Desperries" />Kévin Desperries</a></li>
+			<li><a href="#" title="Florian Cabaret"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Florian Cabaret" title="Florian Cabaret" />Florian Cabaret</a></li>
+			<li><a href="#" title="Soheil Sedaghatkish"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Soheil Sedaghatkish" title="Soheil Sedaghatkish" />Soheil Sedaghatkish</a></li>
+		</ul>
+	</div>
+	<div class="sideSearch">
+		<h3>Recherche</h3>
+		<form action="#" method="post" name="searchFriend">
+			<div class="input-group">
+				<span class="input-group-addon"><label for="sf" class="icon-search"></label></span>
+				<input type="search" id="sf" name="sf" class="form-control" placeholder="Rechercher un ami" />
+			</div>
+		</form>
+	</div>
+	<footer>
+		Made with <span class="icon-heart"></span> Groin-Groin Team
+	</footer>
+</aside>

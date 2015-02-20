@@ -1,13 +1,16 @@
-* {
-	margin:0;
-	padding:0;
+html {
+	font-size:62.5%;
 }
 body {
 	font-family:'Roboto',sans-serif;
 }
 #erazr {
 	float:left;
-	width:calc(100% - 300px);
-	width:-webkit-calc(100% - 300px);
-	width:-moz-calc(100% - 300px);
+	width:calc(100% - 30rem);
+	width:-webkit-calc(100% - 30rem);
+	width:-moz-calc(100% - 30rem);
+}
+ul {
+	margin:0;
+	padding:0;
 }

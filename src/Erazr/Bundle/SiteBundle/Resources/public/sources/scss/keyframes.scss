@@ -1,4 +1,17 @@
 @keyframes spin{
-	from {transform:rotate(1deg);}
+	from {transform:rotate(0);}
 	to {transform:rotate(-360deg);}
+}
+
+@keyframes love{
+	from,20%,80%,to {color:white}
+	50% {color:#e25353;}
+}
+
+@keyframes bouiiiiing {
+	0% {transform:scale(1);}
+	10%,20% {transform:scale(0.8) rotate(-3deg);}
+	30%, 50%, 70%, 90% {transform:scale(1) rotate(3deg);}
+	40%, 60%, 80% {transform:scale(1) rotate(-3deg);}
+	100% {transform:scale(1) rotate(0);}
 }
