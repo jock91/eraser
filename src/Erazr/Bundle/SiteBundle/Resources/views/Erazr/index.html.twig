@@ -3,29 +3,12 @@
 {% extends "ErazrSiteBundle::layout.html.twig" %}
 
 {% block title %}
-  Accueil - {{ parent() }}
+	{{ parent() }}
 {% endblock %}
 
 {% block erazr_site_body %}
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>pseudo</th>
-				<th>content</th>
-				<th>datePost</th>
-				<th>timer</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>{{ posts.pseudo }}</td>
-				<td>{{ posts.content }}</td>
-				<td>{{ posts.datePost }}</td>
-				<td>{{ posts.timer }}</td>
-			</tr>
-		</tbody>
-	</table>
+	{{dump(posts)}}
 	
 
 

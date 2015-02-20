@@ -1,0 +1,128 @@
+aside {
+	background:$clr-dark-asphalt;
+	color:white;
+	height:100%;
+	font-family:'Montserrat',sans-serif;
+	a {
+		color:white;
+		text-decoration:none;
+		&:hover {
+			text-decoration:none;
+			color:white;
+		}
+	}
+	header {
+		background:$clr-light-blue;
+		h1 {
+			margin:0;
+			padding:0;
+			a {
+				display:block;
+				height:100px;
+				padding:10px;
+				img {
+					display:block;
+					height:100%;
+					margin:0 auto;
+				}
+			}
+		}
+	}
+	.sideTimer {
+		padding:20px;
+		font-size:35px;
+		text-align:center;
+	}
+	.sideProfil {
+		position:relative;
+		background:$clr-light-asphalt;
+		text-align:center;
+		.params {
+			position:absolute;
+			top:10px;
+			right:10px;
+			font-size:25px;
+			&:hover {
+				animation:spin 5s infinite linear;
+			}
+		}
+		.profil {
+			display:block;
+			padding:20px;
+		}
+		img {
+			display:inline-block;
+			border-radius:50%;
+		}
+		h2 {
+			font-weight:normal;
+			font-size:25px;
+		}
+	}
+	nav {
+		ul {
+			list-style:none;
+			li {
+				display:block;
+				margin-top:1px;
+				a {
+					display:block;
+					padding:15px 20px 10px;
+					font-size:15px;
+					line-height:30px;
+					&:hover {
+						background:$clr-asphalt;
+					}
+					&.actif {
+						background:$clr-light-asphalt;
+					}
+				}
+				span:first-child {
+					display:inline-block;
+					font-size:30px;
+					margin-right:10px;
+				}
+				.badge {
+					display:inline-block;
+					background:$clr-light-blue;
+					border-radius:50%;
+					height:30px;
+					width:30px;
+					text-align:center;
+					line-height:25px;
+					margin-left:20px;
+					font-size:20px;
+				}
+			}
+		}
+	}
+	.sideFriends {
+		h3 {
+			font-size:15px;
+			padding:0 20px 5px;
+			margin:20px 0 10px;
+			border-bottom:1px solid $clr-asphalt;
+		}
+		ul {
+			list-style:none;
+			li {
+				display:block;
+				a {
+					display:block;
+					font-size:15px;
+					padding:10px 20px;
+					&:hover {
+						background:$clr-asphalt;
+					}
+					img {
+						display:inline-block;
+						height:30px;
+						width:30px;
+						border-radius:50%;
+						margin-right:10px;
+					}
+				}
+			}
+		}
+	}
+}
