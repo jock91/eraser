@@ -40,7 +40,7 @@ class SiteController extends Controller
 
     	// si le post existe pas message erreur
     	if ($post === null) {
-    		throw $this->createNotFoundException("Le post n°".$id." n'existe pas.")
+    		throw $this->createNotFoundException("Le post n°".$id." n'existe pas.");
     	}
 
     	// On récupere les commentaires
@@ -53,24 +53,3 @@ class SiteController extends Controller
 			);
     }
 }
-
-
-// On récupère l'EntityManager
-    $em = $this->getDoctrine()->getManager();
-
-    // Pour récupérer une annonce unique : on utilise find()
-    $advert = $em->getRepository('OCPlatformBundle:Advert')->find($id);
-
-    // On vérifie que l'annonce avec cet id existe bien
-    if ($advert === null) {
-      throw $this->createNotFoundException("L'annonce d'id ".$id." n'existe pas.");
-    }
-
-    // On récupère la liste des advertSkill pour l'annonce $advert
-    $listAdvertSkills = $em->getRepository('OCPlatformBundle:AdvertSkill')->findByAdvert($advert);
-
-    // Puis modifiez la ligne du render comme ceci, pour prendre en compte les variables :
-    return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
-      'advert'           => $advert,
-      'listAdvertSkills' => $listAdvertSkills,
-    ));
