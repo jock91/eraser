@@ -17,12 +17,39 @@ class SiteController extends Controller
      */
     public function indexAction()
     {
-    	$posts = array(
-    		'pseudo' => 'Jock', 
-    		'content' => 'qsdmoif poifjsq oijfsdoi ', 
-    		'datePost' => '00-00-02', 
-    		'timer' => '1h'
-    	);
+    	$posts = $this->getDoctrine()
+      		->getManager()
+      		->getRepository('ErazrSiteBundle:Post')
+      		->findAll()
+    	;
 		return array('posts' => $posts);
+    }
+
+    /**
+     * @Route("/post/{id}", name="_postView")
+     * @Template("ErazrSiteBundle:Erazr:view.html.twig")
+     */
+    public function viewAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+
+    	// on recupere le post
+    	$post = $em->getRepository('ErazrSiteBundle:Post')
+      		->find($id)
+    	;
+
+    	// si le post existe pas message erreur
+    	if ($post === null) {
+    		throw $this->createNotFoundException("Le post n°".$id." n'existe pas.");
+    	}
+
+    	// On récupere les commentaires
+    	$comments = $em->getRepository('ErazrSiteBundle:Comment')
+    		->findByPost($post);
+
+		return array(
+			'post' => $post,
+			'comments' => $comments
+			);
     }
 }

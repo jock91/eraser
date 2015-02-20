@@ -46,22 +46,27 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="like", type="smallint")
+     * @ORM\Column(name="liked", type="smallint", nullable=true)
      */
-    private $like;
+    private $liked;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string", length=10)
+     * @ORM\Column(name="color", type="string", length=10, nullable=true)
      */
     private $color;
 
     /**
      * @ORM\ManyToOne(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="posts")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     protected $user;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"persist"})
+    */
+    protected $comments;
 
     /**
      * Get id
@@ -165,28 +170,6 @@ class Post
         return $this->color;
     }
 
-    /**
-     * Set like
-     *
-     * @param \tinyint $like
-     * @return Post
-     */
-    public function setLike(\tinyint $like)
-    {
-        $this->like = $like;
-
-        return $this;
-    }
-
-    /**
-     * Get like
-     *
-     * @return \tinyint 
-     */
-    public function getLike()
-    {
-        return $this->like;
-    }
 
     /**
      * Set user
@@ -209,5 +192,68 @@ class Post
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set liked
+     *
+     * @param integer $liked
+     * @return Post
+     */
+    public function setLiked($liked)
+    {
+        $this->liked = $liked;
+
+        return $this;
+    }
+
+    /**
+     * Get liked
+     *
+     * @return integer 
+     */
+    public function getLiked()
+    {
+        return $this->liked;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Comment $comments
+     * @return Post
+     */
+    public function addComment(\Erazr\Bundle\SiteBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Erazr\Bundle\SiteBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }
