@@ -1,8 +1,13 @@
 aside {
 	background:$clr-dark-asphalt;
 	color:white;
+	width:300px;
 	height:100%;
 	font-family:'Montserrat',sans-serif;
+	position:fixed;
+	left:0;
+	top:0;
+	bottom:0;
 	a {
 		color:white;
 		text-decoration:none;

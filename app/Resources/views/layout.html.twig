@@ -10,59 +10,63 @@
 	{% endblock %}
 </head>
 <body>
+<div id="erazr">
+	<aside>
+		<header>
+			<h1><a href="#"><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></a></h1>
+		</header>
+		<div class="sideTimer"></div>
+		<div class="sideProfil">
+			<a href="#" title="Paramètress" class="params"><span class="icon-options"></span></a>
+			<a href="#" title="Profil" class="profil">
+				<img src="{{asset('bundles/erazrsite/img/profil.png')}}" title="Léo Lapujade" alt="Léo Lapujade" />
+				<h2>Léo Lapujade</h2>
+			</a>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="#" title="Mur publique" class="actif"><span class="icon-public-wall"></span>Mur publique</a></li>
+				<li><a href="#" title="Notifications"><span class="icon-notif"></span>Notifications<span class="badge">2</span></a></li>
+			</ul>
+		</nav>
+		<div class="sideFriends">
+			<h3>Amis</h3>
+			<ul>
+				<li><a href="#" title="Kévin Desperries"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="Kévin Desperries" />Kévin Desperries</a></li>
+				<li><a href="#" title="Florian Cabaret"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Florian Cabaret" title="Florian Cabaret" />Florian Cabaret</a></li>
+				<li><a href="#" title="Soheil Sedaghatkish"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Soheil Sedaghatkish" title="Soheil Sedaghatkish" />Soheil Sedaghatkish</a></li>
+			</ul>
+		</div>
+		<div class="sideSearch">
+			<h3>Recherche</h3>
+			<form action="#" method="post">
+				<div class="input-group">
+					<span class="input-group-addon"><span class="icon-search"></span></span>
+					<input type="search" class="form-control" placeholder="Rechercher un ami" />
+				</div>
+			</form>
+		</div>
+		<footer>
+			Made with <span class="icon-heart"></span> Groin-Groin Team
+		</footer>
+	</aside>
 	<div class="container-fluid">
 		<div class="row">
-			<aside class="col-md-3">
-				<div class="row">
-					<header>
-						<h1><a href="#"><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></a></h1>
-					</header>
-					<div class="sideTimer"></div>
-					<div class="sideProfil">
-						<a href="#" title="Paramètress" class="params"><span class="icon-options"></span></a>
-						<a href="#" title="Profil" class="profil">
-							<img src="{{asset('bundles/erazrsite/img/profil.png')}}" title="Léo Lapujade" alt="Léo Lapujade" />
-							<h2>Léo Lapujade</h2>
-						</a>
-					</div>
-					<nav>
-						<ul>
-							<li><a href="#" title="Mur publique" class="actif"><span class="icon-public-wall"></span>Mur publique</a></li>
-							<li><a href="#" title="Notifications"><span class="icon-notif"></span>Notifications<span class="badge">2</span></a></li>
-						</ul>
-					</nav>
-					<div class="sideFriends">
-						<h3>Amis</h3>
-						<ul>
-							<li><a href="#" title="Kévin Desperries"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="Kévin Desperries" />Kévin Desperries</a></li>
-							<li><a href="#" title="Florian Cabaret"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Florian Cabaret" title="Florian Cabaret" />Florian Cabaret</a></li>
-							<li><a href="#" title="Soheil Sedaghatkish"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Soheil Sedaghatkish" title="Soheil Sedaghatkish" />Soheil Sedaghatkish</a></li>
-						</ul>
-					</div>
-					<div class="sideSearch">
-						<h3>Recherche</h3>
-						<form action="#" method="post">
-							<div class="input-group">
-								<span class="input-group-addon"><span class="icon-search"></span></span>
-								<input type="search" class="form-control" placeholder="Rechercher un ami" />
-							</div>
-						</form>
-					</div>
-					<footer>
-						Made with <span class="icon-heart"></span> Groin-Groin Team
-					</footer>
-				</div>
-			</aside>
+			<div class="col-md-12" style="background:red">
+				YO
+			</div>
 		</div>
 	</div>
+</div>
 {#
 	{% block body %}
 	{% endblock %}
 #}
 	{% block javascripts %}
 		<script type="text/javascript" src="{{asset('bundles/erazrsite/js/jquery.min.js')}}"></script>
+		<script type="text/javascript" src="{{asset('bundles/erazrsite/js/bootstrap.min.js')}}"></script>
+		<script type="text/javascript" src="{{asset('bundles/erazrsite/js/moment.min.js')}}"></script>
 		<script type="text/javascript" src="{{asset('bundles/erazrsite/js/script.min.js')}}"></script>
-		<script src="{{asset('bundles/erazrsite/js/bootstrap.min.js')}}"></script>
 	{% endblock %}
 </body>
 </html>
