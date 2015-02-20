@@ -44,7 +44,5 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->posts = new ArrayCollection();
-    }
-
-    
+    }    
 }
