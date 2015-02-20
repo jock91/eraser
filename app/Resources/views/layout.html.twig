@@ -53,17 +53,15 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<br/>
-					<input class="form-control" type="text" placeholder="yo"/>
-					<br/>
+					{% block body %}
+	{% endblock %}
 				</div>
 			</div>
 		</div>
 	</div>
-{#
-	{% block body %}
-	{% endblock %}
-#}
+
+	
+
 	{% block javascripts %}
 		<script type="text/javascript" src="{{asset('bundles/erazrsite/js/jquery.min.js')}}"></script>
 		<script type="text/javascript" src="{{asset('bundles/erazrsite/js/bootstrap.min.js')}}"></script>

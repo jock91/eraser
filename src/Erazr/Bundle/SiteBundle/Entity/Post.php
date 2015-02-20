@@ -203,7 +203,6 @@ class Post
     public function setLiked($liked)
     {
         $this->liked = $liked;
-
         return $this;
     }
 
@@ -222,6 +221,7 @@ class Post
     public function __construct()
     {
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->created = new \DateTime();
     }
 
     /**
