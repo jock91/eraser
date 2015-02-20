@@ -9,13 +9,12 @@
 		<link rel="stylesheet" href="{{asset('bundles/erazrsite/css/style.min.css')}}" />
 	{% endblock %}
 </head>
-<body>
-<div id="erazr">
+<body class="clearfix">
 	<aside>
 		<header>
 			<h1><a href="#"><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></a></h1>
 		</header>
-		<div class="sideTimer"></div>
+		<div class="sideTimer">{{"now"|date('H:i:s')}}</div>
 		<div class="sideProfil">
 			<a href="#" title="Paramètress" class="params"><span class="icon-options"></span></a>
 			<a href="#" title="Profil" class="profil">
@@ -39,10 +38,10 @@
 		</div>
 		<div class="sideSearch">
 			<h3>Recherche</h3>
-			<form action="#" method="post">
+			<form action="#" method="post" name="searchFriend">
 				<div class="input-group">
-					<span class="input-group-addon"><span class="icon-search"></span></span>
-					<input type="search" class="form-control" placeholder="Rechercher un ami" />
+					<span class="input-group-addon"><label for="sf" class="icon-search"></label></span>
+					<input type="search" id="sf" name="sf" class="form-control" placeholder="Rechercher un ami" />
 				</div>
 			</form>
 		</div>
@@ -50,14 +49,17 @@
 			Made with <span class="icon-heart"></span> Groin-Groin Team
 		</footer>
 	</aside>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12" style="background:red">
-				YO
+	<div id="erazr">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<br/>
+					<input class="form-control" type="text" placeholder="yo"/>
+					<br/>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 {#
 	{% block body %}
 	{% endblock %}

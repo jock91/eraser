@@ -12,11 +12,21 @@ function init(){
 }
 
 function resize(){
+	fullHeight('aside','min');
 }
 
 /* ------------------------ */
 
+function fullHeight(e,min){
+	var winH = $(window).height();
+	if(min){
+		$(e).css('min-height',winH);
+	}else{
+		$(e).css('height',winH);
+	}
+}
+
 function hour(){
-	var date = moment().format('H:mm:ss');
-	$('.sideTimer').html(date);
+	var time = moment().format('H:mm:ss');
+	$('.sideTimer').html(time);
 }

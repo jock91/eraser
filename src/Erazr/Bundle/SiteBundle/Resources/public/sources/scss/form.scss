@@ -1,0 +1,32 @@
+/*
+.input-group {
+	.input-group-addon {
+		background-color:white;
+		padding-left:5px;
+		padding-right:5px;
+		font-size:20px;
+		color:#999;
+		label {
+			display:inline;
+			max-width:auto;
+			margin-bottom:0;
+			font-weight:normal;
+		}
+	}
+	.form-control {
+		border-left:none;
+		padding-left:0;
+		font-weight:normal;
+	}
+}
+*/
+
+.form-control {
+	font-family:"Roboto",sans-serif;
+	box-shadow:none;
+	font-size:12px;
+	line-height:1.22857;
+	&:hover,&:focus,&:active {
+		box-shadow:none;
+	}
+}

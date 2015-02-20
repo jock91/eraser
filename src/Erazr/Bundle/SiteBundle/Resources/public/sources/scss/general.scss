@@ -6,6 +6,8 @@ body {
 	font-family:'Roboto',sans-serif;
 }
 #erazr {
-	padding-left:300px;
-	position:relative;
+	float:left;
+	width:calc(100% - 300px);
+	width:-webkit-calc(100% - 300px);
+	width:-moz-calc(100% - 300px);
 }
