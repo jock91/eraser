@@ -17,12 +17,11 @@ class SiteController extends Controller
      */
     public function indexAction()
     {
-    	$posts = array(
-    		'pseudo' => 'Jock', 
-    		'content' => 'qsdmoif poifjsq oijfsdoi ', 
-    		'datePost' => '00-00-02', 
-    		'timer' => '1h'
-    	);
+    	$posts = $this->getDoctrine()
+      		->getManager()
+      		->getRepository('ErazrSiteBundle:Post')
+      		->findAll()
+    	;
 		return array('posts' => $posts);
     }
 }

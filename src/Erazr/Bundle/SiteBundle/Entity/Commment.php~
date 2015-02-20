@@ -37,6 +37,13 @@ class Commment
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="Posts", inversedBy="comments")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     */
+    protected $post;
+
+
+    /**
      * Get id
      *
      * @return integer 

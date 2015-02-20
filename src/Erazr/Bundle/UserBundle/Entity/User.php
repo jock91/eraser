@@ -5,6 +5,8 @@ namespace Erazr\Bundle\UserBundle\Entity;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Erazr\Bundle\SiteBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * User
  *
@@ -23,13 +25,18 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", mappedBy="user", cascade={"persist"})
      */
     protected $posts;
 
     /**
+    * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Comment", mappedBy="user", cascade={"persist"})
+    */
+    protected $comments;
+
+    /**
      *
-     * @ORM\Column(name="totalLike", type="integer")
+     * @ORM\Column(name="totalLike", type="integer", nullable=true)
      */
     private $totalLike;
 
