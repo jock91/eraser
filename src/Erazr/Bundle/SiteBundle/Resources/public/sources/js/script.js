@@ -33,12 +33,12 @@ function hour(){
  *
  *
  */
-	var date = new Date,
-		h = date.getHours(),
-		m = date.getMinutes(),
-		s = date.getSeconds();
-	if(h<10){h = "0"+h;}
-	if(m<10){m = "0"+m;}
-	if(s<10){s = "0"+s;}
+	var date = new Date(),
+	h = date.getHours(),
+	m = date.getMinutes(),
+	s = date.getSeconds();
+	if(h<10){h="0"+h}
+	if(m<10){m="0"+m}
+	if(s<10){s="0"+s}
 	$('.sideTimer').html(h+':'+m+':'+s);
 }

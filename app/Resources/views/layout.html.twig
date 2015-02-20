@@ -42,8 +42,10 @@
 					<div class="sideSearch">
 						<h3>Recherche</h3>
 						<form action="#" method="post">
-							<label for="sf"><span class="icon-search"></span></label>
-							<input type="search" placeHolder="Rechercher un ami" />
+							<div class="input-group">
+								<span class="input-group-addon"><span class="icon-search"></span></span>
+								<input type="search" class="form-control" placeholder="Rechercher un ami" />
+							</div>
 						</form>
 					</div>
 					<footer>
@@ -53,7 +55,6 @@
 			</aside>
 		</div>
 	</div>
-		{{dump(posts)}}
 {#
 	{% block body %}
 	{% endblock %}
