@@ -20,7 +20,6 @@ class PostType extends AbstractType
             ->add('timer')
             ->add('liked')
             ->add('color')
-            ->add('user')
         ;
     }
     

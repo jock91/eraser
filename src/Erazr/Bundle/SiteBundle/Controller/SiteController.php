@@ -32,43 +32,16 @@ class SiteController extends Controller
     }
 
     /**
-     * Creates a new Post entity.
-     *
-     * @Route("/", name="post_create")
-     * @Method("POST")
-     * @Template("ErazrSiteBundle:Post:new.html.twig")
-     */
-    public function createAction(Request $request)
-    {
-        $entity = new Post();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('post_show', array('id' => $entity->getId())));
-        }
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
      * Creates a form to create a Post entity.
      *
      * @param Post $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Post $entity)
+    private function createCreateForm(Post $post)
     {
-        $form = $this->createForm(new PostType(), $entity, array(
-            'action' => $this->generateUrl('post_create'),
+        $form = $this->createForm(new PostType(), $post, array(
+            'action' => $this->generateUrl('post_new'),
             'method' => 'POST',
         ));
 
@@ -81,16 +54,26 @@ class SiteController extends Controller
      * Displays a form to create a new Post entity.
      *
      * @Route("/ajouter/post", name="post_new")
-     * @Method("GET")
      * @Template("ErazrSiteBundle:Post:new.html.twig")
      */
     public function newAction()
     {
-        $entity = new Post();
-        $form   = $this->createCreateForm($entity);
+    	$post = new Post();
+        $post->setUser($this->getUser());
+
+        $form = $this->createCreateForm($post);
+        $form->handleRequest($this->getRequest());
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('_postView', array('id' => $post->getId())));
+        }
 
         return array(
-            'entity' => $entity,
+            'post' => $post,
             'form'   => $form->createView(),
         );
     }

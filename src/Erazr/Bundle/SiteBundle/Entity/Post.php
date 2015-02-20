@@ -3,7 +3,7 @@
 namespace Erazr\Bundle\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Erazr\Bundle\UserBundle\Entity;
+use Erazr\Bundle\UserBundle\Entity\User;
 
 /**
  * Post
@@ -177,7 +177,7 @@ class Post
      * @param \Erazr\Bundle\SiteBundle\Entity\User $user
      * @return Post
      */
-    public function setUser(\Erazr\Bundle\SiteBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
