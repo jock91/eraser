@@ -17,7 +17,12 @@ class SiteController extends Controller
      */
     public function indexAction()
     {
-    	$name = 'kevin';
-		return array('name' => $name);
+    	$posts = array(
+    		'pseudo' => 'Jock', 
+    		'content' => 'qsdmoif poifjsq oijfsdoi ', 
+    		'datePost' => '00-00-02', 
+    		'timer' => '1h'
+    	);
+		return array('posts' => $posts);
     }
 }
