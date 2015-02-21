@@ -18,10 +18,8 @@
 {% block body %}
 {% include 'ErazrSiteBundle:Erazr:aside.html.twig' %}
 <div id="erazr">
-	<div class="container-fluid">
-		<div class="row">
-			{% block content endblock %}
-		</div>
-	</div>
+	<main class="container-fluid">
+		{% block content endblock %}
+	</main>
 </div>
 {% endblock %}

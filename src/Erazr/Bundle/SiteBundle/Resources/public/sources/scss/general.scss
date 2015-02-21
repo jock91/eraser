@@ -10,6 +10,9 @@ body {
 	width:-webkit-calc(100% - 30rem);
 	width:-moz-calc(100% - 30rem);
 }
+main {
+	display:block;
+}
 ul {
 	margin:0;
 	padding:0;
