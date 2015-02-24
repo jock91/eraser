@@ -1,10 +1,25 @@
-{# On étend notre layout #}
 {% extends "::layout.html.twig" %}
-	{% block title %}
-	  Login - {{ parent() }}
-	{% endblock %}
-{# Dans notre layout, il faut définir le block body #}
+{% block title %}Login{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('bundles/erazrsite/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('bundles/erazrsite/css/style.min.css')}}" />
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/jquery.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/moment.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/script.min.js')}}"></script>
+{% endblock %}
+
 {% block body %}
-  {% block fos_user_content %}
-  {% endblock fos_user_content %}
+<div id="erazr">
+	<main class="container-fluid">
+	{% block content %}
+	  {% block fos_user_content %}
+	  {% endblock fos_user_content %}
+	{% endblock %}
+	</main>
+</div>  
 {% endblock %}
