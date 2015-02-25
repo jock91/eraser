@@ -78,3 +78,18 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Erazr\Bundle\UserBundle\Entity\User
+
+hwi_oauth:
+    firewall_name:         secured_area
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           514256792045832
+            client_secret:       f0ed18907a98f84b7c5635543ca34d87
+            scope:               "email"
+            options:
+                display: popup
+
+services:
+    hwi_oauth.user.provider.entity:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
