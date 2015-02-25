@@ -6,25 +6,26 @@
 
 {% block content %}
 	<section class="row">
-		<article class="col-md-6">
-			<header>
-			{# 
-				YO FLORIAN LES TRANSITIONS SUR LES OPTIONS (LA PETITE ROUE MAGIQUE DE LA MORT QUI TUE DES PONEYS :))
-			#}
-				<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="Kévin Desperries" />
-				<h2>Kévin Desperries</h2>
-				<h3>Il y a 2 minutes</h3>
-				<div class="timer">
-					<span class="icon-clock"></span> 24:10:24
+		<div class="col-md-6">
+			<article class="post">
+				<header>
+					<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="Kévin Desperries" />
+					<div class="profil">
+						<h2>Kévin Desperries</h2>
+						<h3>Il y a 2 minutes</h3>
+					</div>
+					<div class="timer">
+						<span class="icon-clock"></span> 24:10:24
+					</div>
+				</header>
+				<div class="content">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis deserunt nam, adipisci repellendus nihil quas ipsum itaque voluptatem aliquam delectus amet illum doloremque nostrum sed corporis repellat nobis. Explicabo, qui!</p>
 				</div>
-			</header>
-			<div class="content">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis deserunt nam, adipisci repellendus nihil quas ipsum itaque voluptatem aliquam delectus amet illum doloremque nostrum sed corporis repellat nobis. Explicabo, qui!</p>
-			</div>
-			<footer>
-				<a href="#" title="02 Commentaires"><span class="icon-comment-empty"></span> 02</a>
-				<a href="#" title="02 Likes"><span class="icon-heart-empty"></span> 02</a>
-			</footer>
-		</article>
+				<footer>
+					<a href="#" title="02 Commentaires"><span class="icon-comment-empty"></span> 02</a>
+					<a href="#" title="02 Likes"><span class="icon-heart-empty"></span> 02</a>
+				</footer>
+			</article>
+		</div>
 	</section>
 {% endblock %}

@@ -1,29 +1,32 @@
 <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
-	<div class="row">
-		<div class="col-md-6">
-			<div class="input-group">
-				<span class="input-group-addon"><label for="fos_user_registration_form_username" class="icon-user"></label></span>
-				{{ form_widget(form.username, {'attr': {'placeholder':'Nom d\'utilisateur'}}) }}
+	<div id="fos_user_registration_form">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="input-group">
+					<span class="input-group-addon"><label for="fos_user_registration_form_username" class="icon-user control-label required"></label></span>
+					{{ form_widget(form.username, {'attr': {'placeholder':'Nom d\'utilisateur'}}) }}
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="input-group">
+					<span class="input-group-addon"><label for="fos_user_registration_form_email" class="icon-mail control-label required"></label></span>
+					{{ form_widget(form.email, {'attr': {'placeholder':'Adresse e-mail'}}) }}
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="input-group">
+					<span class="input-group-addon"><label for="fos_user_registration_form_plainPassword_first" class="icon-lock control-label required"></label></span>
+					{{ form_widget(form.plainPassword.first, {'attr': {'placeholder':'Mot de passe'}}) }}
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="input-group">
+					<span class="input-group-addon"><label for="fos_user_registration_form_plainPassword_second" class="icon-lock control-label required"></label></span>
+					{{ form_widget(form.plainPassword.second, {'attr': {'placeholder':'Vérification du mot de passe'}}) }}
+				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
-			<div class="input-group">
-				<span class="input-group-addon"><label for="fos_user_registration_form_email" class="icon-mail"></label></span>
-				{{ form_widget(form.email, {'attr': {'placeholder':'Adresse e-mail'}}) }}
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="input-group">
-				<span class="input-group-addon"><label for="fos_user_registration_form_plainPassword_first" class="icon-lock"></label></span>
-				{{ form_widget(form.plainPassword.first, {'attr': {'placeholder':'Mot de passe'}}) }}
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="input-group">
-				<span class="input-group-addon"><label for="fos_user_registration_form_plainPassword_second" class="icon-lock"></label></span>
-				{{ form_widget(form.plainPassword.second, {'attr': {'placeholder':'Vérification du mot de passe'}}) }}
-			</div>
-		</div>
+		{{ form_widget(form._token) }}
+		<button type="submit" class="btn btn-large btn-light-blue">Inscription</button>
 	</div>
-	<button type="submit" class="btn btn-large btn-light-blue">Inscription</button>
 </form>
