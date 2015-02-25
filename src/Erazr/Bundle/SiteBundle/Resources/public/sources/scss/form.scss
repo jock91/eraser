@@ -11,6 +11,7 @@
 
 .input-group {
 	border:.1rem solid #e5e5e5;
+	@extend .form-control;
 	&:hover,&:focus,&:active {
 		border-color:darken(#e5e5e5,20%);
 	}
@@ -31,5 +32,16 @@
 	.form-control {
 		border:none;
 		padding-left:0;
+	}
+}
+
+.form-control {
+	margin-bottom:20px;
+}
+
+input[type="checkbox"]{
+	@extend .form-control;
+	& + label {
+		cursor:pointer;
 	}
 }

@@ -17,3 +17,30 @@ ul {
 	margin:0;
 	padding:0;
 }
+
+.btn {
+	border-radius:0;
+	&.btn-light-blue {
+		color:white;
+		background:$clr-light-blue;
+		&:hover {
+			background:lighten($clr-light-blue,5%);
+		}
+	}
+	&.btn-large {
+		display:block;
+		width:100%;
+	}
+}
+
+.text-white {
+	color:white;
+}
+
+.text-asphalt {
+	color:$clr-asphalt;
+}
+
+.text-light-blue {
+	color:$clr-light-blue;
+}

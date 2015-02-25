@@ -10,19 +10,23 @@
 {% block javascripts %}
 	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/jquery.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/bootstrap.min.js')}}"></script>
-	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/moment.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/script.min.js')}}"></script>
 {% endblock %}
 
 {% block body %}
-<div id="erazr">
-	<main class="container-fluid">
-		<div class="row">
-			<div class="col-md-12" stle="background:red">
-				{% block fos_user_content %}
-				{% endblock fos_user_content %}
-			</div>
-		</div>
-	</main>
-</div>  
+<main class="container-fluid" id="login">
+	<div class="row">
+		<header class="col-md-12">
+			<h1><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></h1>
+		</header>
+		<section class="col-md-12 connexion">
+			<h1 class="text-white">Connexion</h1>
+			{% block fos_user_bundle endblock %}
+		</section>
+		<section class="col-md-12 inscription">
+			<h1 class="text-asphalt">Inscription</h1>
+			{% render url('fos_user_registration_register') %}
+		</section>
+	</div>
+</main>
 {% endblock %}
