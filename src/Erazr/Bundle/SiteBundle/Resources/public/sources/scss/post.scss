@@ -6,6 +6,12 @@ article.post {
 	&.post-blue {
 		background:#86dbff;
 	}
+	&.post-orange {
+		background:#fecc74;
+	}
+	&.post-green {
+		background:#88d686;
+	}
 	&:before {
 		content:"";
 		position:absolute;

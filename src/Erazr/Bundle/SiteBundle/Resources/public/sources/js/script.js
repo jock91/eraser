@@ -22,6 +22,12 @@ function init(){
 			$(el).html(event.strftime(hours+':%M:%S'));
 		});
 	});
+	$('[data-created]').each(function(){
+		moment.locale('fr');
+		var created = $(this).data('created'),
+			created = moment(created,'YYYY/MM/DD H:m:s').fromNow();
+		$(this).html(created);
+	});
 }
 
 function resize(){

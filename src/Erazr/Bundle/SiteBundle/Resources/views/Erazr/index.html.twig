@@ -4,30 +4,61 @@
 
 {% block content %}
 <div class="column-row">
+{% for post in posts %}
 	<div class="column-item">
 		<div class="column-well">
-			<article class="post post-blue">
+			<article class="post post-{{ post.color }}">
 				<header class="clearfix">
-					<a href="#" title="Kévin Desperries">
-						<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="Kévin Desperries" />
+					<a href="#" title="{{ post.user }}">
+						<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="{{ post.user }}" />
 						<div class="profil">
-							<h2>Kévin Desperries</h2>
-							<h3>Il y a 2 minutes</h3>
+							<h2>{{ post.user }}</h2>
+							<h3 data-created="{{ post.created|date('Y/m/d H:i:s') }}">#</h3>
 						</div>
 					</a>
 					<div class="timer">
-						<span class="icon-clock"></span> <span data-countdown="2015/02/25 16:31:00">24:10:24</span>
+						<span class="icon-clock"></span> <span data-countdown="{{ post.timer|date('Y/m/d H:i:s') }}">{{ "now"|date('H:i:s')}}</span>
 					</div>
 				</header>
 				<div class="content">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis deserunt nam, adipisci repellendus nihil quas ipsum itaque voluptatem aliquam delectus amet illum doloremque nostrum sed corporis repellat nobis. Explicabo, qui!</p>
+					<p>{{ post.content }}</p>
 				</div>
 				<footer class="text-right">
 					<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un commentaire"><span class="icon-comment-empty"></span> 02</a>
-					<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un like"><span class="icon-heart-empty"></span> 02</a>
+					<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un like"><span class="icon-heart-empty"></span> {{ post.liked|number_format(0) }}</a>
 				</footer>
 			</article>
 		</div>
 	</div>
+{% endfor %}
 </div>
+
+<table width="100%">
+	<thead>
+		<th>id</th>
+		<th>content</th>
+		<th>created</th>
+		<th>timer</th>
+		<th>liked</th>
+		<th>color</th>
+		<th>user.username</th>
+	</thead>
+	<tbody>
+{% for post in posts %}
+	<tr>
+		<td>{{ post.id }}</td>
+		<td>{{ post.content }}</td>
+		<td>{{ post.created|date('H:i:s') }}</td>
+		<td>{{ post.timer|date('H:i:s') }}</td>
+		<td>{{ post.liked }}</td>
+		<td>{{ post.color }}</td>
+		<td>{{ post.user }}</td>
+		<td></td>
+	</tr>
+{% endfor %}
+	</tbody>
+</table>
+
+	{{dump(posts)}}
+
 {% endblock %}
