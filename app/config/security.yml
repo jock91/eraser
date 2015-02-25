@@ -19,6 +19,10 @@ security:
             pattern: ^/login$
             anonymous: true
 
+        main_register:
+            pattern: ^/register
+            anonymous: true
+
         main:
             pattern: ^/
             form_login:
