@@ -1,5 +1,6 @@
 {% extends "::layout.html.twig" %}
-{% block title %}Login{% endblock %}
+
+{% block title %}Erazr{% endblock %}
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{asset('bundles/erazrsite/css/bootstrap.min.css')}}">
@@ -16,10 +17,12 @@
 {% block body %}
 <div id="erazr">
 	<main class="container-fluid">
-	{% block content %}
-	  {% block fos_user_content %}
-	  {% endblock fos_user_content %}
-	{% endblock %}
+		<div class="row">
+			<div class="col-md-12" stle="background:red">
+				{% block fos_user_content %}
+				{% endblock fos_user_content %}
+			</div>
+		</div>
 	</main>
 </div>  
 {% endblock %}
