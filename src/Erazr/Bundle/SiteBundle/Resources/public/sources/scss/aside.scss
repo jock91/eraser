@@ -50,6 +50,18 @@ aside {
 		position:relative;
 		background:$clr-asphalt;
 		text-align:center;
+		.logout {
+			position:absolute;
+			top:0;
+			left:0;
+			padding:1rem;
+			font-size:2.5rem;
+			display:block;
+			&:hover span {
+				display:inline-block;
+				animation:shake .5s infinite;
+			}
+		}
 		.params {
 			position:absolute;
 			top:0;

@@ -1,10 +1,11 @@
 <aside>
 	<header>
-		<h1><a href="#"><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></a></h1>
+		<h1><a href="{{ path('_home') }}"><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></a></h1>
 	</header>
 	<div class="sideTimer">{{"now"|date('H:i:s')}}</div>
 	<div class="sideProfil">
-		<a href="#" title="Paramètres" class="params"><span class="icon-options"></span></a>
+		<a href="{{ path('fos_user_security_logout') }}" class="logout" title="Déconnexion" data-toggle="tooltip" data-placement="top"><span class="icon-login"></span></a>
+		<a href="#" title="Paramètres" class="params" data-toggle="tooltip" data-placement="top"><span class="icon-options"></span></a>
 		<a href="#" title="Profil" class="profil">
 			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" title="Léo Lapujade" alt="Léo Lapujade" />
 			<h2>Léo Lapujade</h2>

@@ -44,3 +44,30 @@ ul {
 .text-light-blue {
 	color:$clr-light-blue;
 }
+
+.tooltip {
+	white-space:nowrap;
+}
+
+a {
+	&:hover {
+		text-decoration:none;
+	}
+}
+
+.column-row {
+	-moz-column-width:40rem;
+	-webkit-column-width:40rem;
+	-moz-column-gap:2rem;
+	-webkit-column-gap:2rem;
+}
+
+.column-item {
+	display:inline-block;
+	width:100%;
+}
+
+.column-well {
+	position:relative;
+	display:block;
+}

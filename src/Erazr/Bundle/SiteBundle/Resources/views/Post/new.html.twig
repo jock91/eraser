@@ -1,15 +1,12 @@
 {% extends 'ErazrSiteBundle::layout.html.twig' %}
 
-{% block content -%}
-    <h1>Post creation</h1>
+{% block title %}{{ parent() }} - Ajouter un post{% endblock %}
 
-    {{ form(form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('_home') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+{% block content %}
+	<div class="row">
+		<div class="col-md-12">
+			{{ form(form) }}
+		</div>
+	</div>
 {% endblock %}
