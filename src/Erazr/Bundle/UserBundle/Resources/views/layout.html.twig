@@ -20,12 +20,16 @@
 			<h1><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></h1>
 		</header>
 		<section class="col-md-12 connexion">
-			<h1 class="text-white">Connexion</h1>
-			{% block fos_user_bundle endblock %}
+			<div class="container">
+				<h1 class="text-white">Connexion</h1>
+				{% block fos_user_bundle endblock %}
+			</div>
 		</section>
 		<section class="col-md-12 inscription">
-			<h1 class="text-asphalt">Inscription</h1>
-			{% render url('fos_user_registration_register') %}
+			<div class="container">
+				<h1 class="text-asphalt">Inscription</h1>
+				{% render url('fos_user_registration_register') %}
+			</div>
 		</section>
 	</div>
 </main>
