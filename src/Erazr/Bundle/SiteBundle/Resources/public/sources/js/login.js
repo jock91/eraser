@@ -16,7 +16,7 @@ function resize(){
 /* ------------------------ */
 
 function fullHeight(e,min){
-	var winH = $(window).height();
+	var winH = $(document).height();
 	if(min){
 		$(e).css('min-height',winH);
 	}else{

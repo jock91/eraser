@@ -45,7 +45,7 @@ function resize(){
 /* ------------------------ */
 
 function fullHeight(e,min){
-	var winH = $(window).height();
+	var winH = $(document).height();
 	if(min){
 		$(e).css('min-height',winH);
 	}else{
@@ -56,4 +56,13 @@ function fullHeight(e,min){
 function hour(){
 	var time = moment().format('H:mm:ss');
 	$('.sideTimer').html(time);
+}
+
+/* ------------------------ */
+
+// Fix facebook connect
+if(window.location.hash == '#_=_'){
+	window.location.hash = '';
+	history.pushState('', document.title, window.location.pathname);
+	e.preventDefault();
 }
