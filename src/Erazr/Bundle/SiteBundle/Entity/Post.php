@@ -53,7 +53,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="array", nullable=true)
+     * @ORM\Column(name="color", type="string", nullable=true)
      */
     private $color;
 
