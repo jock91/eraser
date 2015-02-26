@@ -4,6 +4,7 @@ namespace Erazr\Bundle\SiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -61,16 +62,21 @@ class SiteController extends Controller
     	$post = new Post();
         $post->setUser($this->getUser());
         
-        $post->setTimer(new \DateTime());
-        
         $form = $this->createCreateForm($post);
         $form->handleRequest($this->getRequest());
 
-
-
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            $hourTimer = $post->getTimer();
+            $interval= $hourTimer->format("H:i:s");
+            $now = new \DateTime("now");
+            $now->add(new \DateInterval("P0000-00-00T".$interval));
+            $newTimer = $now->format('Y-m-d H:i:s');
+
+            $post->setTimer(new \DateTime($newTimer));
+
+
             $em->persist($post);
             $em->flush();
 

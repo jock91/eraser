@@ -10,6 +10,7 @@ use Erazr\Bundle\UserBundle\Entity\User;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Erazr\Bundle\SiteBundle\Entity\PostRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Post
 {
