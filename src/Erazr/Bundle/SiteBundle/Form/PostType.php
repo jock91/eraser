@@ -16,7 +16,7 @@ class PostType extends AbstractType
     {
         $builder
             ->add('content')
-            ->add('timer', 'time')
+            ->add('timer', 'datetime')
             ->add('liked', 'hidden')
             ->add('color', 'choice', array(
                 'choices' => array(
