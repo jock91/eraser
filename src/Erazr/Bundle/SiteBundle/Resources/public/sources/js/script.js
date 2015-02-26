@@ -7,9 +7,15 @@ $(function(){
 
 function init(){
 	resize();
+
+// Timer aside
 	hour();
 	setInterval(hour,1000);
+
+// Init des tooltips
 	$('[data-toggle="tooltip"]').tooltip();
+
+// Timer sur les posts
 	$('[data-countdown]').each(function(){
 		var el = $(this),
 			finalDate = $(this).data('countdown');
@@ -22,6 +28,8 @@ function init(){
 			$(el).html(event.strftime(hours+':%M:%S'));
 		});
 	});
+
+// Affichage depuis combien de temps le post est posté
 	$('[data-created]').each(function(){
 		moment.locale('fr');
 		var created = $(this).data('created'),

@@ -27,6 +27,34 @@ ul {
 			background:lighten($clr-light-blue,5%);
 		}
 	}
+	&.btn-asphalt {
+		color:white;
+		background:$clr-asphalt;
+		&:hover {
+			background:lighten($clr-asphalt,5%);
+		}
+	}
+	&.btn-light-asphalt {
+		color:white;
+		background:$clr-light-asphalt;
+		&:hover {
+			background:lighten($clr-light-asphalt,5%);
+		}
+	}
+	&.btn-dark-asphalt {
+		color:white;
+		background:$clr-dark-asphalt;
+		&:hover {
+			background:darken($clr-dark-asphalt,5%);
+		}
+	}
+	&.btn-facebook {
+		color:white;
+		background:$clr-facebook;
+		&:hover {
+			background:darken($clr-facebook,5%);
+		}
+	}
 	&.btn-large {
 		display:block;
 		width:100%;
