@@ -66,7 +66,7 @@ class SiteController extends Controller
         $form->handleRequest($this->getRequest());
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager(); 
             
             $hourTimer = $post->getTimer();
             $interval= $hourTimer->format("H:i:s");
