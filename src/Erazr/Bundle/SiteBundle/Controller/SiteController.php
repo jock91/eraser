@@ -73,7 +73,7 @@ class SiteController extends Controller
             $now = new \DateTime("now");
             $now->add(new \DateInterval("P0000-00-00T".$interval));
             $newTimer = $now->format('Y-m-d H:i:s');
-
+ 
             $post->setTimer(new \DateTime($newTimer));
 
 
