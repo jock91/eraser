@@ -38,6 +38,13 @@ class User extends BaseUser
     protected $facebookId;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="google_id", type="string", length=255, unique=true, nullable=true)
+     */
+    protected $googleId;
+
+    /**
      *
      * @ORM\Column(name="totalLike", type="integer", nullable=true)
      */
@@ -146,5 +153,28 @@ class User extends BaseUser
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set facebookId
+     *
+     * @param string $facebookId
+     * @return User
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return string 
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
     }
 }

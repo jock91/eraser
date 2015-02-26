@@ -60,9 +60,14 @@ class SiteController extends Controller
     {
     	$post = new Post();
         $post->setUser($this->getUser());
-
+        
+        $post->setTimer(new \DateTime());
+        
         $form = $this->createCreateForm($post);
         $form->handleRequest($this->getRequest());
+
+
+
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

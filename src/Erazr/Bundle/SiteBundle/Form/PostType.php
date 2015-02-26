@@ -16,10 +16,18 @@ class PostType extends AbstractType
     {
         $builder
             ->add('content')
-            ->add('timer')
-            ->add('liked')
-            ->add('color')
-        ;
+            ->add('timer', 'time')
+            ->add('liked', 'hidden')
+            ->add('color', 'choice', array(
+                'choices' => array(
+                    'orange' => 'Orange',
+                    'blue' => 'Bleu',
+                    'green' => 'Vert'
+                ),
+                'required'    => false,
+                'empty_value' => 'Choisissez votre couleur',
+                'empty_data'  => null
+            ));
     }
     
     /**
