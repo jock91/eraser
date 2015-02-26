@@ -2,12 +2,12 @@
 	background:#f2f2f2;
 	header {
 		background:$clr-light-blue;
-		padding:20px 40px;
+		padding:2rem 4rem;
 		img {
 			display:block;
 			margin:0 auto;
 			cursor:pointer;
-			max-height:150px;
+			max-height:15rem;
 			&:hover {
 				animation:bouiiiiing 1s;
 			}
@@ -21,7 +21,11 @@
 		&.inscription {
 		}
 		h1 {
-			margin:0 0 20px;
+			margin:0 0 2rem;
 		}
+	}
+	.btn-facebook {
+		display:inline-block;
+		margin-bottom:2rem;
 	}
 }
