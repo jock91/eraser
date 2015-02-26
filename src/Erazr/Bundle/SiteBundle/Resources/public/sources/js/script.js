@@ -32,7 +32,6 @@ function init(){
 
 function resize(){
 	fullHeight('aside','min');
-	fullHeight('#login','min');
 }
 
 /* ------------------------ */

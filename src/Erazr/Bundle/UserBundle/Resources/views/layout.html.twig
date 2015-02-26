@@ -10,7 +10,11 @@
 {% block javascripts %}
 	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/jquery.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/bootstrap.min.js')}}"></script>
+{% if path(app.request.attributes.get('_route')) == "/app_dev.php/login" %}
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/login.min.js')}}"></script>
+{% else %}
 	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/script.min.js')}}"></script>
+{% endif %}
 {% endblock %}
 
 {% block body %}

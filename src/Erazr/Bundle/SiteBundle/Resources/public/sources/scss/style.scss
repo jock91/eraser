@@ -10,3 +10,14 @@ $clr-light-asphalt:#3e5973;
 @import 'login';
 @import 'post';
 @import 'keyframes';
+
+
+/*
+ *
+ * UserBundle -> Ressources -> views -> layout.html.twig
+ * Ne pas oublier de changer la ligne
+ * {% if path(app.request.attributes.get('_route')) == "/app_dev.php/login" %}
+ * en
+ * {% if path(app.request.attributes.get('_route')) == "/login" %}
+ *
+*/
