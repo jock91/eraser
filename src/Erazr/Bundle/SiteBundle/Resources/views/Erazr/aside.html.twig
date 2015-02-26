@@ -7,8 +7,8 @@
 		<a href="{{ path('fos_user_security_logout') }}" class="logout" title="Déconnexion" data-toggle="tooltip" data-placement="top"><span class="icon-login"></span></a>
 		<a href="#" title="Paramètres" class="params" data-toggle="tooltip" data-placement="top"><span class="icon-options"></span></a>
 		<a href="#" title="Profil" class="profil">
-			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" title="Léo Lapujade" alt="Léo Lapujade" />
-			<h2>Léo Lapujade</h2>
+			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" title="{{ app.user.username }}" alt="{{ app.user.username }}" />
+			<h2>{{ app.user.username }}</h2>
 		</a>
 	</div>
 	<nav>

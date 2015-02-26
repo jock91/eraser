@@ -5,45 +5,6 @@
 	<div class="alert alert-danger" role="alert">Informations incorrects</div>
 {% endif %}
 
-<script>
-window.fbAsyncInit = function(){
-	FB.init({
-		appId		: '514256792045832',
-		channelUrl	: '//yourdomain.com/channel.html',
-		status		: true,
-		xfbml		: true
-	});
-};
-(function(d, s, id){
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if(d.getElementById(id)){return;}
-	js = d.createElement(s);js.id = id;
-	js.src = "//connect.facebook.net/en_US/all.js";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-function fb_login(){
-	FB.getLoginStatus(function(response) {
-		if(response.status === 'connected') {
-			alert('Déjà connecté');
-			document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
-		}else{
-			FB.login(function(response){
-				if(response.authResponse){
-					document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
-				}else{
-					alert('Annulé');
-				}
-			},{scope: 'email'});
-		}
-	});
-}
-if(window.location.hash == '#_=_'){
-	window.location.hash = '';
-	history.pushState('',document.title,window.location.pathname);
-	e.preventDefault();
-}
-</script>
-
 <form action="{{ path("fos_user_security_check") }}" method="post">
 	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 	<div class="row">
@@ -60,17 +21,12 @@ if(window.location.hash == '#_=_'){
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-			<label for="remember_me" class="text-white" >{{'security.login.remember_me'|trans({},'FOSUserBundle')}}</label>
-		</div>
-		<div class="col-md-6 text-right">
-			<a href="#" class="btn btn-facebook" onclick="fb_login();return false;">Se connecter avec Facebook</a>
-		</div>
-	</div>
+	<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+	<label for="remember_me" class="text-white" >{{'security.login.remember_me'|trans({},'FOSUserBundle')}}</label>
 
 	<button type="submit" class="btn btn-large btn-light-blue" id="_submit" name="_submit">Connexion</button>
+	<br/>
+	<a href="connect/facebook" class="btn btn-large btn-facebook" id="btn_facebook">Se connecter avec Facebook</a>
 </form>
 {% endblock fos_user_bundle %}
 
