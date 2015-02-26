@@ -11,6 +11,9 @@ function init(){
 
 function resize(){
 	fullHeight('#login','min');
+	$('.btn-facebook').click(function(){
+		fb_login();
+	});
 }
 
 /* ------------------------ */

@@ -1,4 +1,4 @@
-{# {% extends "::layout.html.twig" %}
+{% extends "::layout.html.twig" %}
         <div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
@@ -22,43 +22,3 @@
             {% block fos_user_content %}
             {% endblock fos_user_content %}
         </div>
-
- #}
-
-{% extends "::layout.html.twig" %}
-
-{% block title %}Erazr{% endblock %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{asset('bundles/erazrsite/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('bundles/erazrsite/css/style.min.css')}}" />
-{% endblock %}
-
-{% block javascripts %}
-    <script type="text/javascript" src="{{asset('bundles/erazrsite/js/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('bundles/erazrsite/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('bundles/erazrsite/js/script.min.js')}}"></script>
-{% endblock %}
-
-{% block body %}
-<div id="fb-root"></div>
-<main class="container-fluid" id="login">
-    <div class="row">
-        <header class="col-md-12">
-            <h1><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></h1>
-        </header>
-        <section class="col-md-12 connexion">
-            <div class="container">
-                <h1 class="text-white">Connexion</h1>
-                {% block fos_user_bundle endblock %}
-            </div>
-        </section>
-        <section class="col-md-12 inscription">
-            <div class="container">
-                <h1 class="text-asphalt">Inscription</h1>
-                {% render url('fos_user_registration_register') %}
-            </div>
-        </section>
-    </div>
-</main>
-{% endblock %}
