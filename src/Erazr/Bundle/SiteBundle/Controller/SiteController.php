@@ -80,7 +80,7 @@ class SiteController extends Controller
             $em->persist($post);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('_postView', array('id' => $post->getId())));
+            return $this->redirect($this->generateUrl('_home'));
         }
 
         return array(
@@ -196,30 +196,35 @@ class SiteController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+    
     /**
      * Deletes a Post entity.
      *
-     * @Route("/{id}", name="post_delete")
-     * @Method("DELETE")
+     * @Route("/delete", name="post_delete")
+     * 
      */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+    public function deleteAction()
+    {   
 
-        if ($form->isValid()) {
+        //on recuperer tout les posts par timer on suppr tous ceux qui sont à zèro
+
+
+        
+
+
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ErazrSiteBundle:Post')->find($id);
+            $entity = $em->getRepository('ErazrSiteBundle:Post')->findAllPostOrderedByTimer();
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Post entity.');
-            }
+            var_dump($entity);
 
-            $em->remove($entity);
-            $em->flush();
-        }
+            // if ($entity) {
+            //     throw $this->createNotFoundException('Unable to find Post entity.');
+            // }
 
-        return $this->redirect($this->generateUrl('post'));
+            //$em->remove($entity);
+            //$em->flush();
+        return 'toto';
+
     }
 
     /**

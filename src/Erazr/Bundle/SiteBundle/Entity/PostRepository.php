@@ -19,4 +19,12 @@ class PostRepository extends EntityRepository
 		    ->getQuery()
             ->getResult();
     }
+	
+	public function findAllPostOrderedByTimer($order = 'asc')
+    {
+       return $this->createQueryBuilder('p')
+		    ->orderBy('p.timer', $order)
+		    ->getQuery()
+            ->getResult();
+    }
 }
