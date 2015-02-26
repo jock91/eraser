@@ -26,8 +26,10 @@ class PostType extends AbstractType
                     'green' => 'Vert'
                 ),
                 'required'    => false,
-                'empty_value' => 'Choisissez votre couleur',
-                'empty_data'  => null
+                'empty_value' => 'Gris',
+                'empty_data'  => null,
+                'multiple' => false,
+                'expanded' => true,
             ));
     }
     

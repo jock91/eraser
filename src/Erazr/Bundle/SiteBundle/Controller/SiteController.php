@@ -27,7 +27,7 @@ class SiteController extends Controller
     	$posts = $this->getDoctrine()
       		->getManager()
       		->getRepository('ErazrSiteBundle:Post')
-      		->findAll()
+      		->findAllPostOrderedByDate('desc')
     	;
 		return array('posts' => $posts);
     }

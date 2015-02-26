@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
+	public function findAllPostOrderedByDate($order = 'desc')
+    {
+       return $this->createQueryBuilder('p')
+		    ->orderBy('p.created', $order)
+		    ->getQuery()
+            ->getResult();
+    }
 }
