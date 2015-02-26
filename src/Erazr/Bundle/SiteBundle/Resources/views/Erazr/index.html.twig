@@ -23,42 +23,20 @@
 				<div class="content">
 					<p>{{ post.content }}</p>
 				</div>
-				<footer class="text-right">
-					<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un commentaire"><span class="icon-comment-empty"></span> 02</a>
-					<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un like"><span class="icon-heart-empty"></span> {{ post.liked|number_format(0) }}</a>
+				<footer>
+					<div class="row">
+						<div class="col-sm-6">
+							<a href="{{ path('_postView', {'id': post.id}) }}" class="btn btn-sm btn-post">Voir le post</a>
+						</div>
+						<div class="col-sm-6 text-right">
+							<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un commentaire"><span class="icon-comment-empty"></span> 02</a>
+							<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un like"><span class="icon-heart-empty"></span> {{ post.liked|number_format(0) }}</a>
+						</div>
+					</div>
 				</footer>
 			</article>
 		</div>
 	</div>
 {% endfor %}
 </div>
-
-<table width="100%">
-	<thead>
-		<th>id</th>
-		<th>content</th>
-		<th>created</th>
-		<th>timer</th>
-		<th>liked</th>
-		<th>color</th>
-		<th>user.username</th>
-	</thead>
-	<tbody>
-{% for post in posts %}
-	<tr>
-		<td>{{ post.id }}</td>
-		<td>{{ post.content }}</td>
-		<td>{{ post.created|date('H:i:s') }}</td>
-		<td>{{ post.timer|date('H:i:s') }}</td>
-		<td>{{ post.liked }}</td>
-		<td>{{ post.color }}</td>
-		<td>{{ post.user }}</td>
-		<td></td>
-	</tr>
-{% endfor %}
-	</tbody>
-</table>
-
-	{{dump(posts)}}
-
 {% endblock %}
