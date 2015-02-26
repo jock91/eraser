@@ -201,46 +201,29 @@ class SiteController extends Controller
      * Deletes a Post entity.
      *
      * @Route("/delete", name="post_delete")
-     * 
+     * @Template("ErazrSiteBundle:Post:delete.html.twig")
      */
     public function deleteAction()
     {   
+            $em = $this->getDoctrine()->getManager();
 
-        //on recuperer tout les posts par timer on suppr tous ceux qui sont à zèro
+            $postTimer = $em->getRepository('ErazrSiteBundle:Post')->findAllPostOrderedByTimer();
 
+            if (is_array($postTimer)){
+                foreach ($postTimer as $pT) {
+                    $em->remove($pT);
+                    $em->flush();
+                } 
+            } else {
+                    $em->remove($postTimer);
+                    $em->flush();
+                }
 
         
 
+        return array(
+            'postTimer' => $postTimer
+        );
 
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ErazrSiteBundle:Post')->findAllPostOrderedByTimer();
-
-            var_dump($entity);
-
-            // if ($entity) {
-            //     throw $this->createNotFoundException('Unable to find Post entity.');
-            // }
-
-            //$em->remove($entity);
-            //$em->flush();
-        return 'toto';
-
-    }
-
-    /**
-     * Creates a form to delete a Post entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('post_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
     }
 }
