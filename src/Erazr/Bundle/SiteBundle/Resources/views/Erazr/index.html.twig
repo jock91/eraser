@@ -4,14 +4,16 @@
 
 {% block content %}
 
-{% include 'ErazrSiteBundle:Post:new.html.twig' %}
+<div class="ajout">
+	{% include 'ErazrSiteBundle:Post:new.html.twig' %}
+</div>
 
 <div class="column-row">
 
 {% for post in posts %}
 	<div class="column-item">
 		<div class="column-well">
-			<article class="post post-{{ post.color }}">
+			<article class="post post-split post-{{ post.color }}">
 				<header class="clearfix">
 					<a href="#" title="{{ post.user }}">
 						<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="{{ post.user }}" />
@@ -25,7 +27,7 @@
 					</div>
 				</header>
 				<div class="content">
-					<p>{{ post.content }}</p>
+					{{ post.content }}
 				</div>
 				<footer>
 					<div class="row">

@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new Erazr\Bundle\SiteBundle\ErazrSiteBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Erazr\Bundle\UserBundle\ErazrUserBundle(),
-            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),        
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
