@@ -1,5 +1,7 @@
-{% extends "ErazrUserBundle::layout.html.twig" %}
+{% extends "ErazrSiteBundle::layout.html.twig" %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Profile:show_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block content %}
+	{% include "FOSUserBundle:Profile:show_content.html.twig" %}
+{% endblock %}

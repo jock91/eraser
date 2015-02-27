@@ -1,0 +1,27 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}Erazr{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('bundles/erazrsite/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('bundles/erazrsite/css/style.min.css')}}" />
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/jquery.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/moment.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/countdown.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/tinymce/tinymce.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('bundles/erazrsite/js/script.min.js')}}"></script>
+{% endblock %}
+
+
+{% block body %}
+{% include 'ErazrSiteBundle:Erazr:aside.html.twig' %}
+<div id="erazr">
+	<main class="container-fluid">
+		{% block content endblock %}
+	</main>
+</div>
+{% endblock %}
