@@ -38,22 +38,32 @@ class User extends BaseUser
     protected $facebookId;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="google_id", type="string", length=255, unique=true, nullable=true)
-     */
-    protected $googleId;
-
-    /**
      *
      * @ORM\Column(name="totalLike", type="integer", nullable=true)
      */
     private $totalLike;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Erazr\Bundle\UserBundle\Entity\User", mappedBy="myFriends")
+     **/
+    private $friendsWithMe;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="friendsWithMe")
+     * @ORM\JoinTable(name="friends",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="friend_user_id", referencedColumnName="id")}
+     *      )
+     **/
+    private $myFriends;
+
     public function __construct()
     {
         parent::__construct();
         $this->posts = new ArrayCollection();
+        $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
     }    
 
     /**

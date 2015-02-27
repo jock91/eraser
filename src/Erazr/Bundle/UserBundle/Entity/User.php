@@ -45,12 +45,12 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="myFriends")
+     * @ORM\ManyToMany(targetEntity="Erazr\Bundle\UserBundle\Entity\User", mappedBy="myFriends")
      **/
     private $friendsWithMe;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
+     * @ORM\ManyToMany(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="friendsWithMe")
      * @ORM\JoinTable(name="friends",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="friend_user_id", referencedColumnName="id")}
@@ -186,5 +186,71 @@ class User extends BaseUser
     public function getFacebookId()
     {
         return $this->facebookId;
+    }
+
+    /**
+     * Add friendsWithMe
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $friendsWithMe
+     * @return User
+     */
+    public function addFriendsWithMe(\Erazr\Bundle\UserBundle\Entity\User $friendsWithMe)
+    {
+        $this->friendsWithMe[] = $friendsWithMe;
+
+        return $this;
+    }
+
+    /**
+     * Remove friendsWithMe
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $friendsWithMe
+     */
+    public function removeFriendsWithMe(\Erazr\Bundle\UserBundle\Entity\User $friendsWithMe)
+    {
+        $this->friendsWithMe->removeElement($friendsWithMe);
+    }
+
+    /**
+     * Get friendsWithMe
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFriendsWithMe()
+    {
+        return $this->friendsWithMe;
+    }
+
+    /**
+     * Add myFriends
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $myFriends
+     * @return User
+     */
+    public function addMyFriend(\Erazr\Bundle\UserBundle\Entity\User $myFriends)
+    {
+        $this->myFriends[] = $myFriends;
+
+        return $this;
+    }
+
+    /**
+     * Remove myFriends
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $myFriends
+     */
+    public function removeMyFriend(\Erazr\Bundle\UserBundle\Entity\User $myFriends)
+    {
+        $this->myFriends->removeElement($myFriends);
+    }
+
+    /**
+     * Get myFriends
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMyFriends()
+    {
+        return $this->myFriends;
     }
 }
