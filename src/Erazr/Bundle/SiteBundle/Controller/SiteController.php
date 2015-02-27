@@ -85,7 +85,7 @@ class SiteController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $comment = new Comment();
-        $form = $this->createCreateForm($comment, $post->getId());
+        $form = $this->createCommentForm($comment, $post->getId());
         $form->handleRequest($request);
         $comment->setUser($this->getUser());
         $comment->setCreated(new \DateTime('now'));
@@ -117,7 +117,7 @@ class SiteController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Comment $comment, $id)
+    private function createCommentForm(Comment $comment, $id)
     {
         $form = $this->createForm(new CommentType(), $comment, array(
             'action' => $this->generateUrl('_postView', array('id' => $id)),
