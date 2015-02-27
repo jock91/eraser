@@ -17,7 +17,9 @@ class PostType extends AbstractType
         $builder
             ->add('content')
             ->add('timer', 'time', array(
-                'widget' => 'text'))
+                'widget' => 'text',
+                'empty_value' => false,
+                'hours' => range(1, 10)))
             ->add('liked', 'hidden')
             ->add('color', 'choice', array(
                 'choices' => array(
