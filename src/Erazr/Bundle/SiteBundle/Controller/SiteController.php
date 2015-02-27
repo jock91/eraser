@@ -24,6 +24,7 @@ class SiteController extends Controller
      */
     public function indexAction()
     {
+        $this->deletePostTimeOut();
     	$posts = $this->getDoctrine()
       		->getManager()
       		->getRepository('ErazrSiteBundle:Post')
@@ -197,33 +198,21 @@ class SiteController extends Controller
         );
     }
     
-    /**
-     * Deletes a Post entity.
-     *
-     * @Route("/delete", name="post_delete")
-     * @Template("ErazrSiteBundle:Post:delete.html.twig")
-     */
-    public function deleteAction()
+
+    protected function deletePostTimeOut()
     {   
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-            $postTimer = $em->getRepository('ErazrSiteBundle:Post')->findAllPostOrderedByTimer();
+        $postTimer = $em->getRepository('ErazrSiteBundle:Post')->findAllPostOrderedByTimer();
 
-            if (is_array($postTimer)){
-                foreach ($postTimer as $pT) {
-                    $em->remove($pT);
-                    $em->flush();
-                } 
-            } else {
-                    $em->remove($postTimer);
-                    $em->flush();
-                }
-
-        
-
-        return array(
-            'postTimer' => $postTimer
-        );
-
+        if (is_array($postTimer)){
+            foreach ($postTimer as $pT) {
+                $em->remove($pT);
+                $em->flush();
+            } 
+        } else if ($postTimer instanceof Post) {
+            $em->remove($postTimer);
+            $em->flush();
+        }
     }
 }

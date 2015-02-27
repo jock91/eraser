@@ -65,7 +65,7 @@ class Post
     protected $user;
 
     /**
-    * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"persist"})
+    * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"persist", "remove"})
     */
     protected $comments;
 
