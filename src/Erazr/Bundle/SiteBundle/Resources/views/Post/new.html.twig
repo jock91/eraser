@@ -6,13 +6,13 @@
 			<div class="col-md-3">
 				<div class="input-group" data-toggle="tooltip" data-placement:"top" title="Heures">
 					{{ form_label(form.timer.hour, ' ', {'label_attr': {'class': 'icon-clock'}}) }}
-					{{ form_widget(form.timer.hour, {'attr': {'placeholder':'Heures', 'value': '00', 'pattern': '[0-9]','maxlength': '2'}}) }}
+					{{ form_widget(form.timer.hour, {'attr': {'placeholder':'Heures', 'value': '00', 'pattern': '[0-9]{1,2}','maxlength': '2'}}) }}
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="input-group" data-toggle="tooltip" data-placement:"top" title="Minutes">
 					{{ form_label(form.timer.minute, ' ', {'label_attr': {'class': 'icon-clock'}}) }}
-					{{ form_widget(form.timer.minute, {'attr': {'placeholder':'Minutes', 'value': '00', 'pattern': '[0-9]','maxlength': '2'}}) }}
+					{{ form_widget(form.timer.minute, {'attr': {'placeholder':'Minutes', 'value': '00', 'pattern': '[0-9]{1,2}','maxlength': '2'}}) }}
 				</div>
 			</div>
 			<div class="col-md-6">
