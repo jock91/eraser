@@ -5,11 +5,52 @@
 {% endblock %}
 
 {% block content %}
+<article class="post post-{{ post.color }}">
+	<header class="clearfix">
+		<a href="#" title="{{ post.user }}">
+			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="{{ post.user }}" />
+			<div class="profil">
+				<h2>{{ post.user }}</h2>
+				<h3 data-created="{{ post.created|date('Y/m/d H:i:s') }}">#</h3>
+			</div>
+		</a>
+		<div class="timer">
+			<span class="icon-clock"></span> <span data-countdown="{{ post.timer|date('Y/m/d H:i:s') }}">{{ "now"|date('H:i:s')}}</span>
+		</div>
+	</header>
+	<div class="content">
+		{{ post.content }}
+	</div>
+	<footer>
+		<div class="row">
+			<div class="col-sm-12 text-right">
+				<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un like"><span class="icon-heart-empty"></span> {{ post.liked|number_format(0) }}</a>
+			</div>
+		</div>
+	</footer>
+</article>
 
-	{{dump(post)}}
-	{{dump(comments)}}
-	
 
+
+
+<table width="100%" class="table">
+	<thead>
+		<th>id</th>
+		<th>content</th>
+		<th>created</th>
+		<th>post.id</th>
+		<th>user.username</th>
+	</thead>
+	<tbody>
+	{% for comment in comments %}
+		<td>{{ comment.id }}</td>
+		<td>{{ comment.content }}</td>
+		<td>{{ comment.created|date('Y/m/d H:i:s') }}</td>
+		<td>{{ comment.post.id }}</td>
+		<td>{{ comment.user.username }}</td>
+	{% endfor %}
+	</tbody>
+</table>
 
 {% endblock %}
 
