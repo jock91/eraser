@@ -31,7 +31,11 @@
 	</section>
 
 <section class="posts">
+{% if user.posts|length == 0 %}
+	<h2 class="text-asphalt">Aucun posts</h2>
+{% else %}
 	<h2 class="text-asphalt">Posts</h2>
+{% endif %}
 	<div class="column-row">
 	{% for post in user.posts %}
 		<div class="column-item">
