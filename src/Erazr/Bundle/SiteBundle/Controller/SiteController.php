@@ -5,6 +5,7 @@ namespace Erazr\Bundle\SiteBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\HttpFoundation\Response;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -18,11 +19,12 @@ use Erazr\Bundle\SiteBundle\Form\PostType;
 
 class SiteController extends Controller
 {
+
     /**
      * @Route("/", name="_home")
      * @Template("ErazrSiteBundle:Erazr:index.html.twig")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $this->deletePostTimeOut();
     	$posts = $this->getDoctrine()
@@ -30,64 +32,43 @@ class SiteController extends Controller
       		->getRepository('ErazrSiteBundle:Post')
       		->findAllPostOrderedByDate('desc')
     	;
-		return array('posts' => $posts);
-    }
 
-    /**
-     * Creates a form to create a Post entity.
-     *
-     * @param Post $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createCreateForm(Post $post)
-    {
+        $post = new Post();
+        $post->setUser($this->getUser());
+        
         $form = $this->createForm(new PostType(), $post, array(
-            'action' => $this->generateUrl('post_new'),
+            'action' => $this->generateUrl('_home'),
             'method' => 'POST',
         ));
 
         $form->add('submit', 'submit', array('label' => 'Poster'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Post entity.
-     *
-     * @Route("/ajouter/post", name="post_new")
-     * @Template("ErazrSiteBundle:Post:new.html.twig")
-     */
-    public function newAction()
-    {
-    	$post = new Post();
-        $post->setUser($this->getUser());
-        
-        $form = $this->createCreateForm($post);
         $form->handleRequest($this->getRequest());
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager(); 
-            
-            $hourTimer = $post->getTimer();
-            $interval= $hourTimer->format("H:i:s");
-            $now = new \DateTime("now");
-            $now->add(new \DateInterval("P0000-00-00T".$interval));
-            $newTimer = $now->format('Y-m-d H:i:s');
- 
-            $post->setTimer(new \DateTime($newTimer));
+        if($request->isMethod("POST")){
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager(); 
+                
+                $hourTimer = $post->getTimer();
+                $interval= $hourTimer->format("H:i:s");
+                $now = new \DateTime("now");
+                $now->add(new \DateInterval("P0000-00-00T".$interval));
+                $newTimer = $now->format('Y-m-d H:i:s');
+     
+                $post->setTimer(new \DateTime($newTimer));
 
 
-            $em->persist($post);
-            $em->flush();
+                $em->persist($post);
+                $em->flush();
 
-            return $this->redirect($this->generateUrl('_home'));
+                $this->get('session')->getFlashBag()->add('success', 'Ton message est bien posté !');
+                return $this->redirect($this->generateUrl('_home'));
+            } 
         }
 
-        return array(
-            'post' => $post,
+		return array(
+            'posts' => $posts,
             'form'   => $form->createView(),
-        );
+            );
     }
 
     /**

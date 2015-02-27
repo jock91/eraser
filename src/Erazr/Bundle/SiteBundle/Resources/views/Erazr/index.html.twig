@@ -5,10 +5,11 @@
 {% block content %}
 
 <div class="ajout">
-{{ render(controller("ErazrSiteBundle:Site:new")) }}
+	{% include 'ErazrSiteBundle:Post:new.html.twig' %}
 </div>
 
 <div class="column-row">
+
 {% for post in posts %}
 	<div class="column-item">
 		<div class="column-well">

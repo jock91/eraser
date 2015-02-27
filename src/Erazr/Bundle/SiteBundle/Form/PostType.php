@@ -17,7 +17,11 @@ class PostType extends AbstractType
         $builder
             ->add('content')
             ->add('timer', 'time', array(
-                'widget' => 'text'))
+                'widget' => 'text',
+                'empty_value' => false,
+                'invalid_message' => 'Veuillez entrer une heure comprise entre 01h et 23h, et des minutes entre 10mn et 59mn. '
+                )
+            )
             ->add('liked', 'hidden')
             ->add('color', 'choice', array(
                 'choices' => array(
