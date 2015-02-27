@@ -11,9 +11,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Erazr\Bundle\SiteBundle\Entity\Post;
+use Erazr\Bundle\SiteBundle\Entity\Comment;
 use Erazr\Bundle\SiteBundle\Form\PostType;
+use Erazr\Bundle\SiteBundle\Form\CommentType;
 
 
 
@@ -74,110 +77,58 @@ class SiteController extends Controller
     /**
      * @Route("/post/{id}", name="_postView")
      * @Template("ErazrSiteBundle:Erazr:view.html.twig")
-     * @Method("GET")
+     * @Method({"GET","POST"})
+     * @ParamConverter("post", class="ErazrSiteBundle:Post")
      */
-    public function viewAction($id)
+    public function viewAction(Request $request,Post $post)
     {
-    	$em = $this->getDoctrine()->getManager();
 
-    	// on recupere le post
-    	$post = $em->getRepository('ErazrSiteBundle:Post')
-      		->find($id)
-    	;
+        $em = $this->getDoctrine()->getManager();
+        $comment = new Comment();
+        $form = $this->createCreateForm($comment, $post->getId());
+        $form->handleRequest($request);
+        $comment->setUser($this->getUser());
+        $comment->setCreated(new \DateTime('now'));
 
-    	// si le post existe pas message erreur
-    	if ($post === null) {
-    		throw $this->createNotFoundException("Le post n°".$id." n'existe pas.");
-    	}
+        if ($form->isValid()) {
+            $comment->setPost($post);
+            $em->persist($comment);
+            $em->flush();
 
+            return $this->redirect($this->generateUrl('_postView', array('id' => $post->getId())));
+        }
+    	
     	// On récupere les commentaires
     	$comments = $em->getRepository('ErazrSiteBundle:Comment')
     		->findByPost($post);
 
 		return array(
 			'post' => $post,
-			'comments' => $comments
+			'comments' => $comments,
+            'form'   => $form->createView()
 			);
     }
 
+
     /**
-     * Displays a form to edit an existing Post entity.
+     * Creates a form to create a Comment entity.
      *
-     * @Route("/modifier/post/{id}", name="post_edit")
-     * @Method("GET")
-     * @Template("ErazrSiteBundle:Post:edit.html.twig")
+     * @param Comment $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
      */
-    public function editAction($id)
+    private function createCreateForm(Comment $comment, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('ErazrSiteBundle:Post')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Post entity.');
-        }
-
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-    * Creates a form to edit a Post entity.
-    *
-    * @param Post $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Post $entity)
-    {
-        $form = $this->createForm(new PostType(), $entity, array(
-            'action' => $this->generateUrl('post_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
+        $form = $this->createForm(new CommentType(), $comment, array(
+            'action' => $this->generateUrl('_postView', array('id' => $id)),
+            'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
-    /**
-     * Edits an existing Post entity.
-     *
-     * @Route("/{id}", name="post_update")
-     * @Method("PUT")
-     * @Template("ErazrSiteBundle:Post:edit.html.twig")
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ErazrSiteBundle:Post')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Post entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));
-        }
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
     
 
     protected function deletePostTimeOut()
