@@ -49,6 +49,18 @@
 		<button type="submit" class="btn btn-light-blue">Ajouter le commentaire</button>
 	</div>
 
+    <h1>Comment creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('comment') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+
 </section>
 
 {% endblock %}
