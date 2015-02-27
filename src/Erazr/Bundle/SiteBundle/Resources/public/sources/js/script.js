@@ -14,8 +14,8 @@ function init(){
 	$('[data-toggle="tooltip"]').tooltip();
 // Timer sur les posts
 	countdown();
-// Affichage depuis combien de temps le post est posté
-	postCreated();
+// Affichage depuis combien de temps c'est posté
+	created();
 // Limite de caractères sur les posts de l'accueil
 	splitPost();
 }
@@ -60,7 +60,7 @@ function countdown(){
 	});
 }
 
-function postCreated(){
+function created(){
 	$('[data-created]').each(function(){
 		moment.locale('fr');
 		var created = $(this).data('created'),

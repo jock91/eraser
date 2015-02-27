@@ -48,7 +48,7 @@ article.post {
 					font-size:1.2rem;
 					color:#777;
 					font-weight:100;
-					margin:5px 0 0;
+					margin:.5rem 0 0;
 				}
 			}
 		}
@@ -60,7 +60,7 @@ article.post {
 		}
 	}
 	.content {
-		padding:20px 0;
+		padding:2rem 0;
 		p {
 
 		}
@@ -74,6 +74,42 @@ article.post {
 			span {
 				color:rgba(0,0,0,.5);
 			}
+		}
+	}
+}
+
+article.comment {
+	padding:2rem;
+	header {
+		float:left;
+		margin-right:1rem;
+		a {
+			border:1px solid rgba(0,0,0,.5);
+			display:block;
+			border-radius:50%;
+			border-top-left-radius:0;
+			height:5rem;
+			width:5rem;
+			overflow:hidden;
+			img {
+				display:block;
+				width:100%;
+				height:100%;
+			}
+		}
+	}
+	.content-wrap {
+		float:left;
+		.user {
+			font-weight:bold;
+		}
+		.content {
+
+		}
+		footer {
+			margin-top:.2rem;
+			color:#777;
+			font-size:1.2rem;
 		}
 	}
 }
