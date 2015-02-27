@@ -31,7 +31,7 @@ class ProfileController extends BaseController
     /**
      * Edit the user
      */
-    public function editAction()
+    public function editAction(User $user=null)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
