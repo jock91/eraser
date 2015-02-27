@@ -22,3 +22,8 @@
         <span class="input-group-addon"><label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label></span>
     {%- endif -%}
 {%- endblock form_label -%}
+
+{% block button_widget -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' btn-light-blue')|trim}) %}
+    {{- parent() -}}
+{%- endblock %}
