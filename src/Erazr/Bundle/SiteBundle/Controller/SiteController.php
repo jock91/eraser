@@ -124,7 +124,7 @@ class SiteController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter un commentaire'));
 
         return $form;
     }
