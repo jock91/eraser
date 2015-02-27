@@ -71,9 +71,10 @@ function created(){
 
 function splitPost(){
 	$('.post-split').each(function(){
-		var str = $(this).find('.content').text();
-		if(str.length > 10){
-			str = str.substring(0,150);
+		var str = $(this).find('.content').text(),
+			maxChars = 150;
+		if(str.length > maxChars){
+			str = str.substring(0,maxChars);
 			$(this).find('.content').html(str+' [...]');
 		}
 	});

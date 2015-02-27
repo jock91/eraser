@@ -7,7 +7,7 @@
 {% block content %}
 <article class="post post-{{ post.color }}" id="post-{{ post.id }}">
 	<header class="clearfix">
-		<a href="#" title="{{ post.user }}">
+		<a href="{{ path('fos_user_profile_show', {'username': post.user}) }}" title="{{ post.user }}">
 			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ post.user }}" title="{{ post.user }}" data-toggle="tooltip" data-placement="top" />
 			<div class="profil">
 				<h2>{{ post.user }}</h2>
@@ -24,27 +24,30 @@
 	<footer>
 		<div class="row">
 			<div class="col-sm-12 text-right">
-				<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un like"><span class="icon-heart-empty"></span> {{ post.liked|number_format(0) }}</a>
+				<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un like" class="likes"><span class="icon-heart-empty"></span> {{ post.liked|number_format(0) }}</a>
 			</div>
 		</div>
 	</footer>
 </article>
-
 <section class="comments">
+	<h1 class="text-asphalt">{{ post.comments|length }} commentaire{% if post.comments|length > 1 %}s{% endif %}</h1>
 {% for comment in comments %}
 	<article class="comment clearfix" id="comment-{{ comment.id }}">
 		<header>
-			<a href="#" title="{{ comment.user }}" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ comment.user }}" title="{{ comment.user }}" /></a>
+			<a href="{{ path('fos_user_profile_show', {'username': comment.user}) }}" title="{{ comment.user }}" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ comment.user }}" title="{{ comment.user }}" /></a>
 		</header>
 		<div class="content-wrap">
-			<a href="#" title="{{ comment.user }}" class="user text-asphalt">{{ comment.user }}</a>
+			<a href="{{ path('fos_user_profile_show', {'username': comment.user}) }}" title="{{ comment.user }}" class="user text-asphalt">{{ comment.user }}</a>
 			<span class="content">{{ comment.content }}</span>
 			<footer data-created="{{ comment.created|date('Y/m/d H:i:s') }}">{{ comment.created|date('Y/m/d H:i:s') }}</footer>
 		</div>
 	</article>
 {% endfor %}
 
-<h1 class="text-asphalt">Ajouter un commentaire</h1>
+<textarea class="editor"></textarea>
+<div class="text-right">
+	<button type="submit" class="btn btn-light-blue">Ajouter le commentaire</button>
+</div>
 
 </section>
 

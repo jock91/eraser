@@ -5,15 +5,15 @@
 	<div class="sideTimer">{{"now"|date('H:i:s')}}</div>
 	<div class="sideProfil">
 		<a href="{{ path('fos_user_security_logout') }}" class="logout" title="Déconnexion" data-toggle="tooltip" data-placement="top"><span class="icon-login"></span></a>
-		<a href="#" title="Paramètres" class="params" data-toggle="tooltip" data-placement="top"><span class="icon-options"></span></a>
-		<a href="#" title="Profil" class="profil">
+		<a href="{{ path('fos_user_profile_edit', {'username': app.user.username}) }}" title="Paramètres" class="params" data-toggle="tooltip" data-placement="top"><span class="icon-options"></span></a>
+		<a href="{{ path('fos_user_profile_show', {'username': app.user.username}) }}" title="Profil" class="profil">
 			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" title="{{ app.user.username }}" alt="{{ app.user.username }}" />
 			<h2>{{ app.user.username }}</h2>
 		</a>
 	</div>
 	<nav>
 		<ul>
-			<li><a href="#" title="Mur publique" class="actif"><span class="icon-public-wall"></span>Mur publique</a></li>
+			<li><a href="{{ path('_home') }}" title="Mur publique" class="actif"><span class="icon-public-wall"></span>Mur publique</a></li>
 			<li><a href="#" title="Notifications"><span class="icon-notif"></span>Notifications<span class="badge">2</span></a></li>
 		</ul>
 	</nav>

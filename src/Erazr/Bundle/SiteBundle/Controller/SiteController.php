@@ -41,7 +41,7 @@ class SiteController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Poster'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter le post'));
         $form->handleRequest($this->getRequest());
 
         if($request->isMethod("POST")){

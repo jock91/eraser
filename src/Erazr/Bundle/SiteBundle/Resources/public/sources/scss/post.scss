@@ -66,13 +66,18 @@ article.post {
 		}
 	}
 	footer {
-		& > div > div:last-child a {
-			display:inline-block;
-			margin:.3rem 0 0 2rem;
-			color:#777;
-			font-size:1.5rem;
-			span {
-				color:rgba(0,0,0,.5);
+		& > div > div:last-child {
+			.comments {
+				cursor:default;
+			}
+			.comments, .likes {
+				display:inline-block;
+				margin:.3rem 0 0 2rem;
+				color:#777;
+				font-size:1.5rem;
+				span {
+					color:rgba(0,0,0,.5);
+				}
 			}
 		}
 	}
