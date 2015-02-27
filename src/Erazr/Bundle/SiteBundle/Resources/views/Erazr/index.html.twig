@@ -4,9 +4,10 @@
 
 {% block content %}
 
-{{ render(controller("ErazrSiteBundle:Site:new")) }}
+{% include 'ErazrSiteBundle:Post:new.html.twig' %}
 
 <div class="column-row">
+
 {% for post in posts %}
 	<div class="column-item">
 		<div class="column-well">
