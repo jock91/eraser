@@ -80,7 +80,7 @@ class SiteController extends Controller
             $em->persist($post);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('_postView', array('id' => $post->getId())));
+            return $this->redirect($this->generateUrl('_home'));
         }
 
         return array(
@@ -196,46 +196,34 @@ class SiteController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+    
     /**
      * Deletes a Post entity.
      *
-     * @Route("/{id}", name="post_delete")
-     * @Method("DELETE")
+     * @Route("/delete", name="post_delete")
+     * @Template("ErazrSiteBundle:Post:delete.html.twig")
      */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
+    public function deleteAction()
+    {   
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ErazrSiteBundle:Post')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Post entity.');
-            }
+            $postTimer = $em->getRepository('ErazrSiteBundle:Post')->findAllPostOrderedByTimer();
 
-            $em->remove($entity);
-            $em->flush();
-        }
+            if (is_array($postTimer)){
+                foreach ($postTimer as $pT) {
+                    $em->remove($pT);
+                    $em->flush();
+                } 
+            } else {
+                    $em->remove($postTimer);
+                    $em->flush();
+                }
 
-        return $this->redirect($this->generateUrl('post'));
-    }
+        
 
-    /**
-     * Creates a form to delete a Post entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('post_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        return array(
+            'postTimer' => $postTimer
+        );
+
     }
 }

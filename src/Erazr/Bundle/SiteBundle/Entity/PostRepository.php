@@ -3,7 +3,7 @@
 namespace Erazr\Bundle\SiteBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-
+use Doctrine\ORM\QueryBuilder;
 /**
  * PostRepository
  *
@@ -16,6 +16,15 @@ class PostRepository extends EntityRepository
     {
        return $this->createQueryBuilder('p')
 		    ->orderBy('p.created', $order)
+		    ->getQuery()
+            ->getResult();
+    }
+	
+	public function findAllPostOrderedByTimer()
+    {
+       return $this->createQueryBuilder('p')
+        ->where('p.timer < :dateTimer')
+        ->setParameter('dateTimer', new \DateTime('now'))
 		    ->getQuery()
             ->getResult();
     }
