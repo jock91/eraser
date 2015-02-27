@@ -7,35 +7,17 @@ $(function(){
 
 function init(){
 	resize();
-
 // Timer aside
 	hour();
 	setInterval(hour,1000);
-
 // Init des tooltips
 	$('[data-toggle="tooltip"]').tooltip();
-
 // Timer sur les posts
-	$('[data-countdown]').each(function(){
-		var el = $(this),
-			finalDate = $(this).data('countdown');
-		$(el).countdown(finalDate,function(event){
-			var days = event.strftime('%-D'),
-				hours = event.strftime('%H');
-			if(days != 0){var days = '24';}
-			var hours = parseInt(days) + parseInt(hours);
-			if(hours < '10'){var hours = '0'+hours;}
-			$(el).html(event.strftime(hours+':%M:%S'));
-		});
-	});
-
+	countdown();
 // Affichage depuis combien de temps le post est posté
-	$('[data-created]').each(function(){
-		moment.locale('fr');
-		var created = $(this).data('created'),
-			created = moment(created,'YYYY/MM/DD H:m:s').fromNow();
-		$(this).html(created);
-	});
+	postCreated();
+// Limite de caractères sur les posts de l'accueil
+	splitPost();
 }
 
 function resize(){
@@ -58,11 +40,58 @@ function hour(){
 	$('.sideTimer').html(time);
 }
 
+function countdown(){
+	$('[data-countdown]').each(function(){
+		var el = $(this),
+			finalDate = $(this).data('countdown');
+		$(el).countdown(finalDate,function(event){
+			var days = event.strftime('%-D'),
+				hours = event.strftime('%H');
+			if(days != 0){var days = '24';}
+			var hours = parseInt(days) + parseInt(hours);
+			if(hours < '10'){var hours = '0'+hours;}
+			var timer = event.strftime(hours+':%M:%S');
+			$(el).html(timer);
+			if(timer == "00:00:00"){
+				$(el).delay(100000).parents('.column-item').slideUp(500,function(){$(this).remove();});
+				console.log('done');
+			}
+		});
+	});
+}
+
+function postCreated(){
+	$('[data-created]').each(function(){
+		moment.locale('fr');
+		var created = $(this).data('created'),
+			created = moment(created,'YYYY/MM/DD H:m:s').fromNow();
+		$(this).html(created);
+	});
+}
+
+function splitPost(){
+	$('.post-split').each(function(){
+		var str = $(this).find('.content').text();
+		if(str.length > 10){
+			str = str.substring(0,150);
+			$(this).find('.content').html(str+' [...]');
+		}
+	});
+}
+
 /* ------------------------ */
 
 // Fix facebook connect
-if(window.location.hash == '#_=_'){
-	window.location.hash = '';
-	history.pushState('', document.title, window.location.pathname);
-	e.preventDefault();
-}
+	if(window.location.hash == '#_=_'){
+		window.location.hash = '';
+		history.pushState('', document.title, window.location.pathname);
+		e.preventDefault();
+	}
+
+// Init Tinymce
+	tinymce.init({
+		selector: 'textarea.editor',
+		toolbar: false,
+		statusbar: false,
+		menubar: false
+	});
