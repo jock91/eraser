@@ -19,7 +19,7 @@ ul {
 }
 
 .btn {
-	border-radius:0;
+	border-radius:.5rem;
 	&.btn-light-blue {
 		color:white;
 		background:$clr-light-blue;
@@ -74,6 +74,14 @@ ul {
 
 .text-asphalt {
 	color:$clr-asphalt;
+}
+
+.text-dark-asphalt {
+	color:$clr-dark-asphalt;
+}
+
+.text-light-asphalt {
+	color:$clr-light-asphalt;
 }
 
 .text-light-blue {

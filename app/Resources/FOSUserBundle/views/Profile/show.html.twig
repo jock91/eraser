@@ -1,6 +1,8 @@
 {% extends "ErazrSiteBundle::layout.html.twig" %}
 
-{% block title %}{{ parent() }}{% endblock %}
+{% set active_page = "profil" %}
+
+{% block title %}{{ parent() }} - {{ user.username }}{% endblock %}
 
 {% block content %}
 	{% include "FOSUserBundle:Profile:show_content.html.twig" %}
