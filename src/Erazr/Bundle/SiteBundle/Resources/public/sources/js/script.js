@@ -52,7 +52,7 @@ function countdown(){
 			if(hours < '10'){var hours = '0'+hours;}
 			var timer = event.strftime(hours+':%M:%S');
 			$(el).html(timer);
-			if(timer == "00:00:00" && $(el).parents('.post').asClass('post-split')){
+			if(timer == "00:00:00" && $(el).parents('.post').hasClass('post-split')){
 				$(el).delay(100000).parents('.column-item').slideUp(500,function(){$(this).remove();});
 				console.log('done');
 			}

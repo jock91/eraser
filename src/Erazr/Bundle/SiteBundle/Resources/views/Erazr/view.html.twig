@@ -1,8 +1,8 @@
 {% extends "ErazrSiteBundle::layout.html.twig" %}
 
-{% block title %}
-	{{ parent() }}
-{% endblock %}
+{% set active_page = "view" %}
+
+{% block title -%}{{ parent() }}{%- endblock %}
 
 {% block content %}
 <article class="post post-{{ post.color }}" id="post-{{ post.id }}">
@@ -19,7 +19,7 @@
 		</div>
 	</header>
 	<div class="content">
-		{{ post.content }}
+		{{ post.content|raw }}
 	</div>
 	<footer>
 		<div class="row">
@@ -38,16 +38,16 @@
 		</header>
 		<div class="content-wrap">
 			<a href="{{ path('fos_user_profile_show', {'username': comment.user}) }}" title="{{ comment.user }}" class="user text-asphalt">{{ comment.user }}</a>
-			<span class="content">{{ comment.content }}</span>
+			<span class="content">{{ comment.content|raw }}</span>
 			<footer data-created="{{ comment.created|date('Y/m/d H:i:s') }}">{{ comment.created|date('Y/m/d H:i:s') }}</footer>
 		</div>
 	</article>
 {% endfor %}
 
-<textarea class="editor"></textarea>
-<div class="text-right">
-	<button type="submit" class="btn btn-light-blue">Ajouter le commentaire</button>
-</div>
+	<textarea class="editor"></textarea>
+	<div class="text-right">
+		<button type="submit" class="btn btn-light-blue">Ajouter le commentaire</button>
+	</div>
 
 </section>
 

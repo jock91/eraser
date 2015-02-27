@@ -30,7 +30,7 @@ class PostType extends AbstractType
                     'green' => 'Vert'
                 ),
                 'required'    => false,
-                'empty_value' => 'Gris',
+                'empty_value' => false,
                 'empty_data'  => null,
                 'multiple' => false,
                 'expanded' => true,

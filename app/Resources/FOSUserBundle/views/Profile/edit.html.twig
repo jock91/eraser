@@ -1,5 +1,9 @@
 {% extends "ErazrUserBundle::layout.html.twig" %}
 
+{% set active_page = "edit" %}
+
+{% block title %}{{ parent() }} - gestion du profil{% endblock %}
+
 {% block content %}
 	{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
 {% endblock content %}
