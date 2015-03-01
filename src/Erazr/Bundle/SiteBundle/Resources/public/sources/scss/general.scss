@@ -99,10 +99,8 @@ a {
 }
 
 .column-row {
-	-moz-column-width:40rem;
-	-webkit-column-width:40rem;
-	-moz-column-gap:2rem;
-	-webkit-column-gap:2rem;
+	column-width:40rem;
+	column-gap:2rem;
 }
 
 .column-item {
