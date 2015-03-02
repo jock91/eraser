@@ -34,7 +34,7 @@ security:
             anonymous: true
 
     access_control:
-        - { path: ^/(top|login$|register|resetting), role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(top|login$), role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/connect/facebook, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }
