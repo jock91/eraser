@@ -20,7 +20,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Erazr\Bundle\UserBundle\ErazrUserBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-            new Erazr\Bundle\MessageBundle\ErazrMessageBundle(),
+            new Cunningsoft\ChatBundle\CunningsoftChatBundle(),
+    		new Knp\Bundle\TimeBundle\KnpTimeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
