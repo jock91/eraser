@@ -79,6 +79,11 @@ fos_user:
     firewall_name: main
     user_class: Erazr\Bundle\UserBundle\Entity\User
 
+fos_message:
+    db_driver: orm
+    thread_class: Erazr\Bundle\MessageBundle\Entity\Thread
+    message_class: Erazr\Bundle\MessageBundle\Entity\Message
+
 hwi_oauth:
     firewall_name:         secured_area
     resource_owners:
