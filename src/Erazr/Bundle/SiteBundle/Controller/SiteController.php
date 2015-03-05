@@ -84,6 +84,7 @@ class SiteController extends Controller
      */
     public function viewAction(Request $request,Post $post)
     {
+
         $em = $this->getDoctrine()->getManager();
         $comment = new Comment();
         $form = $this->createCommentForm($comment, $post->getId());
@@ -94,9 +95,8 @@ class SiteController extends Controller
         if ($form->isValid()) {
             $comment->setPost($post);
             $em->persist($comment);
-            $content = nl2br($comment->getContent());
-            $comment->setContent($content);
             $em->flush();
+
             return $this->redirect($this->generateUrl('_postView', array('id' => $post->getId())));
         }
     	

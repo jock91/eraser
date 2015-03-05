@@ -1,3 +1,8 @@
+erazr_chat:
+    resource: "@ErazrChatBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
     prefix:   /login_oauth

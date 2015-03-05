@@ -36,7 +36,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ "P2RatchetBundle" ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -95,3 +95,8 @@ hwi_oauth:
 services:
     hwi_oauth.user.provider.entity:
         class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
+
+p2_ratchet:
+    provider: erazr_user_provider            # The client provider to use, null for default
+    address: 127.0.0.1        # The address to receive sockets on (0.0.0.0 means receive from any)
+    port: 8080              # The port the socket server will listen on
