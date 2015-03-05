@@ -44,22 +44,15 @@
 	</article>
 {% endfor %}
 
-	<textarea class="editor"></textarea>
-	<div class="text-right">
-		<button type="submit" class="btn btn-light-blue">Ajouter le commentaire</button>
-	</div>
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
+		{{ form_widget(form.content, {'attr': {'placeholder':'Commentaire', 'data-open':'false'}}) }}
 
-    <h1>Comment creation</h1>
+		<div class="text-right">
+			{{ form_rest(form) }}
+		</div>
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('comment') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+		{{ form_end(form, {'render_rest': false}) }}
 
 </section>
 

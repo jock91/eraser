@@ -46,9 +46,9 @@ input[type="checkbox"]{
 	}
 }
 
-textarea {
-	resize:vertical;
-	min-height:10rem;
+textarea.form-control {
+	resize:none;
+	height:5rem;
 }
 
 .checkbox, .radio {

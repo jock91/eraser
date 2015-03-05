@@ -18,6 +18,8 @@ function init(){
 	created();
 // Limite de caractères sur les posts de l'accueil
 	splitPost();
+// Augmenter la hauteur d'un textarea au clic
+	growTextarea();
 }
 
 function resize(){
@@ -76,6 +78,27 @@ function splitPost(){
 		if(str.length > maxChars){
 			str = str.substring(0,maxChars);
 			$(this).find('.content').html(str+' [...]');
+		}
+	});
+}
+
+function growTextarea(){
+	$('textarea').click(function(){
+		var open = $(this).data('open'),
+			el = $(this);
+		if(open == false){
+			$(el).stop().animate({height:'10rem'});
+			$(el).data('open',true);
+		}
+	});
+	$('*').click(function(e){
+		if(!$(e.target).is('textarea')){
+			var textarea = $('textarea'),
+				open = $(textarea).data('open');
+			if(open == true){
+				$(textarea).stop().animate({height:'5rem'});
+				$(textarea).data('open',false);
+			}
 		}
 	});
 }
