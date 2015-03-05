@@ -6,10 +6,6 @@ use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Erazr\Bundle\SiteBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
-use Cunningsoft\ChatBundle\Entity\AuthorInterface;
-
-//	{% render(controller('CunningsoftChatBundle:Chat:show')) %}
-
 
 /**
  * User
@@ -17,7 +13,7 @@ use Cunningsoft\ChatBundle\Entity\AuthorInterface;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Erazr\Bundle\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser implements AuthorInterface
+class User extends BaseUser
 {
     /**
      * @var integer
