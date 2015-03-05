@@ -65,7 +65,7 @@ class SiteController extends Controller
                 $em->persist($post);
                 $em->flush();
 
-                $this->get('session')->getFlashBag()->add('success', 'Ton message est bien posté !');
+                $this->get('session')->getFlashBag()->add('success', 'Ton message a bien été posté');
                 return $this->redirect($this->generateUrl('_home'));
             } 
         }
@@ -97,6 +97,7 @@ class SiteController extends Controller
             $content = nl2br($comment->getContent());
             $comment->setContent($content);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', 'Ton commentaire a bien été posté');
             return $this->redirect($this->generateUrl('_postView', array('id' => $post->getId())));
         }
     	

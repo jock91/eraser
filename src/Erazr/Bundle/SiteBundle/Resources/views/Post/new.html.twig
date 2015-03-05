@@ -1,29 +1,3 @@
-{% for label, flashes in app.session.flashbag.all %}
-<ul class="flash">
-{% for flash in flashes %}
-	{% if label == "success" %}
-	<li class="flash-success">
-		<span class="flash-icon"><span class="icon-success"></span></span>
-			{{ flash }}
-		<a href="#" class="flash-close"><span class="icon-close"></span></a>
-	</li>
-	{% elseif label == "error" %}
-	<li class="flash-error">
-		<span class="flash-icon"><span class="icon-close"></span></span>
-			{{ flash }}
-		<a href="#" class="flash-close"><span class="icon-close"></span></a>
-	</li>
-	{% elseif label == "warning" %}
-	<li class="flash-warning">
-		<span class="flash-icon"><span class="icon-notif"></span></span>
-			{{ flash }}
-		<a href="#" class="flash-close"><span class="icon-close"></span></a>
-	</li>
-	{% endif %}
-{% endfor %}
-</ul>
-{% endfor %}
-
 <div class="row">
 	<div class="col-md-12">
 		<h1 class="text-asphalt">Ajouter un post</h1>
