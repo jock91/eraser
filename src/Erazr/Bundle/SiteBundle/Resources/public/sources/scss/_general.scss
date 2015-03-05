@@ -20,6 +20,9 @@ ul {
 
 .btn {
 	border-radius:.5rem;
+	&.btn-square {
+		border-radius:0;
+	}
 	&.btn-light-blue {
 		color:white;
 		background:$clr-light-blue;

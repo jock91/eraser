@@ -10,25 +10,44 @@
 			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" title="{{ app.user.username }}" alt="{{ app.user.username }}" />
 			<h2>{{ app.user.username }}</h2>
 		</a>
+		<div class="notif-alert">
+			<a href="#" class="notif-icon active" data-toggle="tooltip" data-placement="top" title="Notifications"><span class="icon-notif"></span></a>
+			<ul data-open="false">
+				<li class="notif-friend"><a href="#"><span class="icon-user"></span><strong>Kévin Desperries</strong> voudrais vous ajouter en amis</a></li>
+				<li class="notif-comment"><a href="#"><span class="icon-comment"></span><strong>Léo Lapujade</strong> a commenté un de vos posts</a></li>
+				<li class="notif-like"><a href="#"><span class="icon-heart"></span><strong>Soheil Sedaghatkish</strong> a aimé un de vos posts</a></li>
+			</ul>
+		</div>
 	</div>
 	<nav>
 		<ul>
 			<li><a href="{{ path('_home') }}" title="Mur publique"{% if active_page == "index" %} class="actif"{% endif %}><span class="icon-public-wall"></span>Mur publique</a></li>
-			<li><a href="#" title="Notifications"{% if active_page == "notif" %} class="actif"{% endif %}><span class="icon-notif"></span>Notifications<span class="badge">2</span></a></li>
 		</ul>
 	</nav>
 	<div class="sideFriends">
+	{% if app.user.myFriends|length == 0 %}
+		<h3>Aucun amis</h3>
+	{% else %}
 		<h3>Amis</h3>
+	{% endif %}
 		<ul>
-			<li><a href="#" title="Kévin Desperries"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Kévin Desperries" title="Kévin Desperries" />Kévin Desperries</a></li>
-			<li><a href="#" title="Florian Cabaret"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Florian Cabaret" title="Florian Cabaret" />Florian Cabaret</a></li>
-			<li><a href="#" title="Soheil Sedaghatkish"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Soheil Sedaghatkish" title="Soheil Sedaghatkish" />Soheil Sedaghatkish</a></li>
+		{% for myFriends in app.user.myFriends %}
+			<li><a href="{{ path('fos_user_profile_show_name', {'username': myFriends.username }) }}" title="{{ myFriends.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ myFriends.username }}" title="{{ myFriends.username }}" />{{ myFriends.username }}</a><a href="#" class="chat"><span class="icon-comment"></span></a></li>
+		{% endfor %}
 		</ul>
 	</div>
 	<div class="sideSearch">
 		<h3>Recherche</h3>
+		<ul class="searchFriends">
+		{% for myFriends in app.user.myFriends %}
+			<li><a href="{{ path('fos_user_profile_show_name', {'username': myFriends.username }) }}" title="{{ myFriends.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ myFriends.username }}" title="{{ myFriends.username }}" />{{ myFriends.username }}</a><a href="#" class="chat"><span class="icon-comment"></span></a></li>
+		{% endfor %}
+		</ul>
+
+		<a href="#" title="Voir tous les résultats" class="btn btn-light-blue btn-large btn-square">Voir tous les résultats</a>
+
 		<form action="#" method="post" name="searchFriend">
-			<div class="input-group">
+			<div class="input-group square">
 				<span class="input-group-addon"><label for="sf" class="icon-search"></label></span>
 				<input type="search" id="sf" name="sf" class="form-control" placeholder="Rechercher un ami" />
 			</div>

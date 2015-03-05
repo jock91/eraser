@@ -10,39 +10,35 @@
 	</section>
 	<hr />
 	<section class="friends">
+	{% if user.myFriends|length == 0 %}
+		<h2 class="text-asphalt">Aucun amis</h2>
+	{% else %}
 		<h2 class="text-asphalt">Amis</h2>
-{{ dump(user) }}
+	{% endif %}
 		<ul>
-			{% spaceless %}
+		{% spaceless %}
+		{% for myFriends in user.myFriends %}
 			<li>
-				<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
+				<a href="{{ path('fos_user_profile_show_name', {'username': myFriends.username}) }}" title="{{ myFriends.username }}" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ myFriends.username }}" title="{{ myFriends.username }}" /></a>
 			</li>
-			<li>
-				<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-			</li>
-			<li>
-				<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-			</li>
-			<li>
-				<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-			</li>
-			{% endspaceless %}
+		{% endfor %}
+		{% endspaceless %}
 		</ul>
 	</section>
 
 <section class="posts">
-{% if user.posts|length == 0 %}
-	<h2 class="text-asphalt">Aucun posts</h2>
-{% else %}
-	<h2 class="text-asphalt">Posts</h2>
-{% endif %}
+	{% if user.posts|length == 0 %}
+		<h2 class="text-asphalt">Aucun posts</h2>
+	{% else %}
+		<h2 class="text-asphalt">Posts</h2>
+	{% endif %}
 	<div class="column-row">
 	{% for post in user.posts %}
 		<div class="column-item">
 			<div class="column-well">
 				<article class="post post-split post-{{ post.color }}" id="post-{{ post.id }}">
 					<header class="clearfix">
-						<a href="{{ path('fos_user_profile_show', {'username': post.user}) }}" title="{{ post.user }}">
+						<a href="{{ path('fos_user_profile_show_name', {'username': post.user}) }}" title="{{ post.user }}">
 							<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ post.user }}" title="{{ post.user }}" data-toggle="tooltip" data-placement="top" />
 							<div class="profil">
 								<h2>{{ post.user }}</h2>

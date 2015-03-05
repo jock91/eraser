@@ -74,6 +74,96 @@ aside {
 				animation:spin 5s infinite linear;
 			}
 		}
+		.notif-alert {
+			position:absolute;
+			z-index:999;
+			bottom:0;
+			right:0;
+			display:block;
+			.notif-icon {
+				span {
+					font-size:3rem;
+					display:block;
+				}
+				&:hover span {
+					animation:bounce 1s infinite;
+				}
+				&.active span {
+					animation:bounce 1s infinite;
+					color:$clr-warning;
+				}
+			}
+			ul {
+				display:none;
+				position:absolute;
+				list-style:none;
+				top:0;
+				left:calc(100% + 1rem);
+				white-space:nowrap;
+				li {
+					display:block;
+					text-align:left;
+					a {
+						display:block;
+						background:$clr-asphalt;
+						padding:1rem;
+						border-top:.1rem solid rgba(0,0,0,.1);
+						border-bottom:.1rem solid rgba(255,255,255,.1);
+						&:hover {
+							background:$clr-light-asphalt;
+						}
+						span {
+							margin-right:1rem;
+							font-size:1.8rem;
+						}
+					}
+					&:first-child {
+						border-top-left-radius:.5rem;
+						border-top-right-radius:.5rem;
+						overflow:hidden;
+						a {
+							border-top:none;
+						}
+						&:hover:before {
+							border-right-color:$clr-light-asphalt;
+						}
+						&:before {
+							position:absolute;
+							top:1rem;
+							right:100%;
+							border:solid transparent;
+							content:" ";
+							height:0;
+							width:0;
+							pointer-events:none;
+							border-color:transparent;
+							border-right-color:$clr-asphalt;
+							border-width:1rem;
+						}
+					}
+					&:last-child {
+						border-bottom-left-radius:.5rem;
+						border-bottom-right-radius:.5rem;
+						overflow:hidden;
+						a {
+							border-bottom:none;
+						}
+					}
+					&.notif-friend span {
+						color:$clr-warning;
+					}
+					&.notif-comment span {
+						color:$clr-light-blue;
+					}
+					&.notif-like span {
+						color:$clr-error;
+					}
+				}
+				.notif-friend {
+					
+				}
+			}
+		}
 		.profil {
 			display:block;
 			padding:2rem;
@@ -126,15 +216,25 @@ aside {
 			}
 		}
 	}
-	.sideFriends {
+	.sideFriends,.sideSearch {
 		ul {
 			list-style:none;
 			li {
+				position:relative;
 				display:block;
 				a {
-					display:block;
+					display:inline-block;
+					width:26rem;
 					font-size:1.5rem;
 					padding:1rem 2rem;
+					&:last-child {
+						display:inline-block;
+						width:4rem;
+						line-height:2.9rem;
+						text-align:center;
+						padding-left:0;
+						padding-right:0;
+					}
 					&:hover {
 						background:$clr-asphalt;
 					}
@@ -149,8 +249,11 @@ aside {
 			}
 		}
 	}
+	.searchFriends {
+		margin-bottom:1rem;
+	}
 	form[name="searchFriend"] {
-		padding:0 2rem;
+		margin-top:1rem;
 	}
 	footer {
 		position:absolute;
