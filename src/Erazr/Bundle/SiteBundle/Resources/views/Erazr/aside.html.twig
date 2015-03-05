@@ -1,4 +1,9 @@
 <aside>
+<form id="form_recherche" action="{{ path('_home') }}" method="post" class="form-search">
+		{{ form_widget(formSearch) }}
+		<input type="submit" value="Rechercher" />
+	</form>
+
 	<header>
 		<h1><a href="{{ path('_home') }}"><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></a></h1>
 	</header>
@@ -21,7 +26,7 @@
 	</div>
 	<nav>
 		<ul>
-			<li><a href="{{ path('_home') }}" title="Mur publique"{% if active_page == "index" %} class="actif"{% endif %}><span class="icon-public-wall"></span>Mur publique</a></li>
+			<li><a href="{{ path('_home') }}" title="Mur publique"{% if app.request.attributes.get("_route") == "_home" %} class="actif"{% endif %}><span class="icon-public-wall"></span>Mur publique</a></li>
 		</ul>
 	</nav>
 	<div class="sideFriends">
