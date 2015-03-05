@@ -1,10 +1,4 @@
-# eraser
-A school project with symfony
-
------------------
-
 # Todo
-
 	• Flash messages 
 
 	• Notifications /!\
