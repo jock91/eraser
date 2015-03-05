@@ -32,7 +32,7 @@ class SiteController extends Controller
         if(isset($request->get("erazr_bundle_search")["search"])){
             $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"]);
         }else {
-            $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch('Takushi');
+            $UserSearched = null;
         }
         
         
