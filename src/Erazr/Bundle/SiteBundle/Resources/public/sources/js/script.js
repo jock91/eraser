@@ -20,6 +20,8 @@ function init(){
 	splitPost();
 // Augmenter la hauteur d'un textarea au clic
 	growTextarea();
+// FlashMessages
+	flashMessage();
 }
 
 function resize(){
@@ -95,11 +97,19 @@ function growTextarea(){
 		if(!$(e.target).is('textarea')){
 			var textarea = $('textarea'),
 				open = $(textarea).data('open');
-			if(open == true){
+			if(open == true && $(textarea).val() < 1){
 				$(textarea).stop().animate({height:'5rem'});
 				$(textarea).data('open',false);
 			}
 		}
+	});
+}
+
+function flashMessage(){
+	$('.flash').hide().fadeIn('slow').delay(5000).fadeOut();
+	$('.flash-close').click(function(){
+		$(this).parent().fadeOut('slow');
+		return false;
 	});
 }
 

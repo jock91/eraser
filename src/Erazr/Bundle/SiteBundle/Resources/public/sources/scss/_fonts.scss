@@ -1,11 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
 @font-face {
 	font-family:'icons-erazer';
-	src:url('../fonts/symfony.eot?36706392');
-	src:url('../fonts/symfony.eot?36706392#iefix') format('embedded-opentype'),
-		url('../fonts/symfony.woff?36706392') format('woff'),
-		url('../fonts/symfony.ttf?36706392') format('truetype'),
-		url('../fonts/symfony.svg?36706392#symfony') format('svg');
+	src:url('../fonts/erazr.eot?84424603');
+	src:url('../fonts/erazr.eot?84424603#iefix') format('embedded-opentype'),
+		url('../fonts/erazr.woff?84424603') format('woff'),
+		url('../fonts/erazr.ttf?84424603') format('truetype'),
+		url('../fonts/erazr.svg?84424603#erazr') format('svg');
 	font-weight:normal;
 	font-style:normal;
 }
@@ -40,3 +40,4 @@
 .icon-lock:before {content:'\e80d';}
 .icon-user:before {content:'\e80e';}
 .icon-login:before {content:'\e80f';}
+.icon-success:before {content:'\e810';}

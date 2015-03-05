@@ -1,0 +1,56 @@
+$clr-success:#4B9F56;
+$clr-error:#FF4E39;
+$clr-warning:#FFB733;
+
+.flash {
+	display:block;
+	width:50rem;
+	position:fixed;
+	z-index:999;
+	margin:0;
+	list-style:none;
+	top:1rem;
+	right:1rem;
+	color:white;
+	font-size:1.2rem;
+	text-align:right;
+	li {
+		position:relative;
+		margin-bottom:1rem;
+		display:inline-block;
+		border-radius:.5rem;
+		padding:1rem 6rem 1rem;
+		.flash-icon {
+			position:absolute;
+			font-size:3rem;
+			top:-.3rem;
+			left:.5rem;
+			cursor:default;
+		}
+		.flash-close {
+			position:absolute;
+			right:1rem;
+			display:inline-block;
+			border-radius:50%;
+			background:rgba(0,0,0,.4)
+		}
+	}
+	.flash-success {
+		background:$clr-success;
+		.flash-close {
+			color:$clr-success;
+		}
+	}
+	.flash-error {
+		background:$clr-error;
+		.flash-close {
+			color:$clr-error;
+		}
+	}
+	.flash-warning {
+		background:$clr-warning;
+		.flash-close {
+			color:$clr-warning;
+		}
+	}
+}

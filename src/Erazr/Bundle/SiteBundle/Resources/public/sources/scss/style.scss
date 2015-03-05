@@ -4,14 +4,15 @@ $clr-asphalt:#304559;
 $clr-light-asphalt:#3e5973;
 $clr-facebook:#47639E;
 
-@import 'fonts';
-@import 'general';
-@import 'form';
-@import 'profile';
-@import 'aside';
-@import 'login';
-@import 'post';
-@import 'keyframes';
+@import '_fonts';
+@import '_general';
+@import '_form';
+@import '_profile';
+@import '_aside';
+@import '_login';
+@import '_post';
+@import '_flash';
+@import '_keyframes';
 
 
 /*

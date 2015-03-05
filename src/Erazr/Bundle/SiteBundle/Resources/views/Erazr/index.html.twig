@@ -16,7 +16,7 @@
 		<div class="column-well">
 			<article class="post post-split post-{{ post.color }}" id="post-{{ post.id }}">
 				<header class="clearfix">
-					<a href="{{ path('fos_user_profile_show', {'username': post.user}) }}" title="{{ post.user }}">
+					<a href="{{ path('fos_user_profile_show_name', {'username': post.user}) }}" title="{{ post.user }}">
 						<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ post.user }}" title="{{ post.user }}" data-toggle="tooltip" data-placement="top" />
 						<div class="profil">
 							<h2>{{ post.user }}</h2>

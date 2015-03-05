@@ -1,15 +1,36 @@
+{% for label, flashes in app.session.flashbag.all %}
+<ul class="flash">
+{% for flash in flashes %}
+	{% if label == "success" %}
+	<li class="flash-success">
+		<span class="flash-icon"><span class="icon-success"></span></span>
+			{{ flash }}
+		<a href="#" class="flash-close"><span class="icon-close"></span></a>
+	</li>
+	{% elseif label == "error" %}
+	<li class="flash-error">
+		<span class="flash-icon"><span class="icon-close"></span></span>
+			{{ flash }}
+		<a href="#" class="flash-close"><span class="icon-close"></span></a>
+	</li>
+	{% elseif label == "warning" %}
+	<li class="flash-warning">
+		<span class="flash-icon"><span class="icon-notif"></span></span>
+			{{ flash }}
+		<a href="#" class="flash-close"><span class="icon-close"></span></a>
+	</li>
+	{% endif %}
+{% endfor %}
+</ul>
+{% endfor %}
+
 <div class="row">
 	<div class="col-md-12">
 		<h1 class="text-asphalt">Ajouter un post</h1>
 	</div>
 	<div class="col-md-12">
-		{% for flashMessage in app.session.flashbag.get('success') %}
-		    <div class="flash-notice">
-		        {{ flashMessage }}
-		    </div>
-		{% endfor %}
 		{{ form_start(form) }}
-		{{ form_widget(form.content, {'attr': {'placeholder':'Contenu'}}) }}
+		{{ form_widget(form.content, {'attr': {'placeholder':'Contenu', 'data-open':'false'}}) }}
 		{{ form_errors(form.timer) }}
 		<div class="row">
 			<div class="col-xs-6 col-sm-3 col-md-2">
