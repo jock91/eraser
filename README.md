@@ -13,7 +13,7 @@ A school project with symfony
 
 	- Système de like 
 
-	- ~~ Recherche Users ~~
+	- <s> Recherche Users </s>
 
 	- Photo utilisateur
 
