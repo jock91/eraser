@@ -5,22 +5,22 @@ A school project with symfony
 
 # Todo
 
-	- Flash messages 
+	• Flash messages 
 
-	- Notifications /!\
+	• Notifications /!\
 
-	- Gestion des ami(e)s [ ajouter, accepter, refuser, supprimer ]
+	• Gestion des ami(e)s [ ajouter, accepter, refuser, supprimer ]
 
-	- Système de like 
+	• Système de like 
 
-	- ——Recherche Users——
+	• ——Recherche Users——
 
-	- Photo utilisateur
+	• Photo utilisateur
 
-	- Enlever comfirmation mot de passe sur edit profile
+	• Enlever comfirmation mot de passe sur edit profile
 
-	- Ajouter modifier password
+	• Ajouter modifier password
 
-	- Chat
+	• Chat
 
-	- Ajouter post [ si un des champ est rempli mettre l'autre à zéro ]
+	• Ajouter post [ si un des champ est rempli mettre l'autre à zéro ]
