@@ -3,8 +3,8 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>Copyright (C) 2015 by original authors @ fontello.com</metadata>
 <defs>
-<font id="symfony" horiz-adv-x="1000" >
-<font-face font-family="symfony" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<font id="erazr" horiz-adv-x="1000" >
+<font-face font-family="erazr" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
 <missing-glyph horiz-adv-x="1000" />
 <glyph glyph-name="public-wall" unicode="&#xe800;" d="m365 872q43 0 73-31t31-74l0-260q0-44-31-74t-73-30l-261 0q-44 0-74 30t-30 74l0 260q0 43 31 74t73 31l261 0z m0-365l0 260-261 0 0-260 261 0z m573 365q42 0 73-31t30-74l0-260q0-44-30-74t-73-30l-260 0q-44 0-75 30t-30 74l0 260q0 43 31 74t74 31l260 0z m0-365l0 260-260 0 0-260 260 0z m-573-209q43 0 73-30t31-74l0-260q0-44-31-74t-73-31l-261 0q-43 0-73 31t-31 74l0 260q0 44 30 74t74 30l261 0z m0-364l0 260-261 0 0-260 261 0z m573 364q42 0 73-30t30-74l0-260q0-44-30-74t-73-31l-260 0q-43 0-74 31t-31 74l0 260q0 43 30 73t75 31l260 0z m0-364l0 260-260 0 0-260 260 0z" horiz-adv-x="1041" />
 <glyph glyph-name="close-menu" unicode="&#xe801;" d="m242 626q14 16 39 16t41-16q38-36 0-80l-186-196 186-194q38-44 0-80-16-16-40-16t-40 16l-226 236q-16 16-16 38 0 24 16 40 206 214 226 236z" horiz-adv-x="341" />
@@ -22,6 +22,7 @@
 <glyph glyph-name="lock" unicode="&#xe80d;" d="m179 421h285v108q0 59-42 101t-101 41-101-41-41-101v-108z m464-53v-322q0-22-16-37t-38-16h-535q-23 0-38 16t-16 37v322q0 22 16 38t38 15h17v108q0 102 74 176t176 74 177-74 73-176v-108h18q23 0 38-15t16-38z" horiz-adv-x="642.9" />
 <glyph glyph-name="user" unicode="&#xe80e;" d="m786 66q0-67-41-106t-108-39h-488q-67 0-108 39t-41 106q0 30 2 58t8 61 15 60 24 55 34 45 48 30 62 11q5 0 24-12t41-27 60-27 75-12 74 12 61 27 41 27 24 12q34 0 62-11t48-30 34-45 24-55 15-60 8-61 2-58z m-179 498q0-88-63-151t-151-63-152 63-62 151 62 152 152 63 151-63 63-152z" horiz-adv-x="785.7" />
 <glyph glyph-name="login" unicode="&#xe80f;" d="m857 350q0-87-34-166t-91-137-137-92-166-34-167 34-136 92-92 137-34 166q0 102 45 191t126 151q24 18 54 14t46-28q18-23 14-53t-28-47q-54-41-84-101t-30-127q0-58 22-111t62-91 91-61 111-23 110 23 92 61 61 91 22 111q0 68-30 127t-84 101q-24 18-28 47t14 53q17 24 47 28t53-14q81-61 126-151t45-191z m-357 429v-358q0-29-21-50t-50-21-51 21-21 50v358q0 29 21 50t51 21 50-21 21-50z" horiz-adv-x="857.1" />
+<glyph glyph-name="success" unicode="&#xe810;" d="m932 534q0-22-15-38l-404-404-76-76q-16-15-38-15t-38 15l-76 76-202 202q-15 16-15 38t15 38l76 76q16 16 38 16t38-16l164-165 366 367q16 16 38 16t38-16l76-76q15-16 15-38z" horiz-adv-x="1000" />
 </font>
 </defs>
 </svg>

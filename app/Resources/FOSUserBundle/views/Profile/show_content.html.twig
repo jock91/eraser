@@ -1,4 +1,3 @@
-
 	<section class="profil">
 		<article class="user clearfix">
 			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />
@@ -12,6 +11,7 @@
 	<hr />
 	<section class="friends">
 		<h2 class="text-asphalt">Amis</h2>
+{{ dump(user) }}
 		<ul>
 			{% spaceless %}
 			<li>
