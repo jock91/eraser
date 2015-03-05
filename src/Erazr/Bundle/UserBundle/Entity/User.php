@@ -6,6 +6,8 @@ use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Erazr\Bundle\SiteBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+use P2\Bundle\RatchetBundle\WebSocket\Client\ClientInterface;
+
 
 /**
  * User
@@ -13,7 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Erazr\Bundle\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser
+class User extends BaseUser implements ClientInterface
 {
     /**
      * @var integer
@@ -57,6 +59,49 @@ class User extends BaseUser
      *      )
      **/
     private $myFriends;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="accessToken", type="text")
+     */
+    protected $accessToken;
+
+
+
+    /**
+    * Sets the websocket access token for this client
+    *
+    * @param string $accessToken
+    * @return ClientInterface
+    */
+    public function setAccessToken($accessToken){
+        $this->accessToken = $accessToken;
+
+        return $this;
+    }
+
+    /**
+    * Returns the websocket access token for this client if any, or null.
+    *
+    * @return null|string
+    */
+    public function getAccessToken(){
+        return $this->accessToken;
+    }
+
+    /**
+    * Returns the array of public client data which will be transferred to the websocket client on successful
+    * authentication. The websocket access token for this client should always be returned.
+    *
+    * @return array
+    */
+    public function jsonSerialize(){
+        return array(
+            'username' => $this->getUsername());
+    }
+
+
 
     public function __construct()
     {

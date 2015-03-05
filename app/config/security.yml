@@ -11,6 +11,8 @@ security:
             id: fos_user.user_provider.username_email
         hwi:
             id: erazr.oauth.user_provider
+        P2:
+            id: erazr_user_provider
 
     firewalls:
         dev:

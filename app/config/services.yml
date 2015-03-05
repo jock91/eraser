@@ -1,9 +1,24 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
-#    parameter_name: value
+    erazr_user_provider.class: Erazr\Bundle\UserBundle\Security\UserProvider
+    erazr_chat.websocket.loop.custom_timer.class: Erazr\Bundle\ChatBundle\WebSocket\Loop\CustomTimer
+    websocket_chat_class: Erazr\Bundle\ChatBundle\WebSocket\ChatApplication
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    # websocket chat application
+    websocket_chat:
+        class: %websocket_chat_class%
+        tags:
+            - { name: kernel.event_subscriber }
+            - { name: p2_ratchet.application }
+
+    erazr_chat.websocket.loop.custom_timer:
+        class: %erazr_chat.websocket.loop.custom_timer.class%
+        tags:
+            - { name: p2_ratchet.periodic_timer }
+
+    erazr_user_provider:
+        class: %erazr_user_provider.class%
+        arguments:
+            - @fos_user.user_manager
