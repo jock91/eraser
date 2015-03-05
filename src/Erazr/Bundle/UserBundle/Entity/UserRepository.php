@@ -18,7 +18,7 @@ class UserRepository extends EntityRepository
        return $this->createQueryBuilder('u')
 		    ->orderBy('u.username', 'asc')
 		    ->where('u.username LIKE :string')
-		    ->setParameter('string', $string)
+		    ->setParameter('string', '%'.$string.'%')
 		    ->getQuery()
             ->getResult();
     }
