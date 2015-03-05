@@ -1,9 +1,4 @@
 <aside>
-	<form id="form_recherche" action="{{ path('_home') }}" method="post" class="form-search">
-		{{ form_widget(formSearch) }}
-		<input type="submit" value="Rechercher" />
-	</form>
-{{ dump(myUser) }}
 	<header>
 		<h1><a href="{{ path('_home') }}"><img src="{{asset('bundles/erazrsite/img/logo.svg')}}" title="Erazr" alt="Erazr" /></a></h1>
 	</header>
@@ -44,19 +39,20 @@
 	<div class="sideSearch">
 		<h3>Recherche</h3>
 		<ul class="searchFriends">
-		{% for myFriends in app.user.myFriends %}
-			<li><a href="{{ path('fos_user_profile_show_name', {'username': myFriends.username }) }}" title="{{ myFriends.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ myFriends.username }}" title="{{ myFriends.username }}" />{{ myFriends.username }}</a><a href="#" class="chat"><span class="icon-comment"></span></a></li>
+		{% for user in myUser %}
+			<li><a href="{{ path('fos_user_profile_show_name', {'username': user.username }) }}" title="{{ user.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />{{ user.username }}</a><a href="#" class="chat"><span class="icon-comment"></span></a></li>
 		{% endfor %}
 		</ul>
 
 		<a href="#" title="Voir tous les résultats" class="btn btn-light-blue btn-large btn-square">Voir tous les résultats</a>
 
-		<form action="#" method="post" name="searchFriend">
+		<form id="form_recherche" action="{{ path('_home') }}" method="post" class="form-search" name="searchFriend">
 			<div class="input-group square">
-				<span class="input-group-addon"><label for="sf" class="icon-search"></label></span>
-				<input type="search" id="sf" name="sf" class="form-control" placeholder="Rechercher un ami" />
+				<span class="input-group-addon"><label for="erazr_bundle_search_search" class="icon-search"></label></span>
+				{{ form_widget(formSearch.search, {'attr': {'placeholder': 'Rechercher un membre'}}) }}
 			</div>
 		</form>
+		{{ dump(myUser) }}
 	</div>
 	<footer>
 		Made with <span class="icon-heart"></span> by Groin-Groin Team
