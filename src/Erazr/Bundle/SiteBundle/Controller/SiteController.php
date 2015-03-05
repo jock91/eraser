@@ -52,6 +52,8 @@ class SiteController extends Controller
                 $em = $this->getDoctrine()->getManager(); 
                 
                 $hourTimer = $post->getTimer();
+                $content = nl2br($post->getContent());
+                $post->setContent($content);
                 $interval= $hourTimer->format("H:i:s");
                 $now = new \DateTime("now");
                 $now->add(new \DateInterval("P0000-00-00T".$interval));

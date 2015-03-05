@@ -51,20 +51,6 @@ textarea {
 	min-height:10rem;
 }
 
-.mce-tinymce {
-	border-radius:.5rem!important;
-	border:.1rem solid #e5e5e5!important;
-	margin-bottom:2rem!important;
-	&:hover,&:focus,&:active {
-		border-color:darken(#e5e5e5,20%)!important;
-	}
-}
-
-.mce-edit-area, .mce-tinymce iframe {
-	border:none!important;
-	border-radius:.5rem!important;
-}
-
 .checkbox, .radio {
 	display:inline-block;
 	margin-left:2rem;
