@@ -33,6 +33,9 @@
 		border:none;
 		padding-left:0;
 	}
+	&.square {
+		border-radius:0;
+	}
 }
 
 .form-control {
@@ -48,7 +51,7 @@ input[type="checkbox"]{
 
 textarea.form-control {
 	resize:none;
-	height:5rem;
+	height:3.4rem;
 }
 
 .checkbox, .radio {
