@@ -29,8 +29,11 @@ class SiteController extends Controller
     */
     public function asideAction($request) {
         $formSearch = $this->createForm(new SearchType());
-        $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"]);
-
+        if(isset($request->get("erazr_bundle_search")["search"]){
+            $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"]);
+        }
+        
+        $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch('Takushi');
         //var_dump($request->get("erazr_bundle_search")["search"]);
 
         return array(
