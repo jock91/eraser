@@ -40,7 +40,7 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="timer", type="datetime")
+     * @ORM\Column(name="timer", type="datetime", nullable=true)
      */
     private $timer;
 

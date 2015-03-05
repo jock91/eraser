@@ -50,11 +50,20 @@ class SiteController extends Controller
         if($request->isMethod("POST")){
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager(); 
-                
-                $hourTimer = $post->getTimer();
                 $content = nl2br($post->getContent());
                 $post->setContent($content);
-                $interval= $hourTimer->format("H:i:s");
+                
+                $hourTimer = $post->getTimer();
+
+
+                if($hourTimer === null) {
+                    $interval = "00:10:00";
+                } else {
+                    $interval= $hourTimer->format("H:i:s");
+                }
+
+                
+                
                 $now = new \DateTime("now");
                 $now->add(new \DateInterval("P0000-00-00T".$interval));
                 $newTimer = $now->format('Y-m-d H:i:s');
