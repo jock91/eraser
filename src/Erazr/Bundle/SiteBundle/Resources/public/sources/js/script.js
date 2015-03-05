@@ -88,11 +88,3 @@ function splitPost(){
 		history.pushState('', document.title, window.location.pathname);
 		e.preventDefault();
 	}
-
-// Init Tinymce
-	tinymce.init({
-		selector: 'textarea.editor',
-		toolbar: false,
-		statusbar: false,
-		menubar: false
-	});
