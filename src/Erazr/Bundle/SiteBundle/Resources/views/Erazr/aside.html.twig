@@ -44,7 +44,9 @@
 		{% endfor %}
 		</ul>
 
-		<a href="#" title="Voir tous les résultats" class="btn btn-light-blue btn-large btn-square">Voir tous les résultats</a>
+		{% if myUser|length > 5 %}
+			<a href="#" title="Voir tous les résultats" class="btn btn-light-blue btn-large btn-square">Voir tous les résultats</a>
+		{% endif %}
 
 		<form id="form_recherche" action="{{ path('_home') }}" method="post" class="form-search" name="searchFriend">
 			<div class="input-group square">
@@ -52,7 +54,6 @@
 				{{ form_widget(formSearch.search, {'attr': {'placeholder': 'Rechercher un membre'}}) }}
 			</div>
 		</form>
-		{{ dump(myUser) }}
 	</div>
 	<footer>
 		Made with <span class="icon-heart"></span> by Groin-Groin Team
