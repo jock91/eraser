@@ -3,6 +3,7 @@
 namespace Erazr\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * UserRepository
@@ -12,4 +13,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+	public function findAllUserBySearch( $string)
+    {
+       return $this->createQueryBuilder('u')
+		    ->orderBy('u.username', 'asc')
+		    ->where('u.username LIKE :string')
+		    ->setParameter('string', $string)
+		    ->getQuery()
+            ->getResult();
+    }
 }

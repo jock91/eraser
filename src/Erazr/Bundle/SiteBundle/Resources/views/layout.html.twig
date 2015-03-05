@@ -17,7 +17,7 @@
 
 
 {% block body %}
-{% include 'ErazrSiteBundle:Erazr:aside.html.twig' %}
+{% render(controller('ErazrSiteBundle:Site:aside', { 'request': app.request.request })) %}
 {% for label, flashes in app.session.flashbag.all %}
 <ul class="flash">
 {% for flash in flashes %}

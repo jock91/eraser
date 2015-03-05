@@ -17,11 +17,29 @@ use Erazr\Bundle\SiteBundle\Entity\Post;
 use Erazr\Bundle\SiteBundle\Entity\Comment;
 use Erazr\Bundle\SiteBundle\Form\PostType;
 use Erazr\Bundle\SiteBundle\Form\CommentType;
+use Erazr\Bundle\SiteBundle\Form\SearchType;
 
 
 
 class SiteController extends Controller
 {
+    /**
+    * 
+    * @Template("ErazrSiteBundle:Erazr:aside.html.twig")
+    */
+    public function asideAction($request) {
+        $formSearch = $this->createForm(new SearchType());
+        $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"]);
+
+        //var_dump($request->get("erazr_bundle_search")["search"]);
+
+        return array(
+            'formSearch' => $formSearch->createView(),
+            'myUser' => $UserSearched,
+            );
+    }
+
+
 
     /**
      * @Route("/", name="_home")
@@ -29,6 +47,7 @@ class SiteController extends Controller
      */
     public function indexAction(Request $request)
     {
+
         $this->deletePostTimeOut();
     	$posts = $this->getDoctrine()
       		->getManager()
@@ -82,6 +101,7 @@ class SiteController extends Controller
 		return array(
             'posts' => $posts,
             'form'   => $form->createView(),
+            
             );
     }
 
