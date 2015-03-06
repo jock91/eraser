@@ -54,13 +54,10 @@
 	</div>
 	<div class="sideSearch">
 		<h3>Recherche</h3>
-		<div id="jobs"></div>
 		<ul class="searchFriends">
-			{% if myUser is defined %}
 		{% for user in myUser %}
-			<li><a href="{{ path('fos_user_profile_show_name', {'username': user.username }) }}" title="{{ user.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />{{ user.username }}</a><a href="#" class="chat-btn" data-username="{{ myFriends.username }}"><span class="icon-comment"></span></a></li>
+			<li><a href="{{ path('fos_user_profile_show_name', {'username': user.username }) }}" title="{{ user.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />{{ user.username }}</a><a href="#" class="chat-btn" data-username="{{ user.username }}"><span class="icon-comment"></span></a></li>
 		{% endfor %}
-	{% endif %}
 		</ul>
 {% if myUser is defined %}
 		{% if myUser|length > 5 %}
