@@ -1,19 +1,23 @@
 html {
 	font-size:62.5%;
 }
+
 body {
 	font-family:'Roboto',sans-serif;
 	background:#F2F2F2;
 }
+
 #erazr {
 	float:left;
 	width:calc(100% - 30rem);
 	width:-webkit-calc(100% - 30rem);
 	width:-moz-calc(100% - 30rem);
 }
+
 main {
 	display:block;
 }
+
 ul {
 	margin:0;
 	padding:0;
@@ -97,8 +101,9 @@ ul {
 }
 
 a {
-	&:hover {
+	&:hover,&:active,&:focus {
 		text-decoration:none;
+		outline:none;
 	}
 }
 
