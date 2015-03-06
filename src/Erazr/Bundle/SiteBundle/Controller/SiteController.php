@@ -31,8 +31,9 @@ class SiteController extends Controller
     * @Route("/add/friend/{id}", name="_addFriend")
     */
     public function addFriendAction($id, Request $request ){
-
-        if( $id ===  $this->getUser()->getId()) {
+        $em = $this->getDoctrine()->getManager();
+        $userFriend = $em->getRepository('ErazrUserBundle:User')->find($id);
+        if( $userFriend ===  $this->getUser() ) {
             $this->get('session')->getFlashBag()->add('error', "Florian arrête d'essayer de t'ajouter en ami !"); 
             return $this->redirect($request->headers->get('referer'));
         } else {
