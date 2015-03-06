@@ -3,6 +3,8 @@
 namespace Erazr\Bundle\SiteBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Erazr\Bundle\UserBundle\Entity\User;
 
 /**
  * LikingRepository
@@ -12,4 +14,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class LikingRepository extends EntityRepository
 {
+	public function findLikeByUserPost(User $user,Post $post)
+    {
+       return $this->createQueryBuilder('l')
+		    ->where('l.user = :user')
+		    ->andwhere('l.post = :post')
+		    ->setParameter(':user', $user)
+		    ->setParameter(':post', $post)
+		    ->getQuery()
+            ->getResult();
+    }
 }
