@@ -6,10 +6,12 @@
 
 {% set liked = "Ajouter un like" %}
 {% set icon_liked = "icon-heart-empty" %}
+{% set liked_url = path('_voted', {'id': post.id}) %}
 {% for like in post.likings %}
 	{% if app.user.id == like.user.id %}
 		{% set liked = "Retirer le like" %}
 		{% set icon_liked = "icon-heart" %}
+		{% set liked_url = path('_disliked', {'id': post.id}) %}
 	{% endif %}
 {% endfor %}
 
@@ -32,7 +34,7 @@
 	<footer>
 		<div class="row">
 			<div class="col-sm-12 text-right">
-				<a href="{{ path('_voted', {'id': post.id})}}" data-toggle="tooltip" data-placement="top" title="{{ liked }}" class="likes"><span class="{{ icon_liked }}"></span> {{ post.likings|length }}</a>
+				<a href="{{ liked_url }}" data-toggle="tooltip" data-placement="top" title="{{ liked }}" class="likes"><span class="{{ icon_liked }}"></span> {{ post.likings|length }}</a>
 			</div>
 		</div>
 	</footer>
