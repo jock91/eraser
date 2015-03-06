@@ -24,7 +24,7 @@
 
 {% for post in app.user.posts %}
 	{% for comment in post.comments %}
- 		{% if comment.isView == "" %}
+ 		{% if comment.isView %}
 			Notification !
 		{% else %}
 			Pas de notification !

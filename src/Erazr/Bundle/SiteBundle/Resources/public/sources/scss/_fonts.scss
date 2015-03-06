@@ -1,11 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
 @font-face {
 	font-family:'icons-erazer';
-	src:url('../fonts/erazr.eot?84424603');
-	src:url('../fonts/erazr.eot?84424603#iefix') format('embedded-opentype'),
-		url('../fonts/erazr.woff?84424603') format('woff'),
-		url('../fonts/erazr.ttf?84424603') format('truetype'),
-		url('../fonts/erazr.svg?84424603#erazr') format('svg');
+	src:url('../fonts/erazr.eot?94434279');
+	src:url('../fonts/erazr.eot?94434279#iefix') format('embedded-opentype'),
+		url('../fonts/erazr.woff?94434279') format('woff'),
+		url('../fonts/erazr.ttf?94434279') format('truetype'),
+		url('../fonts/erazr.svg?94434279#erazr') format('svg');
 	font-weight:normal;
 	font-style:normal;
 }
@@ -41,3 +41,12 @@
 .icon-user:before {content:'\e80e';}
 .icon-login:before {content:'\e80f';}
 .icon-success:before {content:'\e810';}
+.icon-plus:before {content:'\e811';}
+.icon-minus:before {content:'\e812';}
+.icon-loading:before {content:'\e813';}
+
+
+.icon-loading {
+	animation:reverse_spin 2s infinite linear;
+	display:inline-block;
+}

@@ -64,7 +64,6 @@ function countdown(){
 			$(el).html(timer);
 			if(timer == "00:00:00" && $(el).parents('.post').hasClass('post-split')){
 				$(el).delay(100000).parents('.column-item').slideUp(500,function(){$(this).remove();});
-				console.log('done');
 			}
 		});
 	});
@@ -146,13 +145,11 @@ function recherche_ajax(){
 	$('#form_recherche').keyup(function(key){
 		var el		= $(this),
 			input	= $(el).find('input');
-		console.log($(input).val());
 		if($(input).val().length >= 3 || $(input).val() == ""){
 			$.ajax({
 				url: $(el).attr('action'),
 				data: $(el).serialize(),
 				success: function(data){
-					console.log(data);
 				}
 			});
 		}
@@ -186,7 +183,6 @@ function chat(){
 		var username = $(this).data('username'),
 			chat = $('.chat[data-username="'+username+'"]');
 		if($('.chat').length == 2 && $(chat).length == 0){
-			console.log('length == 2');
 			$('body').prepend('
 				<ul class="flash">
 				<li class="flash-error"><span class="flash-icon"><span class="icon-close"></span></span>
@@ -198,13 +194,11 @@ function chat(){
 			flashMessage();
 		}else{
 			if($(chat).length > 0){
-				console.log('length > 0');
 				var open = $(chat).data('open');
 				if(open == false){
 					$(chat).data('open',true).find('.chat-close').show();
 				}
 			}else{
-				console.log('length == 0');
 				$('.chat-container').append("<div class='chat' data-username="+username+" data-open='true'><div><div class='chat-header'><a href='#'>"+username+"<span class='icon-close'></span></a></div><div class='chat-close chat-content'></div><div class='chat-close chat-footer'><form><input type='text' placeholder='Ecrire un message' class='form-control' /></form></div></div>");
 			}
 		}

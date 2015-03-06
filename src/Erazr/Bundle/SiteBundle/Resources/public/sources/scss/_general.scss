@@ -28,6 +28,20 @@ ul {
 	&.btn-square {
 		border-radius:0;
 	}
+	&.btn-success {
+		color:white;
+		background:$clr-success;
+		&:hover {
+			background:lighten($clr-success,5%);
+		}
+	}
+	&.btn-error {
+		color:white;
+		background:$clr-error;
+		&:hover {
+			background:lighten($clr-error,5%);
+		}
+	}
 	&.btn-light-blue {
 		color:white;
 		background:$clr-light-blue;

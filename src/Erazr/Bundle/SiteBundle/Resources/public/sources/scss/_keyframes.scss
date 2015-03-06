@@ -11,7 +11,12 @@
 
 @keyframes spin {
 	0% {transform:rotate(0);}
-	100% {transform:rotate(-360deg);}
+	100% {transform:rotate(-359deg);}
+}
+
+@keyframes reverse_spin {
+	0% {transform:rotate(0);}
+	100% {transform:rotate(359deg);}
 }
 
 @keyframes love {
