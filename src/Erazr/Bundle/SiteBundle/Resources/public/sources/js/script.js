@@ -112,9 +112,9 @@ function growTextarea(){
 }
 
 function flashMessage(){
-	$('.flash').hide().fadeIn('slow').delay(5000).fadeOut();
+	$('.flash').hide().fadeIn('slow').delay(5000).fadeOut('slow',function(){$('ul.flash').remove();});
 	$('.flash-close').click(function(){
-		$(this).parent().fadeOut('slow');
+		$(this).parent().fadeOut('slow',function(){$('ul.flash').remove();});
 		return false;
 	});
 }
