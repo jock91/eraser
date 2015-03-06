@@ -17,7 +17,7 @@
 	{% if app.user.id == like.user.id %}
 		{% set liked = "Retirer le like" %}
 		{% set icon_liked = "icon-heart" %}
-		{% set liked_url = path('_disliked', {'id': post.id}) %}
+		{% set liked_url = path('_dislike', {'id': post.id}) %}
 	{% endif %}
 {% endfor %}
 
