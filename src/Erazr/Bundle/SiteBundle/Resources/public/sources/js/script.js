@@ -24,8 +24,6 @@ function init(){
 	flashMessage();
 // Notifications
 	notifs();
-// Formulaire de recherche
-	recherche_ajax();
 // Chat
 	chat();
 }
@@ -138,22 +136,6 @@ function notifs(){
 				$('.notif-alert ul').data('open',false);
 			}
 		}
-	});
-}
-
-function recherche_ajax(){
-	$('#form_recherche').keyup(function(key){
-		var el		= $(this),
-			input	= $(el).find('input');
-		if($(input).val().length >= 3 || $(input).val() == ""){
-			$.ajax({
-				url: $(el).attr('action'),
-				data: $(el).serialize(),
-				success: function(data){
-				}
-			});
-		}
-		return false;
 	});
 }
 
