@@ -3,13 +3,14 @@
 namespace Erazr\Bundle\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Erazr\Bundle\UserBundle\Entity;
+use Erazr\Bundle\UserBundle\Entity\User;
 
 /**
  * Post
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Erazr\Bundle\SiteBundle\Entity\PostRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Post
 {
@@ -39,21 +40,19 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="timer", type="datetime")
+     * @ORM\Column(name="timer", type="datetime", nullable=true)
      */
     private $timer;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="liked", type="smallint", nullable=true)
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Liking", mappedBy="post", cascade={"remove"})
      */
-    private $liked;
+    private $likings;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string", length=10, nullable=true)
+     * @ORM\Column(name="color", type="string", nullable=true)
      */
     private $color;
 
@@ -64,7 +63,7 @@ class Post
     protected $user;
 
     /**
-    * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"persist"})
+    * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"persist", "remove"})
     */
     protected $comments;
 
@@ -177,7 +176,7 @@ class Post
      * @param \Erazr\Bundle\SiteBundle\Entity\User $user
      * @return Post
      */
-    public function setUser(\Erazr\Bundle\SiteBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -194,34 +193,14 @@ class Post
         return $this->user;
     }
 
-    /**
-     * Set liked
-     *
-     * @param integer $liked
-     * @return Post
-     */
-    public function setLiked($liked)
-    {
-        $this->liked = $liked;
-
-        return $this;
-    }
-
-    /**
-     * Get liked
-     *
-     * @return integer 
-     */
-    public function getLiked()
-    {
-        return $this->liked;
-    }
+    
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->created = new \DateTime();
     }
 
     /**
