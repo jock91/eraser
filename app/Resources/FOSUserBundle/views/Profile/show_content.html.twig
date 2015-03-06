@@ -16,7 +16,11 @@
 		<article class="user clearfix">
 			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />
 			<div class="infos">
-				<h2 class="text-asphalt">{{ user.username }}<a href="{{ btn_friend_url }}" class="btn {{ btn_friend_class }}"><span class="{{ btn_friend_icon }}"></span> {{ btn_friend_text }}</a></h2>
+				<h2 class="text-asphalt">{{ user.username }}
+				{% if app.user.id != user.id %}
+					<a href="{{ btn_friend_url }}" class="btn {{ btn_friend_class }}"><span class="{{ btn_friend_icon }}"></span> {{ btn_friend_text }}</a>
+				{% endif %}
+				</h2>
 				<h3 class="text-asphalt">{{ user.email }}</h3>
 				<p>Dernière connexion le {{ user.lastLogin|date('d/m/Y à H:i') }}</p>
 			</div>
