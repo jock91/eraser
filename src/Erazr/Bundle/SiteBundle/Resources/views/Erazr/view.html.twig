@@ -17,7 +17,7 @@
 		</div>
 	</header>
 	<div class="content">
-		{{ post.content|raw }}
+		{{ post.content }}
 	</div>
 	<footer>
 		<div class="row">
@@ -36,7 +36,7 @@
 		</header>
 		<div class="content-wrap">
 			<a href="{{ path('fos_user_profile_show_name', {'username': comment.user}) }}" title="{{ comment.user }}" class="user text-asphalt">{{ comment.user }}</a>
-			<span class="content">{{ comment.content|raw }}</span>
+			<span class="content">{{ comment.content }}</span>
 			<footer data-created="{{ comment.created|date('Y/m/d H:i:s') }}">{{ comment.created|date('Y/m/d H:i:s') }}</footer>
 		</div>
 	</article>
@@ -44,7 +44,7 @@
 
 		{{ form_start(form) }}
 		{{ form_errors(form) }}
-		{{ form_widget(form.content, {'attr': {'placeholder':'Commentaire', 'data-open':'false'}}) }}
+		{{ form_widget(form.content, {'attr': {'placeholder':'Commentaire', 'data-open':'false', 'class':'grow'}}) }}
 
 		<div class="text-right">
 			{{ form_rest(form) }}

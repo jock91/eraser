@@ -32,16 +32,17 @@
 	{% endif %}
 		<ul>
 		{% for myFriends in app.user.myFriends %}
-			<li><a href="{{ path('fos_user_profile_show_name', {'username': myFriends.username }) }}" title="{{ myFriends.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ myFriends.username }}" title="{{ myFriends.username }}" />{{ myFriends.username }}</a><a href="#" class="chat"><span class="icon-comment"></span></a></li>
+			<li><a href="{{ path('fos_user_profile_show_name', {'username': myFriends.username }) }}" title="{{ myFriends.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ myFriends.username }}" title="{{ myFriends.username }}" />{{ myFriends.username }}</a><a href="#" class="chat-btn" data-username="{{ myFriends.username }}"><span class="icon-comment"></span></a></li>
 		{% endfor %}
 		</ul>
 	</div>
 	<div class="sideSearch">
 		<h3>Recherche</h3>
+		<div id="jobs"></div>
 		<ul class="searchFriends">
 			{% if myUser is defined %}
 		{% for user in myUser %}
-			<li><a href="{{ path('fos_user_profile_show_name', {'username': user.username }) }}" title="{{ user.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />{{ user.username }}</a><a href="#" class="chat"><span class="icon-comment"></span></a></li>
+			<li><a href="{{ path('fos_user_profile_show_name', {'username': user.username }) }}" title="{{ user.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />{{ user.username }}</a><a href="#" class="chat-btn" data-username="{{ myFriends.username }}"><span class="icon-comment"></span></a></li>
 		{% endfor %}
 	{% endif %}
 		</ul>
@@ -54,6 +55,7 @@
 			<div class="input-group square">
 				<span class="input-group-addon"><label for="erazr_bundle_search_search" class="icon-search"></label></span>
 				{{ form_widget(formSearch.search, {'attr': {'placeholder': 'Rechercher un membre'}}) }}
+				<span class="input-group-addon"><label for="erazr_bundle_search_search" class="icon-notif icon-loading" style="display:none;"></label></span>
 			</div>
 		</form>
 	</div>
@@ -61,3 +63,5 @@
 		Made with <span class="icon-heart"></span> by Groin-Groin Team
 	</footer>
 </aside>
+
+<div class="chat-container"></div>

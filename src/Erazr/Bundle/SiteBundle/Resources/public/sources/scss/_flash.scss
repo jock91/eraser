@@ -19,13 +19,16 @@
 		.flash-icon {
 			position:absolute;
 			font-size:3rem;
-			top:-.3rem;
+			top:50%;
 			left:.5rem;
 			cursor:default;
+			margin-top:-2.2rem;
 		}
 		.flash-close {
 			position:absolute;
+			top:50%;
 			right:1rem;
+			margin-top:-.8rem;
 			display:inline-block;
 			border-radius:50%;
 			background:rgba(0,0,0,.4)
