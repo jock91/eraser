@@ -67,6 +67,10 @@ class User extends BaseUser implements ClientInterface
      */
     protected $accessToken;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Liking", mappedBy="user", cascade={"remove"})
+     */
+    private $likings;
 
 
     /**
@@ -297,5 +301,38 @@ class User extends BaseUser implements ClientInterface
     public function getMyFriends()
     {
         return $this->myFriends;
+    }
+
+    /**
+     * Add likings
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Liking $likings
+     * @return User
+     */
+    public function addLiking(\Erazr\Bundle\SiteBundle\Entity\Liking $likings)
+    {
+        $this->likings[] = $likings;
+
+        return $this;
+    }
+
+    /**
+     * Remove likings
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Liking $likings
+     */
+    public function removeLiking(\Erazr\Bundle\SiteBundle\Entity\Liking $likings)
+    {
+        $this->likings->removeElement($likings);
+    }
+
+    /**
+     * Get likings
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLikings()
+    {
+        return $this->likings;
     }
 }

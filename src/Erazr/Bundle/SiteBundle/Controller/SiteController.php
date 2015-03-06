@@ -33,34 +33,33 @@ class SiteController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-
-        $liker = $em->getRepository('ErazrSiteBundle:Liking')->findAll();
-
-
         $post = $em->getRepository('ErazrSiteBundle:Post')->find($id);
+        $liker = $em->getRepository('ErazrSiteBundle:Liking')->findLikeByUserPost($this->getUser(), $post);
 
-        if(!$post){
-            $this->get('session')->getFlashBag()->add('error', "Ce post n'existe pas !"); 
-            return $this->redirect($this->generateUrl('_home'));
-        }else {
-            $liking = new Liking();
-        $liking->setUser($this->getUser());
-        $liking->setPost($post); 
+        if( !empty($liker) ){
 
-        
-        $em->persist($liking);
-        $em->flush();
-        return $this->redirect($request->headers->get('referer'));
+            $em->remove($liker);
+            $em->flush();
+
+            return $this->redirect($request->headers->get('referer'));
+        } else {
+            $post = $em->getRepository('ErazrSiteBundle:Post')->find($id);
+
+            if(!$post){
+                $this->get('session')->getFlashBag()->add('error', "Ce post n'existe pas !"); 
+                return $this->redirect($this->generateUrl('_home'));
+            }else {
+                $liking = new Liking();
+                $liking->setUser($this->getUser());
+                $liking->setPost($post); 
+                
+                $em->persist($liking);
+                $em->flush();
+                return $this->redirect($request->headers->get('referer'));
+            }
         }
-
-        
-
         
     }
-      
-
-
-
 
     /**
     * 

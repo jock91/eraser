@@ -26,7 +26,7 @@ class Liking
 
     /**
      * @ORM\ManyToOne(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="likings")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, unique=true)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     protected $user;
 
