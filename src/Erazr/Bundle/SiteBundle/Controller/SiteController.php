@@ -62,6 +62,21 @@ class SiteController extends Controller
     }
 
     /**
+    * @Method({"GET","DELETE"})
+    * @Route("/dislike/{id}", name="_dislike")
+    * 
+    */
+    public function LikeAction($id, Request $request){
+
+        $em = $this->getDoctrine()->getManager();
+        $liker = $em->getRepository('ErazrSiteBundle:Liking')->findLikeByUserPost($this->getUser(), $post);
+        $em->remove($liker);
+        $em->flush();
+        
+        
+    }
+
+    /**
     * 
     * @Template("ErazrSiteBundle:Erazr:aside.html.twig")
     */
