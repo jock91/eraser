@@ -235,4 +235,37 @@ class Post
     {
         return $this->comments;
     }
+
+    /**
+     * Add likings
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Liking $likings
+     * @return Post
+     */
+    public function addLiking(\Erazr\Bundle\SiteBundle\Entity\Liking $likings)
+    {
+        $this->likings[] = $likings;
+
+        return $this;
+    }
+
+    /**
+     * Remove likings
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Liking $likings
+     */
+    public function removeLiking(\Erazr\Bundle\SiteBundle\Entity\Liking $likings)
+    {
+        $this->likings->removeElement($likings);
+    }
+
+    /**
+     * Get likings
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLikings()
+    {
+        return $this->likings;
+    }
 }
