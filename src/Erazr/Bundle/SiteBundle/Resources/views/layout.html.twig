@@ -25,19 +25,19 @@
 	{% if label == "success" %}
 	<li class="flash-success">
 		<span class="flash-icon"><span class="icon-success"></span></span>
-			{{ flash }}
+			{{ flash|raw }}
 		<a href="#" class="flash-close"><span class="icon-close"></span></a>
 	</li>
 	{% elseif label == "error" %}
 	<li class="flash-error">
 		<span class="flash-icon"><span class="icon-close"></span></span>
-			{{ flash }}
+			{{ flash|raw }}
 		<a href="#" class="flash-close"><span class="icon-close"></span></a>
 	</li>
 	{% elseif label == "warning" %}
 	<li class="flash-warning">
 		<span class="flash-icon"><span class="icon-notif"></span></span>
-			{{ flash }}
+			{{ flash|raw }}
 		<a href="#" class="flash-close"><span class="icon-close"></span></a>
 	</li>
 	{% endif %}

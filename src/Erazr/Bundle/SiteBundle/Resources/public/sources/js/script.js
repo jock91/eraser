@@ -24,6 +24,10 @@ function init(){
 	flashMessage();
 // Notifications
 	notifs();
+// Formulaire de recherche
+	recherche_ajax();
+// Chat
+	chat();
 }
 
 function resize(){
@@ -87,20 +91,20 @@ function splitPost(){
 }
 
 function growTextarea(){
-	$('textarea').click(function(){
+	$('textarea.grow').click(function(){
 		var open = $(this).data('open'),
 			el = $(this);
 		if(open == false){
-			$(el).stop().animate({height:'10rem'});
+			$(el).stop().animate({'min-height':'10rem'});
 			$(el).data('open',true);
 		}
 	});
 	$('*').click(function(e){
-		if(!$(e.target).is('textarea')){
-			var textarea = $('textarea'),
+		if(!$(e.target).is('textarea.grow')){
+			var textarea = $('textarea.grow'),
 				open = $(textarea).data('open');
 			if(open == true && $(textarea).val() < 1){
-				$(textarea).stop().animate({height:'3.4rem'});
+				$(textarea).stop().animate({'min-height':'3.4rem'});
 				$(textarea).data('open',false);
 			}
 		}
@@ -135,6 +139,61 @@ function notifs(){
 				$('.notif-alert ul').data('open',false);
 			}
 		}
+	});
+}
+
+function recherche_ajax(){
+	$('#form_recherche').keyup(function(key){
+		var el		= $(this),
+			input	= $(el).find('input');
+		console.log($(input).val());
+		if($(input).val().length >= 3 || $(input).val() == ""){
+			$.ajax({
+				url: $(el).attr('action'),
+				data: $(el).serialize(),
+				success: function(data){
+					console.log(data);
+				}
+			});
+		}
+		return false;
+	});
+}
+
+function chat(){
+	$('.chat').each(function(){
+		var el = $(this),
+			open = $(el).data('open');
+		if(open == false){
+			$(el).find('.chat-close').hide();
+		}
+	});
+	$(document).on('click','.chat .chat-header a',function(){
+		var el = $(this),
+			open = $(el).parents('.chat').data('open');
+		if(open == true){
+			$(el).parents('.chat').data('open',false).find('.chat-close').hide();
+		}else{
+			$(el).parents('.chat').data('open',true).find('.chat-close').show();
+		}
+		return false;
+	});
+	$(document).on('click','.chat .chat-header .icon-close',function(){
+		$(this).parents('.chat').remove();
+		return false;
+	});
+	$('.chat-btn').click(function(){
+		var username = $(this).data('username'),
+			chat = $('.chat[data-username="'+username+'"]');
+		if($(chat).length > 0){
+			var open = $(chat).data('open');
+			if(open == false){
+				$(chat).data('open',true).find('.chat-close').show();
+			}
+		}else{
+			$('.chat-container').append("<div class='chat' data-username="+username+" data-open='true'><div><div class='chat-header'><a href='#'>"+username+"<span class='icon-close'></span></a></div><div class='chat-close chat-content'></div><div class='chat-close chat-footer'><form><input type='text' placeholder='Ecrire un message' class='form-control' /></form></div></div>");
+		}
+		return false;
 	});
 }
 
