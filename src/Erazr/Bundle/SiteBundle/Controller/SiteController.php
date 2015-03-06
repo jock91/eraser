@@ -23,11 +23,60 @@ use Erazr\Bundle\SiteBundle\Form\SearchType;
 
 
 class SiteController extends Controller
-{
+{   
+
+
+    /**
+    * @Method({"GET","POST"})
+    * @Route("/add/friend/{id}", name="_addFriend")
+    */
+    public function addFriendAction($id, Request $request ){
+
+        if( $id ===  $this->getUser()->getId()) {
+            $this->get('session')->getFlashBag()->add('error', "Florian arrête d'essayer de t'ajouter en ami !"); 
+            return $this->redirect($request->headers->get('referer'));
+        } else {
+        
+        $em = $this->getDoctrine()->getManager();
+
+        $userFriend = $em->getRepository('ErazrUserBundle:User')->find($id);
+
+        $newFriend = $this->getUser()->addMyFriend($userFriend);
+
+        $em->persist($newFriend);
+
+        $em->flush();
+        return $this->redirect($request->headers->get('referer'));
+        }
+    }
+
+    /**
+    * @Method({"DELETE", "GET"})
+    * @Route("/remove/friend/{id}", name="_removeFriend")
+    */
+    public function deleteFriendAction($id, Request $request ){
+        
+        $em = $this->getDoctrine()->getManager();
+
+        $userFriend = $em->getRepository('ErazrUserBundle:User')->find($id);
+
+        $removeFriend = $this->getUser();
+        $removeFriend->removeMyFriend($userFriend);
+
+        $em->persist($removeFriend);
+        $em->flush();
+
+        return $this->redirect($request->headers->get('referer'));
+        
+    }
+
+
+
+
+
     /**
     * @Method({"GET","POST"})
     * @Route("/voted/{id}", name="_voted")
-    * 
     */
     public function LikeAction($id, Request $request){
 
@@ -37,10 +86,6 @@ class SiteController extends Controller
         $liker = $em->getRepository('ErazrSiteBundle:Liking')->findLikeByUserPost($this->getUser(), $post);
 
         if( !empty($liker) ){
-
-            $em->remove($liker);
-            $em->flush();
-
             return $this->redirect($request->headers->get('referer'));
         } else {
             $post = $em->getRepository('ErazrSiteBundle:Post')->find($id);

@@ -5,7 +5,7 @@
 
 	• Gestion des ami(e)s [ ajouter, accepter, refuser, supprimer ]
 
-	• Système de like 
+	• --Système de like--
 
 	• --Recherche Users--
 
