@@ -29,7 +29,7 @@ class SiteController extends Controller
     * @Route("/voted/{id}", name="_voted")
     * 
     */
-    public function LikeAction($id){
+    public function LikeAction($id, Request $request){
 
         $em = $this->getDoctrine()->getManager();
 
@@ -46,7 +46,7 @@ class SiteController extends Controller
         $em->persist($liking);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('_home'));
+        return $this->redirect($request->headers->get('referer'));
     }
       
 

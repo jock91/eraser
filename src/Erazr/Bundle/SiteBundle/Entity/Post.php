@@ -47,7 +47,7 @@ class Post
     /**
      * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Liking", mappedBy="post", cascade={"remove"})
      */
-    private $linkings;
+    private $likings;
 
     /**
      * @var string
