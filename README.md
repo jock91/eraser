@@ -3,7 +3,7 @@
 
 	• Notifications /!\
 
-	• Gestion des ami(e)s [ ajouter, accepter, refuser, supprimer ]
+	• --Gestion des ami(e)s [ ajouter, accepter, refuser, supprimer ]--
 
 	• --Système de like--
 
@@ -19,4 +19,4 @@
 
 	• Ajouter post [ si un des champ est rempli mettre l'autre à zéro ]
 
-	• Ajouter dans BDD sur commentaires is_view
+	• --Ajouter dans BDD sur commentaires is_view--
