@@ -50,6 +50,16 @@ class Post
     private $likings;
 
     /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getLikes()
+    {
+        return $this->id;
+    }
+
+    /**
      * @var string
      *
      * @ORM\Column(name="color", type="string", nullable=true)

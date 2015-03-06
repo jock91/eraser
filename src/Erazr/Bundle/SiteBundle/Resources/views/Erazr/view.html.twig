@@ -4,7 +4,12 @@
 
 {% block content %}
 
-{{ dump(post.liking) }}
+
+{% for likes in post.likings %}
+	{{ likes }}
+{% endfor %}
+
+{{ dump(post) }}
 
 <article class="post post-{{ post.color }}" id="post-{{ post.id }}">
 	<header class="clearfix">
