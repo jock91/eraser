@@ -4,6 +4,15 @@
 
 {% block content %}
 
+{% set liked = "Ajouter un like" %}
+{% set icon_liked = "icon-heart-empty" %}
+{% for like in post.likings %}
+	{% if app.user.id == like.user.id %}
+		{% set liked = "Retirer le like" %}
+		{% set icon_liked = "icon-heart" %}
+	{% endif %}
+{% endfor %}
+
 <article class="post post-{{ post.color }}" id="post-{{ post.id }}">
 	<header class="clearfix">
 		<a href="{{ path('fos_user_profile_show_name', {'username': post.user}) }}" title="{{ post.user }}">
@@ -23,7 +32,7 @@
 	<footer>
 		<div class="row">
 			<div class="col-sm-12 text-right">
-				<a href="{{ path('_voted', {'id': post.id})}}" data-toggle="tooltip" data-placement="top" title="Ajouter un like" class="likes"><span class="icon-heart-empty"></span> {{ post.likings|length }}</a>
+				<a href="{{ path('_voted', {'id': post.id})}}" data-toggle="tooltip" data-placement="top" title="{{ liked }}" class="likes"><span class="{{ icon_liked }}"></span> {{ post.likings|length }}</a>
 			</div>
 		</div>
 	</footer>
