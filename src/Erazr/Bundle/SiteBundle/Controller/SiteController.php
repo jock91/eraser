@@ -47,6 +47,9 @@ class SiteController extends Controller
         $em->persist($newFriend);
 
         $em->flush();
+
+        $this->get('session')->getFlashBag()->add('success', '<b>' . $userFriend ."</b> est maintenant votre ami !");
+
         return $this->redirect($request->headers->get('referer'));
         }
     }
@@ -67,6 +70,7 @@ class SiteController extends Controller
         $em->persist($removeFriend);
         $em->flush();
 
+        $this->get('session')->getFlashBag()->add('warning', '<b>' . $userFriend ."</b> n'est plus votre ami !");
         return $this->redirect($request->headers->get('referer'));
         
     }
