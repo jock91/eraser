@@ -33,20 +33,29 @@ class SiteController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $post = $em->getRepository('ErazrSiteBundle:Post')->find($id);
 
-        $liking = new Liking();
-        $liking->setUser($this->getUser());
-        $liking->setPost($post); 
+        $liker = $em->getRepository('ErazrSiteBundle:Liking')->findAll();
+
+
+        $post = $em->getRepository('ErazrSiteBundle:Post')->find($id);
 
         if(!$post){
             $this->get('session')->getFlashBag()->add('error', "Ce post n'existe pas !"); 
-        }
+            return $this->redirect($this->generateUrl('_home'));
+        }else {
+            $liking = new Liking();
+        $liking->setUser($this->getUser());
+        $liking->setPost($post); 
 
+        
         $em->persist($liking);
         $em->flush();
-
         return $this->redirect($request->headers->get('referer'));
+        }
+
+        
+
+        
     }
       
 
