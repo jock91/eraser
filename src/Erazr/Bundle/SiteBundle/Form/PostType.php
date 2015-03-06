@@ -21,7 +21,6 @@ class PostType extends AbstractType
                 'required' => false,
                 )
             )
-            ->add('liked', 'hidden')
             ->add('color', 'choice', array(
                 'choices' => array(
                     'orange' => 'Orange',

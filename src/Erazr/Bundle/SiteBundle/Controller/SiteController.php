@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Erazr\Bundle\SiteBundle\Entity\Post;
 use Erazr\Bundle\SiteBundle\Entity\Comment;
+use Erazr\Bundle\SiteBundle\Entity\Liking;
 use Erazr\Bundle\SiteBundle\Form\PostType;
 use Erazr\Bundle\SiteBundle\Form\CommentType;
 use Erazr\Bundle\SiteBundle\Form\SearchType;
@@ -24,20 +25,46 @@ use Erazr\Bundle\SiteBundle\Form\SearchType;
 class SiteController extends Controller
 {
     /**
+    * @Method({"GET","POST"})
+    * @Route("/voted/{id}", name="_voted")
+    * 
+    */
+    public function LikeAction($id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $post = $em->getRepository('ErazrSiteBundle:Post')->find($id);
+
+        $liking = new Liking();
+        $liking->setUser($this->getUser());
+        $liking->setPost($post); 
+
+        if(!$post){
+            $this->get('session')->getFlashBag()->add('error', "Ce post n'existe pas !"); 
+        }
+
+        $em->persist($liking);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('_home'));
+    }
+      
+
+
+
+
+    /**
     * 
     * @Template("ErazrSiteBundle:Erazr:aside.html.twig")
     */
     public function asideAction($request) {
         $formSearch = $this->createForm(new SearchType());
-        if(isset($request->get("erazr_bundle_search")["search"])){
-            $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"]);
-        }else {
-            $UserSearched = null;
-        }
+            if(isset($request->get("erazr_bundle_search")["search"])){
+                $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"]);
+            }else {
+                $UserSearched = null;
+            }        
         
-        
-        //var_dump($request->get("erazr_bundle_search")["search"]);
-
         return array(
             'formSearch' => $formSearch->createView(),
             'myUser' => $UserSearched,
@@ -52,7 +79,6 @@ class SiteController extends Controller
      */
     public function indexAction(Request $request)
     {
-
         $this->deletePostTimeOut();
     	$posts = $this->getDoctrine()
       		->getManager()

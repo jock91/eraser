@@ -7,7 +7,6 @@
 <div class="ajout">
 	{% include 'ErazrSiteBundle:Post:new.html.twig' %}
 </div>
-
 <div class="column-row">
 {% for post in posts %}
 	<div class="column-item">
@@ -35,7 +34,7 @@
 						</div>
 						<div class="col-sm-6 text-right">
 							<div class="comments" data-toggle="tooltip" data-placement="top" title="{{ post.comments|length|number_format(0) }} commentaire{% if post.comments|length > 1 %}s{% endif %}"><span class="icon-comment-empty"></span> {{ post.comments|length|number_format(0) }}</div>
-							<a class="likes" href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un like"><span class="icon-heart-empty"></span> {{ post.liked|number_format(0) }}</a>
+							<a class="likes" href="{{ path('_voted', {'id': post.id})}}" data-toggle="tooltip" data-placement="top" title="Ajouter un like"><span class="icon-heart-empty"></span> {# {{ post.liked|number_format(0) }} #}</a>
 						</div>
 					</div>
 				</footer>

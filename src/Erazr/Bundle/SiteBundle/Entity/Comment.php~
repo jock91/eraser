@@ -30,6 +30,12 @@ class Comment
     private $content;
 
     /**
+     *
+     * @ORM\Column(name="is_view", type="boolean", nullable=true)
+     */
+    private $is_view;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime")

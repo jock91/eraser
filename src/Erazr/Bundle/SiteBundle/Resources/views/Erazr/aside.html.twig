@@ -39,15 +39,17 @@
 	<div class="sideSearch">
 		<h3>Recherche</h3>
 		<ul class="searchFriends">
+			{% if myUser is defined %}
 		{% for user in myUser %}
 			<li><a href="{{ path('fos_user_profile_show_name', {'username': user.username }) }}" title="{{ user.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />{{ user.username }}</a><a href="#" class="chat"><span class="icon-comment"></span></a></li>
 		{% endfor %}
+	{% endif %}
 		</ul>
-
+{% if myUser is defined %}
 		{% if myUser|length > 5 %}
 			<a href="#" title="Voir tous les résultats" class="btn btn-light-blue btn-large btn-square">Voir tous les résultats</a>
 		{% endif %}
-
+{% endif %}
 		<form id="form_recherche" action="{{ path('_home') }}" method="post" class="form-search" name="searchFriend">
 			<div class="input-group square">
 				<span class="input-group-addon"><label for="erazr_bundle_search_search" class="icon-search"></label></span>

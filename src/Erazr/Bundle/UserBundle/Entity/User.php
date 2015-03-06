@@ -53,7 +53,7 @@ class User extends BaseUser implements ClientInterface
 
     /**
      * @ORM\ManyToMany(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="friendsWithMe")
-     * @ORM\JoinTable(name="friends",
+     * @ORM\JoinTable(name="Friends",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="friend_user_id", referencedColumnName="id")}
      *      )
@@ -63,7 +63,7 @@ class User extends BaseUser implements ClientInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="accessToken", type="text")
+     * @ORM\Column(name="accessToken", type="text", nullable=true)
      */
     protected $accessToken;
 

@@ -45,11 +45,9 @@ class Post
     private $timer;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="liked", type="smallint", nullable=true)
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Liking", mappedBy="post", cascade={"remove"})
      */
-    private $liked;
+    private $linkings;
 
     /**
      * @var string
@@ -195,27 +193,7 @@ class Post
         return $this->user;
     }
 
-    /**
-     * Set liked
-     *
-     * @param integer $liked
-     * @return Post
-     */
-    public function setLiked($liked)
-    {
-        $this->liked = $liked;
-        return $this;
-    }
-
-    /**
-     * Get liked
-     *
-     * @return integer 
-     */
-    public function getLiked()
-    {
-        return $this->liked;
-    }
+    
     /**
      * Constructor
      */

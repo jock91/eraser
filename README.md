@@ -18,3 +18,5 @@
 	• Chat
 
 	• Ajouter post [ si un des champ est rempli mettre l'autre à zéro ]
+
+	• Ajouter dans BDD sur commentaires is_view
