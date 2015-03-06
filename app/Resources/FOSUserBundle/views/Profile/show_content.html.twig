@@ -34,6 +34,21 @@
 	{% endif %}
 	<div class="column-row">
 	{% for post in user.posts %}
+
+	{% set liked = "Ajouter un like" %}
+	{% set icon_liked = "icon-heart-empty" %}
+	{% for like in post.likings %}
+		{% if app.user.id == like.user.id %}
+			{% set liked = "Retirer le like" %}
+			{% set icon_liked = "icon-heart" %}
+		{% endif %}
+	{% endfor %}
+
+	{% set icon_comment = "icon-comment-empty" %}
+	{% if post.comments|length > 0 %}
+		{% set icon_comment = "icon-comment" %}
+	{% endif %}
+
 		<div class="column-item">
 			<div class="column-well">
 				<article class="post post-split post-{{ post.color }}" id="post-{{ post.id }}">
@@ -58,8 +73,8 @@
 								<a href="{{ path('_postView', {'id': post.id}) }}" class="btn btn-sm btn-post">Voir le post</a>
 							</div>
 							<div class="col-sm-6 text-right">
-								<div class="comments" data-toggle="tooltip" data-placement="top" title="{{ post.comments|length|number_format(0) }} commentaire{% if post.comments|length > 1 %}s{% endif %}"><span class="icon-comment-empty"></span> {{ post.comments|length|number_format(0) }}</div>
-								<a class="likes" href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un like"><span class="icon-heart-empty"></span> {{ post.likings|length }}</a>
+								<div class="comments" data-toggle="tooltip" data-placement="top" title="{{ post.comments|length|number_format(0) }} commentaire{% if post.comments|length > 1 %}s{% endif %}"><span class="{{ icon_comment }}"></span> {{ post.comments|length|number_format(0) }}</div>
+								<a class="likes" href="#" data-toggle="tooltip" data-placement="top" title="{{ liked }}"><span class="{{ icon_liked }}"></span> {{ post.likings|length }}</a>
 							</div>
 						</div>
 					</footer>
