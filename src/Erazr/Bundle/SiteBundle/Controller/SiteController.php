@@ -69,6 +69,7 @@ class SiteController extends Controller
     public function DislikeAction($id, Request $request){
 
         $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('ErazrSiteBundle:Post')->find($id);
         $liker = $em->getRepository('ErazrSiteBundle:Liking')->findLikeByUserPost($this->getUser(), $post);
         $em->remove($liker);
         $em->flush();
