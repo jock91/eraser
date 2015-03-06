@@ -3,6 +3,9 @@
 {% block title -%}{{ parent() }}{%- endblock %}
 
 {% block content %}
+
+{{ dump(post.liking) }}
+
 <article class="post post-{{ post.color }}" id="post-{{ post.id }}">
 	<header class="clearfix">
 		<a href="{{ path('fos_user_profile_show_name', {'username': post.user}) }}" title="{{ post.user }}">
@@ -17,12 +20,12 @@
 		</div>
 	</header>
 	<div class="content">
-		{{ post.content }}
+		{{ post.content|raw }}
 	</div>
 	<footer>
 		<div class="row">
 			<div class="col-sm-12 text-right">
-				<a href="#" data-toggle="tooltip" data-placement="top" title="Ajouter un like" class="likes"><span class="icon-heart-empty"></span> {# {{ post.liked|number_format(0) }} #}</a>
+				<a href="{{ path('_voted', {'id': post.id})}}" data-toggle="tooltip" data-placement="top" title="Ajouter un like" class="likes"><span class="icon-heart-empty"></span> {# {{ post.liked|number_format(0) }} #}</a>
 			</div>
 		</div>
 	</footer>
