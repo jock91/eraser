@@ -22,6 +22,9 @@
 
 {# Créer un tableau avec les notifications #}
 
+{% set notifs = [] %}
+
+
 {% for post in app.user.posts %}
 	{% for comment in post.comments %}
  		{% if comment.isView %}
