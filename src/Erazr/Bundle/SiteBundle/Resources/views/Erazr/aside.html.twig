@@ -21,19 +21,27 @@
 	</div>
 
 {# Créer un tableau avec les notifications #}
+{# Créer une table BDD avec enum('friend','comment','like') ID de l'expéditeur et du destinataire #}
 
-{% set notifs = [] %}
-
+{% set notif_friend = {} %}
+{% set notif_comment = {} %}
+{% set notif_like = {} %}
 
 {% for post in app.user.posts %}
 	{% for comment in post.comments %}
- 		{% if comment.isView %}
-			Notification !
+ 		{% if comment.isView == "" %}
+			{% set notif_comment = notif_comment|merge({('post/'~comment.post.id):('user/'~comment.user.id),'post/2':'user/4'}) %}
 		{% else %}
 			Pas de notification !
 		{% endif %}
 	{% endfor %}
 {% endfor %}
+
+{% if notif_comment %}
+	{{ dump(notif_comment) }}
+{% endif %}
+
+
 
 	<nav>
 		<ul>
