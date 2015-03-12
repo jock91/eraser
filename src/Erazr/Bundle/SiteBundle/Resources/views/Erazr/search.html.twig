@@ -4,60 +4,6 @@
 
 {% block content %}
 
-<div class="ajout">
-	{% include 'ErazrSiteBundle:Post:new.html.twig' %}
-</div>
-<div class="column-row">
-{% for post in posts %}
+Page Search
 
-{% set liked = "Ajouter un like" %}
-{% set icon_liked = "icon-heart-empty" %}
-{% set liked_url = path('_voted', {'id': post.id}) %}
-{% for like in post.likings %}
-	{% if app.user.id == like.user.id %}
-		{% set liked = "Retirer le like" %}
-		{% set icon_liked = "icon-heart" %}
-		{% set liked_url = path('_dislike', {'id': post.id}) %}
-	{% endif %}
-{% endfor %}
-
-{% set icon_comment = "icon-comment-empty" %}
-{% if post.comments|length > 0 %}
-	{% set icon_comment = "icon-comment" %}
-{% endif %}
-
-	<div class="column-item">
-		<div class="column-well">
-			<article class="post post-split post-{{ post.color }}" id="post-{{ post.id }}">
-				<header class="clearfix">
-					<a href="{{ path('fos_user_profile_show_name', {'username': post.user}) }}" title="{{ post.user }}">
-						<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ post.user }}" title="{{ post.user }}" data-toggle="tooltip" data-placement="top" />
-						<div class="profil">
-							<h2>{{ post.user }}</h2>
-							<h3 data-created="{{ post.created|date('Y/m/d H:i:s') }}">#</h3>
-						</div>
-					</a>
-					<div class="timer">
-						<span class="icon-clock"></span> <span data-countdown="{{ post.timer|date('Y/m/d H:i:s') }}">{{ "now"|date('H:i:s')}}</span>
-					</div>
-				</header>
-				<div class="content">
-					{{ post.content|raw }}
-				</div>
-				<footer>
-					<div class="row">
-						<div class="col-sm-6">
-							<a href="{{ path('_postView', {'id': post.id}) }}" class="btn btn-sm btn-post">Voir le post</a>
-						</div>
-						<div class="col-sm-6 text-right">
-							<div class="comments" data-toggle="tooltip" data-placement="top" title="{{ post.comments|length|number_format(0) }} commentaire{% if post.comments|length > 1 %}s{% endif %}"><span class="{{ icon_comment }}"></span> {{ post.comments|length|number_format(0) }}</div>
-							<a class="likes" href="{{ liked_url }}" data-toggle="tooltip" data-placement="top" title="{{ liked }}"><span class="{{ icon_liked }}"></span> {{ post.likings|length }}</a>
-						</div>
-					</div>
-				</footer>
-			</article>
-		</div>
-	</div>
-{% endfor %}
-</div>
 {% endblock %}
