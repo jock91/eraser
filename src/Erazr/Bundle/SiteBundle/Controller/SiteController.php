@@ -150,12 +150,14 @@ class SiteController extends Controller
     }
 
     /**
-    * @Method({"GET"})
+    * @Method({"GET", "POST"})
     * @Route("/search/{term}", name="_search")
     * @Template("ErazrSiteBundle:Erazr:search.html.twig")
     */
     public function searchAction($term) {
-       
+        if($term == null) {
+            $this->redirect($this->generateUrl('_home'));
+        }
         if(isset($term)){
             $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term);
         }else {
