@@ -191,21 +191,35 @@ function chat(){
 }
 
 function search_ajax(){
-	$('#form_recherche input').keyup(function(key){
+	$('#form_recherche input').keydown(function(e){
 		var input = $(this),
 			form = $('#form_recherche');
-		if($(input).val().length >= 3 || $(input).val() == ""){
+		if($(input).val().length >= 2 && e.keyCode != 13 && e.keycode != 224 && e.keycode != 18 && e.keyCode != 17){
+			$('#form_recherche .icon-loading').show();
 			$.ajax({
-				url: 'searchJson/'+$(input).val(),
+				url: '/app_dev.php/searchJson/'+$(input).val(),
 				dataType:'json',
 				success: function(json){
-					console.log(json);
-				},
-				error: function(jqXHR,textStatus,errorThrown){
-					console.log(textStatus);
+					$('#form_recherche .icon-loading').hide();
+					$('.searchFriends').html('');
+					if(json.length > 3){
+						$('#btn-more-search').css('display','inline-block').attr('href','/app_dev.php/search/'+$(input).val());
+					}else{
+						$('#btn-more-search').hide();
+					}
+					$.each(json,function(index){
+						if(index < 3){
+							$('.searchFriends').append("<li><a href='/profile/of/"+json[index].username+"' title='"+json[index].username+"'><img src='/bundles/erazrsite/img/profil.png' alt='"+json[index].username+"' title='"+json[index].username+"' />"+json[index].username+"</a><a href='#' class='chat-btn' data-username='"+json[index].username+"'><span class='icon-comment'></span></a></li>");
+							console.log(json[index].username);
+						}
+					});
 				}
 			});
 		}
+	});
+
+	$('#form_recherche').submit(function(){
+		return false;
 	});
 }
 
