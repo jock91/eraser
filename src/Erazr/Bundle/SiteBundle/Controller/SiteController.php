@@ -137,9 +137,23 @@ class SiteController extends Controller
         if(isset($request->get("erazr_bundle_search")["search"])){
             $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"], 3);
             $requete = $request->get("erazr_bundle_search")["search"];
+
+            $UserSearchedJson = new Response();
+            $result = array();
+
+            foreach ($UserSearched as $user){
+                $result[] = array(
+                    'username' => $user->getUsername(),
+                    //'email' => $user->getEmail(),
+                    //'lastLogin' => $user->getLastLogin(),
+                    );
+            }
+
+            $UserSearchedJson->setContent(json_encode($result));
         }else {
             $UserSearched = null;
             $requete = null;
+            $UserSearchedJson = null;
         }        
         
         return array(
@@ -160,15 +174,14 @@ class SiteController extends Controller
         }
         if(isset($term)){
             $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term);
-            $UserSearchedJson = json_encode($UserSearched);
+            
         }else {
             $UserSearched = null;
-            $UserSearchedJson = null;
         }
 
         return array(
             'myUser' => $UserSearched,
-            'UserSearchedJson' => $UserSearchedJson,);      
+            );      
     }
 
 
