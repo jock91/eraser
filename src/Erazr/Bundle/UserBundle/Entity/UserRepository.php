@@ -21,7 +21,7 @@ class UserRepository extends EntityRepository
 		    ->setParameter('string', '%'.$string.'%');
 
 		    if(is_number($limit)){
-		    	$result->setMaxResults($limit)
+		    	$result->setMaxResults($limit);
 		    }
 
 		    return $result->getQuery()->getResult();
