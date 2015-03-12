@@ -129,7 +129,7 @@ class SiteController extends Controller
     }
 
     /**
-    * 
+    * @Method({"GET", "POST"})
     * @Template("ErazrSiteBundle:Erazr:aside.html.twig")
     */
     public function asideAction($request) {
@@ -160,11 +160,15 @@ class SiteController extends Controller
         }
         if(isset($term)){
             $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term);
+            $UserSearchedJson = json_encode($UserSearched);
         }else {
             $UserSearched = null;
+            $UserSearchedJson = null;
         }
 
-        return array('myUser' => $UserSearched);      
+        return array(
+            'myUser' => $UserSearched,
+            'UserSearchedJson' => $UserSearchedJson,);      
     }
 
 
