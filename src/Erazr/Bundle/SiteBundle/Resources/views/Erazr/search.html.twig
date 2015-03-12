@@ -1,9 +1,15 @@
 {% extends "ErazrSiteBundle::layout.html.twig" %}
 
-{% block title -%}{{ parent() }}{%- endblock %}
+{% block title -%}{{ parent() }} - Recherche pour "{{ app.request.attributes.get('term') }}"{%- endblock %}
 
 {% block content %}
 
-Page Search
+<h1 class="text-asphalt">Résultats de recherche pour "{{ app.request.attributes.get('term') }}"</h1>
+
+<ul class="searchFriends">
+	{% for user in myUser %}
+		<li><a href="{{ path('fos_user_profile_show_name', {'username': user.username }) }}" title="{{ user.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />{{ user.username }}</a><a href="#" class="chat-btn" data-username="{{ user.username }}"><span class="icon-comment"></span></a></li>
+	{% endfor %}
+</ul>
 
 {% endblock %}
