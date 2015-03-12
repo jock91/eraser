@@ -155,9 +155,7 @@ class SiteController extends Controller
     * @Template("ErazrSiteBundle:Erazr:search.html.twig")
     */
     public function searchAction($term) {
-        if($term == null) {
-            $this->redirect
-        }
+       
         if(isset($term)){
             $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term);
         }else {
