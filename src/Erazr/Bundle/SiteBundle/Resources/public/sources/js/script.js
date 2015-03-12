@@ -191,6 +191,7 @@ function chat(){
 }
 
 function search_ajax(){
+	$('#form_recherche input').val('');
 	$('#form_recherche input').keyup(function(e){
 		var input = $(this),
 			form = $('#form_recherche');
@@ -216,7 +217,6 @@ function search_ajax(){
 			});
 		}
 	});
-
 	$('#form_recherche').submit(function(){
 		return false;
 	});
