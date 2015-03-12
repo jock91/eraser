@@ -135,7 +135,7 @@ class SiteController extends Controller
     public function asideAction($request) {
         $formSearch = $this->createForm(new SearchType());
         if(isset($request->get("erazr_bundle_search")["search"])){
-            $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"]);
+            $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"], 3);
             $requete = $request->get("erazr_bundle_search")["search"];
         }else {
             $UserSearched = null;
@@ -155,6 +155,9 @@ class SiteController extends Controller
     * @Template("ErazrSiteBundle:Erazr:search.html.twig")
     */
     public function searchAction($term) {
+        if($term == null) {
+            $this->redirect
+        }
         if(isset($term)){
             $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term);
         }else {
