@@ -198,7 +198,7 @@ function search_ajax(){
 		$('#form_recherche .icon-loading').show();
 		$.ajax({
 			url: '/app_dev.php/searchJson/'+$(input).val(),
-			dataType:'json',
+			dataType: 'json',
 			success: function(json){
 				$('#form_recherche .icon-loading').hide();
 				$('.searchFriends').html('');
