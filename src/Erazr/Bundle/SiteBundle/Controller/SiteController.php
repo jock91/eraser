@@ -132,7 +132,7 @@ class SiteController extends Controller
     * @Route("/search", name="_search")
     * @Template("ErazrSiteBundle:Erazr:search.html.twig")
     */
-    public function asideAction(Request $request) {
+    public function asideAction($request) {
         $formSearch = $this->createForm(new SearchType());
             if(isset($request->get("erazr_bundle_search")["search"])){
                 $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"]);
