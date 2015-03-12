@@ -163,6 +163,35 @@ class SiteController extends Controller
             'myUserJson' => $UserSearchedJson,
         );
     }
+    /**
+    * @Method({"GET", "POST"})
+    * @Route("/searchJson/{term}", name="_searchJson")
+    * @Template("ErazrSiteBundle:Erazr:resultSearch.html.twig")
+    */
+    public function searchJsonAction($term) {
+        if(isset($term)){
+            $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term, 4);
+            $UserSearchedJson = new Response();
+            $result = array();
+
+            foreach ($UserSearched as $user){
+                $result[] = array(
+                    'username' => $user->getUsername(),
+                    //'email' => $user->getEmail(),
+                    //'lastLogin' => $user->getLastLogin(),
+                    );
+            }
+
+            $UserSearchedJson->setContent(json_encode($result));
+            
+        }else {
+            $UserSearched = null;
+        }
+
+        return array(
+            'myUserJson' => $UserSearchedJson,
+            );  
+    }
 
     /**
     * @Method({"GET", "POST"})
@@ -170,6 +199,23 @@ class SiteController extends Controller
     * @Template("ErazrSiteBundle:Erazr:search.html.twig")
     */
     public function searchAction($term) {
+        if(isset($term)){
+            $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term);
+            
+        }else {
+            $UserSearched = null;
+        }
+
+        return array(
+            'myUser' => $UserSearched,
+            );      
+    }
+    /**
+    * @Method({"GET", "POST"})
+    * @Route("/searchAjax/{term}", name="_searchAjax")
+    * @Template("ErazrSiteBundle:Erazr:search.html.twig")
+    */
+    public function searchAjaxAction($term) {
         if($term == null) {
             $this->redirect($this->generateUrl('_home'));
         }
