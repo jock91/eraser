@@ -191,14 +191,13 @@ function chat(){
 }
 
 function search_ajax(){
-/*
 	$('#form_recherche input').keyup(function(key){
 		var input = $(this),
 			form = $('#form_recherche');
 		if($(input).val().length >= 3 || $(input).val() == ""){
 			$.ajax({
-				url: $(form).attr('action'),
-				data: $(form).serialize(),
+				url: 'searchJson/'+$(input).val(),
+				dataType:'json',
 				success: function(json){
 					console.log(json);
 				},
@@ -208,7 +207,6 @@ function search_ajax(){
 			});
 		}
 	});
-*/
 }
 
 /* ------------------------ */
