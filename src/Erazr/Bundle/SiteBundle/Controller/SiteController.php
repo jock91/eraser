@@ -130,7 +130,7 @@ class SiteController extends Controller
 
     /**
     * @Route("/search", name="_search")
-    * @Template("ErazrSiteBundle:Erazr:aside.html.twig")
+    * @Template("ErazrSiteBundle:Erazr:search.html.twig")
     */
     public function asideAction(Request $request) {
         $formSearch = $this->createForm(new SearchType());
