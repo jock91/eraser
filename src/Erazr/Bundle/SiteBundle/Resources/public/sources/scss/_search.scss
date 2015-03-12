@@ -1,82 +1,34 @@
-.profil .user {
-	padding:2rem 0 0;
-	img {
-		float:left;
-		border-radius:50%;
-		margin-right:2rem;
-		border:1px solid rgba(0,0,0,.3);
-	}
-	.infos {
-		float:left;
-		h2 {
-			margin:1.5rem 0 0;
-			a {
-				margin-left:2rem;
+.searchResults {
+	.user {
+		a {
+			padding:2rem;
+			display:block;
+			&:hover {
+				background:rgba(0,0,0,.05);
 			}
-		}
-		h3 {
-			margin:0 0 1rem;
-			font-size:1.5rem;
-		}
-		p {
-			margin:0;
-			color:#777;
-			font-size:1.2rem;
-		}
-	}
-}
-
-.friends {
-	h2 {
-		margin-top:0;
-	}
-	ul {
-		list-style:none;
-		li {
-			display:inline-block;
-			margin-right:1rem;
-			&:last-child {
-				margin-right:0;
-			}
-			a {
-				display:block;
+			img {
+				height:10rem;
+				width:10rem;
+				float:left;
 				border-radius:50%;
-				overflow:hidden;
-				height:5rem;
-				width:5rem;
 				border:1px solid rgba(0,0,0,.3);
-				img {
-					display:block;
-					height:100%;
-					width:100%;
+				margin-right:2rem;
+			}
+			.infos {
+				float:left;
+				h2 {
+					margin:1rem 0 0;
+				}
+				h3 {
+					margin:0 0 1rem;
+					font-size:1.5rem;
+				}
+				p {
+					margin:0;
+					color:#777;
+					font-size:1.2rem;
 				}
 			}
 		}
 	}
 }
-
-.posts h2 {
-	margin-bottom:-1rem;
-}
-
-
-/*
-
-<section class="friends">
-	<ul>
-		<li>
-			<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-		</li>
-		<li>
-			<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-		</li>
-		<li>
-			<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-		</li>
-		<li>
-			<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-		</li>
-	</ul>
-</section>
-
-*/
