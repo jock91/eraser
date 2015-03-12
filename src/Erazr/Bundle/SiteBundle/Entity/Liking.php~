@@ -4,7 +4,7 @@ namespace Erazr\Bundle\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Erazr\Bundle\UserBundle\Entity\User;
-use Erazr\Bundle\PostBundle\Entity\Post;
+use Erazr\Bundle\SiteBundle\Entity\Post;
 
 
 /**
@@ -31,7 +31,7 @@ class Liking
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\PostBundle\Entity\Post", inversedBy="likings")
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", inversedBy="likings")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id", nullable=false)
      */
     protected $post;
@@ -68,5 +68,51 @@ class Liking
     public function getIsLiked()
     {
         return $this->isLiked;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $user
+     * @return Liking
+     */
+    public function setUser(\Erazr\Bundle\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Erazr\Bundle\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set post
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Post $post
+     * @return Liking
+     */
+    public function setPost(\Erazr\Bundle\SiteBundle\Entity\Post $post)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \Erazr\Bundle\SiteBundle\Entity\Post 
+     */
+    public function getPost()
+    {
+        return $this->post;
     }
 }
