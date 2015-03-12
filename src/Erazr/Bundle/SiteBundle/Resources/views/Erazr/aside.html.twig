@@ -41,8 +41,6 @@
 	{{ dump(notif_comment) }}
 {% endif %}
 
-
-
 	<nav>
 		<ul>
 			<li><a href="{{ path('_home') }}" title="Mur publique"{% if app.request.attributes.get("_route") == "_home" %} class="actif"{% endif %}><span class="icon-public-wall"></span>Mur publique</a></li>
@@ -70,9 +68,9 @@
 			<li><a href="{{ path('fos_user_profile_show_name', {'username': user.username }) }}" title="{{ user.username }}"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />{{ user.username }}</a><a href="#" class="chat-btn" data-username="{{ user.username }}"><span class="icon-comment"></span></a></li>
 		{% endfor %}
 		</ul>
-	{% if myUser|length > 3 %}
-		<a href="{{ path('_search', {'term': requete}) }}" title="Voir tous les résultats" class="btn btn-light-blue btn-large btn-square">Voir tous les résultats</a>
-	{% endif %}
+	
+		<a href="#" title="Voir tous les résultats" id="btn-more-search" class="btn btn-light-blue btn-large btn-square">Voir tous les résultats</a>
+	
 		<form id="form_recherche" action="{{ app.request.get('_route') }}" method="post" class="form-search" name="searchFriend">
 			<div class="input-group square">
 				<span class="input-group-addon"><label for="erazr_bundle_search_search" class="icon-search"></label></span>
@@ -87,3 +85,4 @@
 </aside>
 
 <div class="chat-container"></div>
+

@@ -180,9 +180,9 @@ class SiteController extends Controller
 			foreach ($UserSearched as $user){
 				$result[] = array(
 					'username' => $user->getUsername(),
-					//'email' => $user->getEmail(),
-					//'lastLogin' => $user->getLastLogin(),
-					);
+					'url' => $this->generateUrl('fos_user_profile_show_name', array('username'=>$user->getUsername())),
+					'urlMore' => $this->generateUrl('_search',array('term'=>$term)),
+				);
 			}
 
 			$UserSearchedJson->setContent(json_encode($result));
