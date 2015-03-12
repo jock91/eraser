@@ -13,14 +13,19 @@ use Doctrine\ORM\QueryBuilder;
  */
 class UserRepository extends EntityRepository
 {
-	public function findAllUserBySearch( $string)
+	public function findAllUserBySearch($string, $limit = null)
     {
-       return $this->createQueryBuilder('u')
+       $result = $this->createQueryBuilder('u')
 		    ->orderBy('u.username', 'asc')
-		    ->setMaxResults('5')
 		    ->where('u.username LIKE :string')
-		    ->setParameter('string', '%'.$string.'%')
-		    ->getQuery()
-            ->getResult();
+		    ->setParameter('string', '%'.$string.'%');
+
+		    if(is_number($limit){
+		    	$result->setMaxResults($limit)
+		    }
+
+		    return $result->getQuery()->getResult();
+
+
     }
 }
