@@ -168,11 +168,13 @@ class SiteController extends Controller
 	}
 	/**
 	* @Method({"GET", "POST"})
-	* @Route("/searchJson/{term}", name="_searchJson")
+	* @Route("/searchJson", name="_searchJson")
 	* @Template("ErazrSiteBundle:Erazr:resultSearch.html.twig")
 	*/
-	public function searchJsonAction($term) {
-		if(isset($term)){
+	public function searchJsonAction(Request $request) {
+		$term = $request->get('term', null);
+
+		if($term){
 			$UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term, 4);
 			$UserSearchedJson = new Response();
 			$result = array();

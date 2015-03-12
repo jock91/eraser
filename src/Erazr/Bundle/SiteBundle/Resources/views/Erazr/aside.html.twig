@@ -69,7 +69,7 @@
 	
 		<a href="#" title="Voir tous les résultats" id="btn-more-search" class="btn btn-light-blue btn-large btn-square">Voir tous les résultats</a>
 	
-		<form id="form_recherche" action="{{ app.request.get('_route') }}" method="post" class="form-search" name="searchFriend">
+		<form id="form_recherche" action="{{ path('_searchJson') }}" method="post" class="form-search" name="searchFriend">
 			<div class="input-group square">
 				<span class="input-group-addon"><label for="erazr_bundle_search_search" class="icon-search"></label></span>
 				{{ form_widget(formSearch.search, {'attr': {'placeholder': 'Rechercher un membre'}}) }}

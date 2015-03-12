@@ -197,7 +197,8 @@ function search_ajax(){
 			form = $(this);
 		$('#form_recherche .icon-loading').show();
 		$.ajax({
-			url: '/app_dev.php/searchJson/'+$(input).val(),
+			url: $(this).attr('action'),
+			data: {"term" : $(this).find('input').val()},
 			dataType: 'json',
 			success: function(json){
 				$('#form_recherche .icon-loading').hide();
