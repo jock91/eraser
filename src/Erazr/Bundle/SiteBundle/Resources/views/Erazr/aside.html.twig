@@ -60,6 +60,9 @@
 		{% endfor %}
 		</ul>
 	</div>
+{# {% if UserSearchedJson is defined %}
+	{{ dump(UserSearchedJson) }}
+{% endif %} #}
 	<div class="sideSearch">
 		<h3>Recherche</h3>
 		<ul class="searchFriends">
@@ -68,8 +71,8 @@
 		{% endfor %}
 		</ul>
 {% if myUser is defined %}
-		{% if myUser|length > 5 %}
-			<a href="#" title="Voir tous les résultats" class="btn btn-light-blue btn-large btn-square">Voir tous les résultats</a>
+		{% if myUser|length > 2 %}
+			<a href="{{ path('_search', {'term': requete}) }}" title="Voir tous les résultats" class="btn btn-light-blue btn-large btn-square">Voir tous les résultats</a>
 		{% endif %}
 {% endif %}
 		<form id="form_recherche" action="{{ app.request.get('_route') }}" method="post" class="form-search" name="searchFriend">

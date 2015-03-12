@@ -26,6 +26,8 @@ function init(){
 	notifs();
 // Chat
 	chat();
+// Search
+	search_ajax();
 }
 
 function resize(){
@@ -186,6 +188,21 @@ function chat(){
 		}
 		return false;
 	});
+}
+
+function search_ajax(){
+	// $('#form_recherche').keyup(function(key){
+	// 	if($(this).val().length >= 3 || $(this).val() == ""){
+	// 		$.ajax({
+	// 			url: $(this).attr('action'),
+	// 			data: $(this).serialize(),
+	// 			dataType: "JSON",
+	// 			success: function(json){
+	// 				console.log(json);
+	// 			}
+	// 		});
+	// 	}
+	// });
 }
 
 /* ------------------------ */
