@@ -191,18 +191,24 @@ function chat(){
 }
 
 function search_ajax(){
-	// $('#form_recherche').keyup(function(key){
-	// 	if($(this).val().length >= 3 || $(this).val() == ""){
-	// 		$.ajax({
-	// 			url: $(this).attr('action'),
-	// 			data: $(this).serialize(),
-	// 			dataType: "JSON",
-	// 			success: function(json){
-	// 				console.log(json);
-	// 			}
-	// 		});
-	// 	}
-	// });
+/*
+	$('#form_recherche input').keyup(function(key){
+		var input = $(this),
+			form = $('#form_recherche');
+		if($(input).val().length >= 3 || $(input).val() == ""){
+			$.ajax({
+				url: $(form).attr('action'),
+				data: $(form).serialize(),
+				success: function(json){
+					console.log(json);
+				},
+				error: function(jqXHR,textStatus,errorThrown){
+					console.log(textStatus);
+				}
+			});
+		}
+	});
+*/
 }
 
 /* ------------------------ */
