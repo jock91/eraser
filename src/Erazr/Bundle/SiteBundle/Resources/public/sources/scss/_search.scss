@@ -1,10 +1,14 @@
 .searchResults {
-	list-style:none;
-	li {
+	.user {
 		a {
 			padding:2rem;
 			display:block;
+			&:hover {
+				background:rgba(0,0,0,.05);
+			}
 			img {
+				height:10rem;
+				width:10rem;
 				float:left;
 				border-radius:50%;
 				border:1px solid rgba(0,0,0,.3);
@@ -13,7 +17,7 @@
 			.infos {
 				float:left;
 				h2 {
-					margin:1.5rem 0 0;
+					margin:1rem 0 0;
 				}
 				h3 {
 					margin:0 0 1rem;
@@ -25,9 +29,6 @@
 					font-size:1.2rem;
 				}
 			}
-		}
-		&:nth-child(odd){
-			background:rgba(0,0,0,.05);
 		}
 	}
 }
