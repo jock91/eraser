@@ -160,6 +160,7 @@ class SiteController extends Controller
             'formSearch' => $formSearch->createView(),
             'myUser' => $UserSearched,
             'requete' => $requete,
+            'myUserJson' => $UserSearchedJson,
         );
     }
 
