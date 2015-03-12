@@ -129,7 +129,7 @@ class SiteController extends Controller
     }
 
     /**
-    * 
+    * @Route("/search", name="_search")
     * @Template("ErazrSiteBundle:Erazr:aside.html.twig")
     */
     public function asideAction($request) {
