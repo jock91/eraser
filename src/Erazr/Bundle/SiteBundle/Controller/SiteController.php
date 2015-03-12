@@ -136,23 +136,27 @@ class SiteController extends Controller
         $formSearch = $this->createForm(new SearchType());
         if(isset($request->get("erazr_bundle_search")["search"])){
             $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"]);
+            $requete = $request->get("erazr_bundle_search")["search"];
         }else {
             $UserSearched = null;
+            $requete = null;
         }        
         
         return array(
             'formSearch' => $formSearch->createView(),
             'myUser' => $UserSearched,
+            'requete' => $requete,
         );
     }
 
     /**
-    * @Route("/search", name="_search")
+    * @Method({"GET"})
+    * @Route("/search/{term}", name="_search")
     * @Template("ErazrSiteBundle:Erazr:search.html.twig")
     */
-    public function searchAction($request) {
-        if(isset($request->get("erazr_bundle_search")["search"])){
-            $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"]);
+    public function searchAction($term) {
+        if(isset($term)){
+            $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term);
         }else {
             $UserSearched = null;
         }
