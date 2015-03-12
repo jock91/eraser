@@ -163,7 +163,7 @@ function chat(){
 		$(this).parents('.chat').remove();
 		return false;
 	});
-	$('.chat-btn').click(function(){
+	$(document).on('click','.chat-btn',function(){
 		var username = $(this).data('username'),
 			chat = $('.chat[data-username="'+username+'"]');
 		if($('.chat').length == 2 && $(chat).length == 0){
@@ -191,7 +191,7 @@ function chat(){
 }
 
 function search_ajax(){
-	$('#form_recherche input').keydown(function(e){
+	$('#form_recherche input').keyup(function(e){
 		var input = $(this),
 			form = $('#form_recherche');
 		if($(input).val().length >= 2 && e.keyCode != 13 && e.keycode != 224 && e.keycode != 18 && e.keyCode != 17){
@@ -203,14 +203,13 @@ function search_ajax(){
 					$('#form_recherche .icon-loading').hide();
 					$('.searchFriends').html('');
 					if(json.length > 3){
-						$('#btn-more-search').css('display','inline-block').attr('href','/app_dev.php/search/'+$(input).val());
+						$('#btn-more-search').css('display','inline-block').attr('href',json[0].urlMore);
 					}else{
 						$('#btn-more-search').hide();
 					}
 					$.each(json,function(index){
 						if(index < 3){
-							$('.searchFriends').append("<li><a href='/profile/of/"+json[index].username+"' title='"+json[index].username+"'><img src='/bundles/erazrsite/img/profil.png' alt='"+json[index].username+"' title='"+json[index].username+"' />"+json[index].username+"</a><a href='#' class='chat-btn' data-username='"+json[index].username+"'><span class='icon-comment'></span></a></li>");
-							console.log(json[index].username);
+							$('.searchFriends').append("<li><a href='"+json[index].url+"' title='"+json[index].username+"'><img src='/bundles/erazrsite/img/profil.png' alt='"+json[index].username+"' title='"+json[index].username+"' />"+json[index].username+"</a><a href='#' class='chat-btn' data-username='"+json[index].username+"'><span class='icon-comment'></span></a></li>");
 						}
 					});
 				}
