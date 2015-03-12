@@ -20,7 +20,7 @@ class UserRepository extends EntityRepository
 		    ->where('u.username LIKE :string')
 		    ->setParameter('string', '%'.$string.'%');
 
-		    if(is_number($limit){
+		    if(is_number($limit)){
 		    	$result->setMaxResults($limit)
 		    }
 
