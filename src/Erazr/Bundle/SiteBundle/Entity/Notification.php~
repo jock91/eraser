@@ -76,4 +76,50 @@ class Notification
     {
         return $this->type;
     }
+
+    /**
+     * Set expediteur
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $expediteur
+     * @return Notification
+     */
+    public function setExpediteur(\Erazr\Bundle\UserBundle\Entity\User $expediteur)
+    {
+        $this->expediteur = $expediteur;
+
+        return $this;
+    }
+
+    /**
+     * Get expediteur
+     *
+     * @return \Erazr\Bundle\UserBundle\Entity\User 
+     */
+    public function getExpediteur()
+    {
+        return $this->expediteur;
+    }
+
+    /**
+     * Set destinataire
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $destinataire
+     * @return Notification
+     */
+    public function setDestinataire(\Erazr\Bundle\UserBundle\Entity\User $destinataire)
+    {
+        $this->destinataire = $destinataire;
+
+        return $this;
+    }
+
+    /**
+     * Get destinataire
+     *
+     * @return \Erazr\Bundle\UserBundle\Entity\User 
+     */
+    public function getDestinataire()
+    {
+        return $this->destinataire;
+    }
 }

@@ -27,6 +27,10 @@ class User extends BaseUser implements ClientInterface
     protected $id;
 
     /**
+    * @ORM\OneToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Image", cascade={"persist"})
+    */
+    private $image;
+    /**
      * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", mappedBy="user", cascade={"persist"})
      */
     protected $posts;
