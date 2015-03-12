@@ -26,7 +26,7 @@ class Notification
     /**
      * @var array
      *
-     * @ORM\Column(name="type", type="string", columnDefinition="enum('friend', 'comment', 'like')" )
+     * @ORM\Column(name="type", type="string")
      */
     private $type;
     //id expediteur et id destinataire

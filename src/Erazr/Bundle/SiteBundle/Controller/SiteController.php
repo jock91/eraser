@@ -17,9 +17,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Erazr\Bundle\SiteBundle\Entity\Post;
 use Erazr\Bundle\SiteBundle\Entity\Comment;
 use Erazr\Bundle\SiteBundle\Entity\Liking;
+use Erazr\Bundle\SiteBundle\Entity\Image;
 use Erazr\Bundle\SiteBundle\Form\PostType;
 use Erazr\Bundle\SiteBundle\Form\CommentType;
 use Erazr\Bundle\SiteBundle\Form\SearchType;
+use Erazr\Bundle\SiteBundle\Form\ImageType;
 
 
 
@@ -192,23 +194,74 @@ class SiteController extends Controller
 		return new JsonResponse($result);
 	}
 
+    /**
+    * @Method({"GET", "POST"})
+    * @Route("/search/{term}", name="_search")
+    * @Template("ErazrSiteBundle:Erazr:search.html.twig")
+    */
+    public function searchAction($term) {
+        if(isset($term)){
+            $UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term);
+            
+        }else {
+            $UserSearched = null;
+        }
+
+        return array(
+            'myUser' => $UserSearched,
+            );      
+    }
+
+
 	/**
 	* @Method({"GET", "POST"})
-	* @Route("/search/{term}", name="_search")
-	* @Template("ErazrSiteBundle:Erazr:search.html.twig")
+	* @Route("/testImage", name="_testImage")
+	* @Template("ErazrSiteBundle:Erazr:testImage.html.twig")
 	*/
-	public function searchAction($term) {
-		if(isset($term)){
-			$UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($term);
-			
-		}else {
-			$UserSearched = null;
-		}
+	public function testImageAction(Request $request) {
+		$image = new Image();
+        $form = $this->createForm(new ImageType(), $image);
+        if ($form->handleRequest($request)->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $image->upload();
+          $em->persist($image);
+          $em->flush();
 
-		return array(
-			'myUser' => $UserSearched,
-			);      
+          $request->getSession()->getFlashBag()->add('success', 'Image bien enregistrée.');
+        }
+        return $this->render('ErazrSiteBundle:Erazr:testImage.html.twig', array('form' => $form->createView(),));
 	}
+
+
+
+  public function addAction(Request $request)
+  {
+    $advert = new Advert();
+    $form = $this->createForm(new AdvertType(), $advert);
+
+    if ($form->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($advert);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+      return $this->redirect($this->generateUrl('oc_platform_view', array('id' => $advert->getId())));
+    }
+
+    // À ce stade :
+    // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
+    // - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
+    return $this->render('OCPlatformBundle:Advert:add.html.twig', array(
+      'form' => $form->createView(),
+    ));
+  }
+
+
+
+
+
+
 
 	/**
 	 * @Route("/", name="_home")
