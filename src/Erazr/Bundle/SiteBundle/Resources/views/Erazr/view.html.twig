@@ -36,7 +36,7 @@
 	<footer>
 		<div class="row">
 			<div class="col-sm-12 text-right">
-				<a href="{{ liked_url }}" data-toggle="tooltip" data-placement="top" title="{{ liked }}" class="likes" data-asLiked="{{ as_liked }}" ><span class="{{ icon_liked }}"></span> {{ post.likings|length }}</a>
+				<a href="{{ liked_url }}" data-toggle="tooltip" data-placement="top" title="{{ liked }}" class="likes" data-asLiked="{{ as_liked }}" ><span class="{{ icon_liked }}"></span> <span class="like-nb">{{ post.likings|length }}</span></a>
 			</div>
 		</div>
 	</footer>
