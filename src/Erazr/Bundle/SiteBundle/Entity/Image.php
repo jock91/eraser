@@ -120,10 +120,16 @@ class Image
 	}
 
 	public function getWebPath()
-  {
-    return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
-  }
-	
+	  {
+	    $defaultImg = $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
+	    if($defaultImg != null) {
+			return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
+	    }else {
+	    	return $this->getUploadRootDir().'/0.png'
+	    }
+	    
+	  }
+
 
 	/**
 	 * @var integer

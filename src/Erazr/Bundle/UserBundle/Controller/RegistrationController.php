@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Exception\AccountStatusException;
 use FOS\UserBundle\Model\UserInterface;
+use Erazr\Bundle\SiteBundle\Entity\Image;
 
 class RegistrationController extends BaseController
 {
@@ -21,8 +22,7 @@ class RegistrationController extends BaseController
 
         $process = $formHandler->process($confirmationEnabled);
         if ($process) {
-            $user = $form->getData();
-
+            $user = $form->getData();          
             $authUser = false;
             if ($confirmationEnabled) {
                 $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
@@ -49,7 +49,7 @@ class RegistrationController extends BaseController
     }
 
 
-    
+
     public function confirmedAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
