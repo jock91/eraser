@@ -9,22 +9,6 @@ use Erazr\Bundle\UserBundle\Entity\User;
 class ProfileController extends BaseController
 {
 
-
-	public function testImageAction(Request $request) {
-		$image = new Image();
-        $form = $this->createForm(new ImageType(), $image);
-        if ($form->handleRequest($request)->isValid()) {
-          $em = $this->getDoctrine()->getManager();
-          $image->upload();
-          $em->persist($image);
-          $em->flush();
-
-          $request->getSession()->getFlashBag()->add('success', 'Image bien enregistrée.');
-        }
-        return $this->render('ErazrSiteBundle:Erazr:testImage.html.twig', array('form' => $form->createView(),));
-	}
-
-	
 	/**
 	* Show the user
 	*/

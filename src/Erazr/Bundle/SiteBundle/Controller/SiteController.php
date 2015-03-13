@@ -236,27 +236,6 @@ class SiteController extends Controller
     }
 
 
-	/**
-	* @Method({"GET", "POST"})
-	* @Route("/testImage", name="_testImage")
-	* @Template("ErazrSiteBundle:Erazr:testImage.html.twig")
-	*/
-	public function testImageAction(Request $request) {
-		$image = new Image();
-        $form = $this->createForm(new ImageType(), $image);
-        if ($form->handleRequest($request)->isValid()) {
-          $em = $this->getDoctrine()->getManager();
-          $image->upload();
-          $em->persist($image);
-          $em->flush();
-
-          $request->getSession()->getFlashBag()->add('success', 'Image bien enregistrée.');
-        }
-        return $this->render('ErazrSiteBundle:Erazr:testImage.html.twig', array('form' => $form->createView(),));
-	}
-
-
-
   public function addAction(Request $request)
   {
     $advert = new Advert();
