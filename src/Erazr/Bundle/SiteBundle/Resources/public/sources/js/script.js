@@ -165,7 +165,17 @@ function chat(){
 		$(this).parents('.chat').remove();
 		return false;
 	});
-	$(document).on('click','.chat-btn',function(){
+	$(document).on('click','.chat-btn',function(){$('.flash').remove();
+		$('body').prepend('
+			<ul class="flash">
+			<li class="flash-error"><span class="flash-icon"><span class="icon-close"></span></span>
+			Fonctionnalité à venir
+			<a href="#" class="flash-close"><span class="icon-close"></span></a>
+			</li>
+			</ul>
+		');
+		flashMessage();
+/*
 		var username = $(this).data('username'),
 			chat = $('.chat[data-username="'+username+'"]');
 		if($('.chat').length == 2 && $(chat).length == 0){
@@ -189,6 +199,7 @@ function chat(){
 				$('.chat-container').append("<div class='chat' data-username="+username+" data-open='true'><div><div class='chat-header'><a href='#'>"+username+"<span class='icon-close'></span></a></div><div class='chat-close chat-content'></div><div class='chat-close chat-footer'><form><input type='text' placeholder='Ecrire un message' class='form-control' /></form></div></div>");
 			}
 		}
+*/
 		return false;
 	});
 }

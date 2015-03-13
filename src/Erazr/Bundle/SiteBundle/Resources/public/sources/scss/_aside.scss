@@ -179,43 +179,6 @@ aside {
 			font-size:2rem;
 		}
 	}
-	nav {
-		ul {
-			list-style:none;
-			li {
-				display:block;
-				margin-top:.1rem;
-				a {
-					display:block;
-					padding:1.5rem 2rem 1rem;
-					font-size:1.5rem;
-					&:hover {
-						background:$clr-asphalt;
-					}
-					&.actif {
-						background:$clr-light-asphalt;
-					}
-					span:first-child {
-						display:inline-block;
-						font-size:2rem;
-						margin-right:1rem;
-					}
-					.badge {
-						display:inline-block;
-						background:$clr-light-blue;
-						border-radius:50%;
-						height:2.5rem;
-						width:2.5rem;
-						text-align:center;
-						line-height:2rem;
-						margin-left:1.5rem;
-						font-size:1.5rem;
-						font-weight:normal;
-					}
-				}
-			}
-		}
-	}
 	.sideFriends,.sideSearch {
 		ul {
 			list-style:none;
