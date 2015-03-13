@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Erazr\Bundle\SiteBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use P2\Bundle\RatchetBundle\WebSocket\Client\ClientInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 /**
@@ -28,6 +30,7 @@ class User extends BaseUser implements ClientInterface
 
     /**
     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Image", cascade={"persist"})
+    * @Assert\Valid()
     */
     private $image;
     /**

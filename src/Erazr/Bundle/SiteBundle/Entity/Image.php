@@ -19,8 +19,14 @@ class Image
 
 	private $tempFilename;
 
-	/**
-     * @Assert\File(maxSize="6000000")
+  	/**
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     mimeTypes = {"image/*"},
+     *     mimeTypesMessage = "Seules les images sont acceptées",
+     *     maxSizeMessage = "Votre fichier est trop lourd (maximum : {{ limit }})",
+     *     uploadErrorMessage = "Une erreur est survenue, veuillez réessayer plus tard",
+     * )
      */
 	private $file;
 
