@@ -26,10 +26,16 @@ class Notification
     /**
      * @var array
      *
-     * @ORM\Column(name="type", type="string", columnDefinition="enum('friend', 'comment', 'like')" )
+     * @ORM\Column(name="like", type="string", nullable=true)
      */
-    private $type;
-    //id expediteur et id destinataire
+    private $like;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="friend", type="string", nullable=true)
+     */
+    private $friend;
 
 
     /**
@@ -39,10 +45,27 @@ class Notification
     private $expediteur;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="notifications")
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="notifications" , cascade={"persist"})
      * @ORM\JoinColumn(name="destinataire_id", referencedColumnName="id", nullable=false)
      **/
     private $destinataire;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Comment", inversedBy="notifications" , cascade={"persist"})
+     * @ORM\JoinColumn(name="comment_id", referencedColumnName="id", nullable=true)
+     **/
+    private $comment;
+    /**
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", inversedBy="notifications")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id", nullable=true)
+     **/
+    private $post;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Notification", mappedBy="comment" , cascade={"remove"})
+     **/
+    private $notifications;
+
 
     /**
      * Get id
@@ -54,28 +77,7 @@ class Notification
         return $this->id;
     }
 
-    /**
-     * Set type
-     *
-     * @param array $type
-     * @return Notification
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
 
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return array 
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 
     /**
      * Set expediteur
@@ -121,5 +123,137 @@ class Notification
     public function getDestinataire()
     {
         return $this->destinataire;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->notifications = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set like
+     *
+     * @param string $like
+     * @return Notification
+     */
+    public function setLike($like)
+    {
+        $this->like = $like;
+
+        return $this;
+    }
+
+    /**
+     * Get like
+     *
+     * @return string 
+     */
+    public function getLike()
+    {
+        return $this->like;
+    }
+
+    /**
+     * Set friend
+     *
+     * @param string $friend
+     * @return Notification
+     */
+    public function setFriend($friend)
+    {
+        $this->friend = $friend;
+
+        return $this;
+    }
+
+    /**
+     * Get friend
+     *
+     * @return string 
+     */
+    public function getFriend()
+    {
+        return $this->friend;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Comment $comment
+     * @return Notification
+     */
+    public function setComment(\Erazr\Bundle\SiteBundle\Entity\Comment $comment = null)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return \Erazr\Bundle\SiteBundle\Entity\Comment 
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set post
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Post $post
+     * @return Notification
+     */
+    public function setPost(\Erazr\Bundle\SiteBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \Erazr\Bundle\SiteBundle\Entity\Post 
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * Add notifications
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Notification $notifications
+     * @return Notification
+     */
+    public function addNotification(\Erazr\Bundle\SiteBundle\Entity\Notification $notifications)
+    {
+        $this->notifications[] = $notifications;
+
+        return $this;
+    }
+
+    /**
+     * Remove notifications
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Notification $notifications
+     */
+    public function removeNotification(\Erazr\Bundle\SiteBundle\Entity\Notification $notifications)
+    {
+        $this->notifications->removeElement($notifications);
+    }
+
+    /**
+     * Get notifications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
     }
 }

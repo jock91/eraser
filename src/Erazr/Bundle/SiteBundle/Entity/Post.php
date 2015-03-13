@@ -49,6 +49,12 @@ class Post
      */
     private $likings;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Notification", mappedBy="post" , cascade={"remove"})
+     **/
+    private $notifications;
+
     /**
      * Get id
      *
@@ -277,5 +283,38 @@ class Post
     public function getLikings()
     {
         return $this->likings;
+    }
+
+    /**
+     * Add notifications
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Notification $notifications
+     * @return Post
+     */
+    public function addNotification(\Erazr\Bundle\SiteBundle\Entity\Notification $notifications)
+    {
+        $this->notifications[] = $notifications;
+
+        return $this;
+    }
+
+    /**
+     * Remove notifications
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Notification $notifications
+     */
+    public function removeNotification(\Erazr\Bundle\SiteBundle\Entity\Notification $notifications)
+    {
+        $this->notifications->removeElement($notifications);
+    }
+
+    /**
+     * Get notifications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
     }
 }

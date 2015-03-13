@@ -3,6 +3,8 @@
 namespace Erazr\Bundle\SiteBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+
 
 /**
  * NotificationRepository
@@ -12,4 +14,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class NotificationRepository extends EntityRepository
 {
+	public function findNotifByUseType($destinataireId, $type)
+    {
+       return $this->createQueryBuilder('n')
+        ->where('n.destinataire = :destinataireId')
+        ->andwhere('n.type = :type')
+        ->setParameter('destinataireId', $destinataireId)
+        ->setParameter('type', $type)
+	    ->getQuery()
+        ->getResult();
+    }
 }

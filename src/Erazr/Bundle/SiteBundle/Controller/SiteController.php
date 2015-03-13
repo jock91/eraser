@@ -18,6 +18,7 @@ use Erazr\Bundle\SiteBundle\Entity\Post;
 use Erazr\Bundle\SiteBundle\Entity\Comment;
 use Erazr\Bundle\SiteBundle\Entity\Liking;
 use Erazr\Bundle\SiteBundle\Entity\Image;
+use Erazr\Bundle\SiteBundle\Entity\Notification;
 use Erazr\Bundle\SiteBundle\Form\PostType;
 use Erazr\Bundle\SiteBundle\Form\CommentType;
 use Erazr\Bundle\SiteBundle\Form\SearchType;
@@ -27,6 +28,30 @@ use Erazr\Bundle\SiteBundle\Form\ImageType;
 
 class SiteController extends Controller
 {   
+
+	protected function addNotification ($like = null, $friend = null, $post = null, $comment = null, $dest) {
+		$notif = new Notification();
+
+		$notif->setLike($like);
+		$notif->setFriend($friend);
+		$notif->setPost($post);
+		$notif->setComment($comment);
+		$notif->setExpediteur($this->getUser());
+		$notif->setDestinataire($dest);
+
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($notif);
+		$em->flush();
+	}
+
+	protected function deleteNotification ($typ) {
+		$em = $this->getDoctrine()->getManager();
+		$notif = $em->getRepository('ErazrSiteBundle:Notification')->findNotifByUseType($this->getUser(), $typ);
+		foreach ($notif as $n) {
+			$em->remove($n);
+		}
+		$em->flush();
+	}
 
 
 	/**
@@ -47,6 +72,8 @@ class SiteController extends Controller
 		$userFriend = $em->getRepository('ErazrUserBundle:User')->find($id);
 
 		$newFriend = $this->getUser()->addMyFriend($userFriend);
+
+		$this->addNotification(null, 'friend', null, null, $userFriend);
 
 		$em->persist($newFriend);
 
@@ -115,6 +142,8 @@ class SiteController extends Controller
 				$liking = new Liking();
 				$liking->setUser($this->getUser());
 				$liking->setPost($post); 
+				
+				$this->addNotification('like', null, null, null, $post->getUser());
 				
 				$em->persist($liking);
 				$em->flush();
@@ -237,20 +266,6 @@ class SiteController extends Controller
     }
 
 
-/*
-*
-*
-*
-*
-***********************	FLASHMESSAGE CHANGE-PASSWORD !! ***********************
-*
-*
-*
-*
-*/
-
-
-
 	/**
 	 * @Route("/", name="_home")
 	 * @Template("ErazrSiteBundle:Erazr:index.html.twig")
@@ -320,10 +335,12 @@ class SiteController extends Controller
 	 * @Method({"GET","POST"})
 	 * @ParamConverter("post", class="ErazrSiteBundle:Post")
 	 */
-	public function viewAction(Request $request,Post $post)
-	{
-
+	public function viewAction(Request $request, Post $post)
+	{		
 		$em = $this->getDoctrine()->getManager();
+
+		$comments = $em->getRepository('ErazrSiteBundle:Comment')->findByPost($post);
+
 		$comment = new Comment();
 		$form = $this->createCommentForm($comment, $post->getId());
 		$form->handleRequest($request);
@@ -332,16 +349,14 @@ class SiteController extends Controller
 
 		if ($form->isValid()) {
 			$comment->setPost($post);
+			$this->addNotification( null, null, null, $comment, $post->getUser());
 			$em->persist($comment);
 			$em->flush();
 
 			$this->get('session')->getFlashBag()->add('success', 'Ton commentaire a bien été posté');
 			return $this->redirect($this->generateUrl('_postView', array('id' => $post->getId())));
 		}
-		
-		// On récupere les commentaires
-		$comments = $em->getRepository('ErazrSiteBundle:Comment')
-			->findByPost($post);
+	
 
 		return array(
 			'post' => $post,

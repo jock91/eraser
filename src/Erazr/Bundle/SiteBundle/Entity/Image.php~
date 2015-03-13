@@ -19,8 +19,14 @@ class Image
 
 	private $tempFilename;
 
-	/**
-     * @Assert\File(maxSize="6000000")
+  	/**
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     mimeTypes = {"image/*"},
+     *     mimeTypesMessage = "Seules les images sont acceptées",
+     *     maxSizeMessage = "Votre fichier est trop lourd (maximum : {{ limit }} Mo)",
+     *     uploadErrorMessage = "Une erreur est survenue, veuillez réessayer plus tard",
+     * )
      */
 	private $file;
 
@@ -113,14 +119,16 @@ class Image
 		return 'uploads/img';
 	}
 	
-	protected function getUploadRootDir()
+	public function getUploadRootDir()
 	{
 		// On retourne le chemin relatif vers l'image pour notre code PHP
 		return __DIR__.'/../../../../../web/'.$this->getUploadDir();
 	}
 
 	public function getWebPath()
-	  {
+	  {	if(!file_exists($this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl())){
+	  	return $this->getUploadRootDir().'/0.png';
+	  }
 	  	return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
 	  }
 
@@ -212,5 +220,45 @@ class Image
     public function getAlt()
     {
         return $this->alt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $user
+     * @return Image
+     */
+    public function addUser(\Erazr\Bundle\UserBundle\Entity\User $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $user
+     */
+    public function removeUser(\Erazr\Bundle\UserBundle\Entity\User $user)
+    {
+        $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

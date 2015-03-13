@@ -30,12 +30,6 @@ class Comment
     private $content;
 
     /**
-     *
-     * @ORM\Column(name="is_view", type="boolean", nullable=true)
-     */
-    private $is_view;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime")
@@ -53,6 +47,11 @@ class Comment
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     protected $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Notification", mappedBy="comment" , cascade={"remove"})
+     **/
+    private $notifications;
 
     /**
      * Get id
@@ -156,26 +155,5 @@ class Comment
         return $this->user;
     }
 
-    /**
-     * Set is_view
-     *
-     * @param boolean $isView
-     * @return Comment
-     */
-    public function setIsView($isView)
-    {
-        $this->is_view = $isView;
 
-        return $this;
-    }
-
-    /**
-     * Get is_view
-     *
-     * @return boolean 
-     */
-    public function getIsView()
-    {
-        return $this->is_view;
-    }
 }
