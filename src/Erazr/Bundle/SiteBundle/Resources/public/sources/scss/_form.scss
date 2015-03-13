@@ -47,12 +47,24 @@ input[type="checkbox"]{
 }
 
 input[type="file"]{
-	display:inline-block;
-	margin:2rem 0;
+	display:none;
 }
 
 label.file {
 	cursor:pointer;
+	img {
+		margin-bottom:1rem;
+	}
+	.file-text {
+		border-radius:.5rem;
+		font-weight:normal;
+		background:rgba(0,0,0,.05);
+		padding:.5rem;
+		margin:1rem 0;
+	}
+	.btn {
+		margin-bottom:1rem;
+	}
 }
 
 textarea.form-control {
