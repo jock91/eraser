@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<div class="col-sm-12 text-center">
-			<img class="rounded" src="{{asset('bundles/erazrsite/image.php?h=100&w=100&src='~app.user.image.webPath)}}" title="{{ app.user.username }}" alt="{{ app.user.username }}" />
+			<img class="rounded" src="{{asset('bundles/erazrsite/image.php?h=100&w=100&src='~app.user.webPath)}}" title="{{ app.user.username }}" alt="{{ app.user.username }}" />
 			<label for="fos_user_profile_form_image_file">{{ form_errors(form.image.file) }}</label>
 			<div>{{ form_widget(form.image.file) }}</div>
 		</div>

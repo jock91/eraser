@@ -14,7 +14,7 @@
 
 	<section class="profil">
 		<article class="user clearfix">
-			<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ user.username }}" title="{{ user.username }}" />
+			<img src="{{asset('bundles/erazrsite/image.php?h=120&w=120&src='~user.webPath)}}" alt="{{ user.username }}" title="{{ user.username }}" />
 			<div class="infos">
 				<h2 class="text-asphalt">{{ user.username }}
 				{% if app.user.id != user.id %}<a href="{{ btn_friend_url }}" class="btn {{ btn_friend_class }}"><span class="{{ btn_friend_icon }}"></span> {{ btn_friend_text }}</a>{% endif %}
@@ -35,7 +35,7 @@
 		{% spaceless %}
 		{% for myFriends in user.myFriends %}
 			<li>
-				<a href="{{ path('fos_user_profile_show_name', {'username': myFriends.username}) }}" title="{{ myFriends.username }}" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ myFriends.username }}" title="{{ myFriends.username }}" /></a>
+				<a href="{{ path('fos_user_profile_show_name', {'username': myFriends.username}) }}" title="{{ myFriends.username }}" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/image.php?h=120&w=120&src='~myFriends.webPath)}}" alt="{{ myFriends.username }}" title="{{ myFriends.username }}" /></a>
 			</li>
 		{% endfor %}
 		{% endspaceless %}
@@ -74,7 +74,7 @@
 				<article class="post post-split post-{{ post.color }}" id="post-{{ post.id }}">
 					<header class="clearfix">
 						<a href="{{ path('fos_user_profile_show_name', {'username': post.user}) }}" title="{{ post.user }}">
-							<img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="{{ post.user }}" title="{{ post.user }}" data-toggle="tooltip" data-placement="top" />
+							<img src="{{asset('bundles/erazrsite/image.php?h=120&w=120&src='~post.user.webPath)}}" alt="{{ post.user }}" title="{{ post.user }}" data-toggle="tooltip" data-placement="top" />
 							<div class="profil">
 								<h2>{{ post.user }}</h2>
 								<h3 data-created="{{ post.created|date('Y/m/d H:i:s') }}">#</h3>
