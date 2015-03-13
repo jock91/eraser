@@ -89,18 +89,27 @@ class SiteController extends Controller
 	public function LikeAction($id, Request $request){
 
 		$em = $this->getDoctrine()->getManager();
+		$result = array();
 
 		$post = $em->getRepository('ErazrSiteBundle:Post')->find($id);
 		$liker = $em->getRepository('ErazrSiteBundle:Liking')->findLikeByUserPost($this->getUser(), $post);
 
 		if( !empty($liker) ){
-			return $this->redirect($request->headers->get('referer'));
+			//return $this->redirect($request->headers->get('referer'));
+			$result[] = array(
+				'success' => false,
+				'error' => 'Pas de liker'
+			);
 		} else {
 			$post = $em->getRepository('ErazrSiteBundle:Post')->find($id);
 
 			if(!$post){
 				$this->get('session')->getFlashBag()->add('error', "Ce post n'existe pas !"); 
-				return $this->redirect($this->generateUrl('_home'));
+				//return $this->redirect($this->generateUrl('_home'));
+				$result[] = array(
+					'success' => false,
+					'error' => 'Ce post n\'existe pas !'
+				);
 			}else {
 				$liking = new Liking();
 				$liking->setUser($this->getUser());
@@ -108,11 +117,18 @@ class SiteController extends Controller
 				
 				$em->persist($liking);
 				$em->flush();
-				return $this->redirect($request->headers->get('referer'));
+				//return $this->redirect($request->headers->get('referer'));
+				$result[] = array(
+					'success' => 'Like ajouté',
+					'error' => false
+				);
 			}
 		}
+
+		return new JsonResponse($result);
 		
-	}   
+	}
+
 
 	/**
 	* @Method({"GET","DELETE"})
@@ -123,12 +139,18 @@ class SiteController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$post = $em->getRepository('ErazrSiteBundle:Post')->find($id);
 		$liker = $em->getRepository('ErazrSiteBundle:Liking')->findLikeByUserPost($this->getUser(), $post);
+		$result = array();
 		
 		foreach ($liker as $lik) {
 			$em->remove($lik);
 		}
 		$em->flush();
-		return $this->redirect($request->headers->get('referer'));
+		$result[] = array(
+			'success' => 'Like enlevé',
+			'error' => false
+		);
+		//return $this->redirect($request->headers->get('referer'));
+		return new JsonResponse($result);
 	}
 
 	/**
@@ -146,9 +168,7 @@ class SiteController extends Controller
 
 			foreach ($UserSearched as $user){
 				$result[] = array(
-					'username' => $user->getUsername(),
-					//'email' => $user->getEmail(),
-					//'lastLogin' => $user->getLastLogin(),
+					'username' => $user->getUsername()
 					);
 			}
 

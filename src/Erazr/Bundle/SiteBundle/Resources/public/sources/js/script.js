@@ -28,6 +28,8 @@ function init(){
 	chat();
 // Search
 	search_ajax();
+// Likes
+	like_ajax();
 }
 
 function resize(){
@@ -217,6 +219,60 @@ function search_ajax(){
 		});
 	});
 	$('#form_recherche').submit(function(){
+		return false;
+	});
+}
+
+function like_ajax(){
+	$('.likes').click(function(){
+		var el = $(this),
+			as_liked = $(el).attr('data-asLiked'),
+			href = $(el).attr('href');
+		if(as_liked == "false"){ // N'a pas voté
+			$.ajax({
+				url: href,
+				dataType: 'json',
+				success: function(json){
+					if(json[0].error == "false"){
+						$('body').prepend('
+							<ul class="flash">
+							<li class="flash-error"><span class="flash-icon"><span class="icon-close"></span></span>
+							'+json[0].error+'
+							<a href="#" class="flash-close"><span class="icon-close"></span></a>
+							</li>
+							</ul>
+						');
+						flashMessage();
+						$(el).attr('data-asliked',true).attr('data-original-title','Retirer le like').find('.icon-heart-empty').removeClass('.icon-heart-empty').addClass('.icon-heart');
+					}else{
+						$('body').prepend('
+							<ul class="flash">
+							<li class="flash-success"><span class="flash-icon"><span class="icon-success"></span></span>
+							'+json[0].success+'
+							<a href="#" class="flash-close"><span class="icon-close"></span></a>
+							</li>
+							</ul>
+						');
+						flashMessage();
+						$(el).attr('data-asliked',false).attr('data-original-title','Ajouter un like').find('.icon-heart').removeClass('.icon-heart').addClass('.icon-heart-empty');
+					}
+				},
+				error: function(yo, yop){
+					console.log(yop);
+				}
+			});
+		}else{ // A déjà voté
+			$.ajax({
+				url: href,
+				dataType: 'json',
+				success: function(json){
+					console.log(json);
+				},
+				error: function(yo, yop){
+					console.log(yop);
+				}
+			});
+		}
 		return false;
 	});
 }
