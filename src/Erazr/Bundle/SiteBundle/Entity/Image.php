@@ -21,10 +21,10 @@ class Image
 
   	/**
      * @Assert\File(
-     *     maxSize = "1024k",
+     *     maxSize = "1M",
      *     mimeTypes = {"image/*"},
      *     mimeTypesMessage = "Seules les images sont acceptées",
-     *     maxSizeMessage = "Votre fichier est trop lourd (maximum : {{ limit }})",
+     *     maxSizeMessage = "Votre fichier est trop lourd (maximum : {{ limit }} Mo)",
      *     uploadErrorMessage = "Une erreur est survenue, veuillez réessayer plus tard",
      * )
      */
