@@ -1,6 +1,6 @@
 # Todo
 
-	• Notifications /!\
+	• delete Notifications ajouter un champ type likes friends etc... /!\
 
 	• Chat
 

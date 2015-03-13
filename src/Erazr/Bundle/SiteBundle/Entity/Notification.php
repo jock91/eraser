@@ -24,10 +24,9 @@ class Notification
     private $id;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="likes", type="string", nullable=true)
-     */
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Liking", inversedBy="notifications" , cascade={"persist"})
+     * @ORM\JoinColumn(name="liking_id", referencedColumnName="id", nullable=true)
+     **/
     private $like;
 
     /**

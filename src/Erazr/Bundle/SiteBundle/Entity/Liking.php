@@ -38,6 +38,11 @@ class Liking
 
 
     /**
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Notification", mappedBy="liking" , cascade={"remove"})
+     **/
+    private $notifications;
+
+    /**
      * Get id
      *
      * @return integer 

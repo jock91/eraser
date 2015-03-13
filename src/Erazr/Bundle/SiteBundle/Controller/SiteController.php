@@ -143,7 +143,7 @@ class SiteController extends Controller
 				$liking->setUser($this->getUser());
 				$liking->setPost($post); 
 				
-				$this->addNotification('like', null, null, null, $post->getUser());
+				$this->addNotification($liking, null, null, null, $post->getUser());
 				
 				$em->persist($liking);
 				$em->flush();
