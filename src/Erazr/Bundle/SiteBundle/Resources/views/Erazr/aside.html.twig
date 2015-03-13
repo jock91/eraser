@@ -41,11 +41,7 @@
 	{{ dump(notif_comment) }}
 {% endif %}
 
-	<nav>
-		<ul>
-			<li><a href="{{ path('_home') }}" title="Mur publique"{% if app.request.attributes.get("_route") == "_home" %} class="actif"{% endif %}><span class="icon-public-wall"></span>Mur publique</a></li>
-		</ul>
-	</nav>
+
 	<div class="sideFriends">
 	{% if app.user.myFriends|length == 0 %}
 		<h3>Aucun amis</h3>

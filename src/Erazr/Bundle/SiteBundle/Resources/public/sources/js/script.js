@@ -165,10 +165,21 @@ function chat(){
 		$(this).parents('.chat').remove();
 		return false;
 	});
-	$(document).on('click','.chat-btn',function(){
+	$(document).on('click','.chat-btn',function(){$('.flash').remove();
+		$('body').prepend('
+			<ul class="flash">
+			<li class="flash-error"><span class="flash-icon"><span class="icon-close"></span></span>
+			Fonctionnalité à venir
+			<a href="#" class="flash-close"><span class="icon-close"></span></a>
+			</li>
+			</ul>
+		');
+		flashMessage();
+/*
 		var username = $(this).data('username'),
 			chat = $('.chat[data-username="'+username+'"]');
 		if($('.chat').length == 2 && $(chat).length == 0){
+			$('.flash').remove();
 			$('body').prepend('
 				<ul class="flash">
 				<li class="flash-error"><span class="flash-icon"><span class="icon-close"></span></span>
@@ -188,6 +199,7 @@ function chat(){
 				$('.chat-container').append("<div class='chat' data-username="+username+" data-open='true'><div><div class='chat-header'><a href='#'>"+username+"<span class='icon-close'></span></a></div><div class='chat-close chat-content'></div><div class='chat-close chat-footer'><form><input type='text' placeholder='Ecrire un message' class='form-control' /></form></div></div>");
 			}
 		}
+*/
 		return false;
 	});
 }
@@ -224,7 +236,7 @@ function search_ajax(){
 }
 
 function like_ajax(){
-	$('.likes').click(function(){
+	$(document).on('click','.likes',function(){
 		var el = $(this),
 			as_liked = $(el).attr('data-asLiked'),
 			href = $(el).attr('href');
@@ -233,32 +245,31 @@ function like_ajax(){
 				url: href,
 				dataType: 'json',
 				success: function(json){
-					if(json[0].error == "false"){
+					if(json[0].success == "false"){
+						$('.flash').remove();
 						$('body').prepend('
 							<ul class="flash">
 							<li class="flash-error"><span class="flash-icon"><span class="icon-close"></span></span>
-							'+json[0].error+'
+							Une erreur est survenue
 							<a href="#" class="flash-close"><span class="icon-close"></span></a>
 							</li>
 							</ul>
 						');
 						flashMessage();
-						$(el).attr('data-asliked',true).attr('data-original-title','Retirer le like').find('.icon-heart-empty').removeClass('.icon-heart-empty').addClass('.icon-heart');
 					}else{
+						$('.flash').remove();
 						$('body').prepend('
 							<ul class="flash">
 							<li class="flash-success"><span class="flash-icon"><span class="icon-success"></span></span>
-							'+json[0].success+'
+							Like ajouté
 							<a href="#" class="flash-close"><span class="icon-close"></span></a>
 							</li>
 							</ul>
 						');
 						flashMessage();
-						$(el).attr('data-asliked',false).attr('data-original-title','Ajouter un like').find('.icon-heart').removeClass('.icon-heart').addClass('.icon-heart-empty');
+						var like_nb = $(el).find('.like-nb').html();
+						$(el).attr('data-asliked',true).attr('data-original-title','Retirer le like').find('.icon-heart-empty').removeClass('icon-heart-empty').addClass('icon-heart').next('.like-nb').html(parseInt(like_nb) + 1);
 					}
-				},
-				error: function(yo, yop){
-					console.log(yop);
 				}
 			});
 		}else{ // A déjà voté
@@ -266,10 +277,31 @@ function like_ajax(){
 				url: href,
 				dataType: 'json',
 				success: function(json){
-					console.log(json);
-				},
-				error: function(yo, yop){
-					console.log(yop);
+					if(json[0].success == "false"){
+						$('.flash').remove();
+						$('body').prepend('
+							<ul class="flash">
+							<li class="flash-error"><span class="flash-icon"><span class="icon-close"></span></span>
+							Une erreur est survenue
+							<a href="#" class="flash-close"><span class="icon-close"></span></a>
+							</li>
+							</ul>
+						');
+						flashMessage();
+					}else{
+						$('.flash').remove();
+						$('body').prepend('
+							<ul class="flash">
+							<li class="flash-success"><span class="flash-icon"><span class="icon-success"></span></span>
+							Like retiré
+							<a href="#" class="flash-close"><span class="icon-close"></span></a>
+							</li>
+							</ul>
+						');
+						flashMessage();
+						var like_nb = $(el).find('.like-nb').html();
+						$(el).attr('data-asliked',false).attr('data-original-title','Ajouter un like').find('.icon-heart').removeClass('icon-heart').addClass('icon-heart-empty').next('.like-nb').html(parseInt(like_nb) - 1);
+					}
 				}
 			});
 		}
