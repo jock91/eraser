@@ -261,7 +261,7 @@ function like_ajax(){
 						$('body').prepend('
 							<ul class="flash">
 							<li class="flash-success"><span class="flash-icon"><span class="icon-success"></span></span>
-							Like ajouté
+							Vous aimez ce post
 							<a href="#" class="flash-close"><span class="icon-close"></span></a>
 							</li>
 							</ul>
@@ -293,7 +293,7 @@ function like_ajax(){
 						$('body').prepend('
 							<ul class="flash">
 							<li class="flash-success"><span class="flash-icon"><span class="icon-success"></span></span>
-							Like retiré
+							Vous n\'aimez plus ce post
 							<a href="#" class="flash-close"><span class="icon-close"></span></a>
 							</li>
 							</ul>
