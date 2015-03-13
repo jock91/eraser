@@ -29,7 +29,6 @@ class Notification
      * @ORM\Column(name="type", type="string")
      */
     private $type;
-    //id expediteur et id destinataire
 
 
     /**

@@ -237,32 +237,17 @@ class SiteController extends Controller
     }
 
 
-  public function addAction(Request $request)
-  {
-    $advert = new Advert();
-    $form = $this->createForm(new AdvertType(), $advert);
-
-    if ($form->handleRequest($request)->isValid()) {
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($advert);
-      $em->flush();
-
-      $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-
-      return $this->redirect($this->generateUrl('oc_platform_view', array('id' => $advert->getId())));
-    }
-
-    // À ce stade :
-    // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
-    // - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
-    return $this->render('OCPlatformBundle:Advert:add.html.twig', array(
-      'form' => $form->createView(),
-    ));
-  }
-
-
-
-
+/*
+*
+*
+*
+*
+***********************	FLASHMESSAGE CHANGE-PASSWORD !! ***********************
+*
+*
+*
+*
+*/
 
 
 
