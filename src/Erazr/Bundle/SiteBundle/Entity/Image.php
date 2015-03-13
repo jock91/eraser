@@ -125,7 +125,7 @@ class Image
 	    if($defaultImg != null) {
 			return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
 	    }else {
-	    	return $this->getUploadRootDir().'/0.png'
+	    	return $this->getUploadRootDir().'/0.png';
 	    }
 	    
 	  }
