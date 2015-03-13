@@ -2,9 +2,7 @@
 	padding:2rem 0 0;
 	img {
 		float:left;
-		border-radius:50%;
 		margin-right:2rem;
-		border:1px solid rgba(0,0,0,.3);
 	}
 	.infos {
 		float:left;
@@ -40,11 +38,9 @@
 			}
 			a {
 				display:block;
-				border-radius:50%;
 				overflow:hidden;
 				height:5rem;
 				width:5rem;
-				border:1px solid rgba(0,0,0,.3);
 				img {
 					display:block;
 					height:100%;
@@ -59,24 +55,7 @@
 	margin-bottom:-1rem;
 }
 
-
-/*
-
-<section class="friends">
-	<ul>
-		<li>
-			<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-		</li>
-		<li>
-			<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-		</li>
-		<li>
-			<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-		</li>
-		<li>
-			<a href="{{ path('fos_user_profile_show', {'username': user.username}) }}" title="Yo" data-toggle="tooltip" data-placement="top"><img src="{{asset('bundles/erazrsite/img/profil.png')}}" alt="Takushi60130" title="Takushi60130" /></a>
-		</li>
-	</ul>
-</section>
-
-*/
+.img-profil {
+	border-radius:50%;
+	border:1px solid rgba(0,0,0,.1);
+}
