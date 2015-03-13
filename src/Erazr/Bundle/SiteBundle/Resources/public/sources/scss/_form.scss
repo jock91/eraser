@@ -3,6 +3,7 @@
 	box-shadow:none;
 	border-radius:.5rem;
 	border:.1rem solid #e5e5e5;
+	margin-bottom:2rem;
 	&:hover,&:focus,&:active {
 		box-shadow:none;
 		border-color:darken(#e5e5e5,20%);
@@ -38,15 +39,16 @@
 	}
 }
 
-.form-control {
-	margin-bottom:2rem;
-}
-
 input[type="checkbox"]{
 	@extend .form-control;
 	& + label {
 		cursor:pointer;
 	}
+}
+
+input[type="file"]{
+	display:inline-block;
+	margin:2rem 0;
 }
 
 textarea.form-control {
