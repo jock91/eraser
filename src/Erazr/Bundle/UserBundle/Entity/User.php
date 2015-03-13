@@ -339,4 +339,27 @@ class User extends BaseUser implements ClientInterface
     {
         return $this->likings;
     }
+
+    /**
+     * Set image
+     *
+     * @param \Erazr\Bundle\SiteBundle\Entity\Image $image
+     * @return User
+     */
+    public function setImage(\Erazr\Bundle\SiteBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Erazr\Bundle\SiteBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

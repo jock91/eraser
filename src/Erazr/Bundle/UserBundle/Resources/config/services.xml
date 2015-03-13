@@ -13,7 +13,7 @@
                 <argument key="facebook">facebookId</argument>
             </argument>
         </service>
-        <service id="erazr.profile.form.type" class="Erazr\UserBundle\Form\Type\ProfileFormType">
+        <service id="erazr.profile.form.type" class="Erazr\Bundle\UserBundle\Form\Type\ProfileFormType">
             <tag name="form.type" alias="erazr_profile" />
         </service>
     </services>

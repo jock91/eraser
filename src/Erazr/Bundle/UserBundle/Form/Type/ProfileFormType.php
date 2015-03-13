@@ -4,27 +4,11 @@ namespace Erazr\Bundle\UserBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\Validator\Constraint\UserPassword as OldUserPassword;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
-
-use FOS\UserBundle\Form\Type as BaseForm;
-
-
-use Erazr\Bundle\SiteBundle\Entity\Image;
 use Erazr\Bundle\SiteBundle\Form\ImageType;
 
-class ProfileFormType extends BaseForm
+class ProfileFormType extends AbstractType
 {
-    private $class;
-
-    /**
-     * @param string $class The User class name
-     */
-    public function __construct($class)
-    {
-        $this->class = $class;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (class_exists('Symfony\Component\Security\Core\Validator\Constraints\UserPassword')) {
@@ -36,25 +20,26 @@ class ProfileFormType extends BaseForm
 
         $this->buildUserForm($builder, $options);
 
-        $builder->add('current_password', 'password', array(
-            'label' => 'form.current_password',
-            'translation_domain' => 'FOSUserBundle',
-            'mapped' => false,
-            'constraints' => $constraint,
-        ));
+        
     }
+
+    public function getParent()
+    {
+        return 'form';
+    }
+
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => $this->class,
+            'data_class' => 'Erazr\Bundle\UserBundle\Entity\User',
             'intention'  => 'profile',
         ));
     }
 
     public function getName()
     {
-        return 'fos_user_profile';
+        return 'erazr_profile';
     }
 
     /**
@@ -68,7 +53,7 @@ class ProfileFormType extends BaseForm
         $builder
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
-            ->add('image', new ImageType())
+            ->add('image', new ImageType)
         ;
     }
 }
