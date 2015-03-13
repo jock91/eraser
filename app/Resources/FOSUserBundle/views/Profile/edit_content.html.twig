@@ -16,13 +16,20 @@
 				{{ form_widget(form.email) }}
 			</div>
 		</div>
-		<div class="col-sm-12 text-center">
-			<div>{{ form_errors(form.image.file) }}</div>
-			<label for="fos_user_profile_form_image_file" class="file"><img class="rounded" src="{{asset('bundles/erazrsite/image.php?h=100&w=100&src='~app.user.webPath)}}" title="{{ app.user.username }}" alt="{{ app.user.username }}" /></label>
-			<div>{{ form_widget(form.image.file) }}</div>
+		<div class="col-sm-6 text-right">
+			<label for="fos_user_profile_form_image_file" class="file">
+				<img class="rounded" src="{{asset('bundles/erazrsite/image.php?h=100&w=100&src='~app.user.webPath)}}" title="{{ app.user.username }}" alt="{{ app.user.username }}" />
+			</label>
+		</div>
+		<div class="col-sm-6">
+			<label for="fos_user_profile_form_image_file" class="file">
+				<div class="file-text">Aucun fichier sélectionné</div>
+				<div class="btn btn-light-blue">Choisir une image</div>
+			</label>
 		</div>
 	</div>
 	<div class="text-right">
+		{{ form_widget(form.image.file) }}
 		{{ form_rest(form) }}
 		<button type="submit" class="btn btn-large btn-light-blue">Modifier mes informations</button>
 	</div>

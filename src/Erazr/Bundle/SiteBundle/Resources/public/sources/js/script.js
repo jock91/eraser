@@ -30,6 +30,12 @@ function init(){
 	search_ajax();
 // Likes
 	like_ajax();
+
+$('input[type="file"]').change(function(){
+	var val = $(this).val();
+	$('.file-text').html(val);
+});
+
 }
 
 function resize(){
@@ -292,7 +298,7 @@ function like_ajax(){
 						$('.flash').remove();
 						$('body').prepend('
 							<ul class="flash">
-							<li class="flash-success"><span class="flash-icon"><span class="icon-success"></span></span>
+							<li class="flash-warning"><span class="flash-icon"><span class="icon-notif"></span></span>
 							Vous n\'aimez plus ce post
 							<a href="#" class="flash-close"><span class="icon-close"></span></a>
 							</li>
