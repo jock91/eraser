@@ -230,7 +230,7 @@ function search_ajax(){
 				}
 				$.each(json,function(index){
 					if(index < 3){
-						$('.searchFriends').append("<li><a href='"+json[index].url+"' title='"+json[index].username+"'><img src='"+json[index].image+"' alt='"+json[index].username+"' title='"+json[index].username+"' />"+json[index].username+"</a><a href='#' class='chat-btn' data-username='"+json[index].username+"'><span class='icon-comment'></span></a></li>");
+						$('.searchFriends').append("<li><a href='"+json[index].url+"' title='"+json[index].username+"'><img src='"+json[index].image+"' alt='"+json[index].username+"' title='"+json[index].username+"' class='img-profil' />"+json[index].username+"</a><a href='#' class='chat-btn' data-username='"+json[index].username+"'><span class='icon-comment'></span></a></li>");
 					}
 				});
 			}

@@ -20,7 +20,7 @@
 <article class="post post-{{ post.color }}" id="post-{{ post.id }}">
 	<header class="clearfix">
 		<a href="{{ path('fos_user_profile_show_name', {'username': post.user}) }}" title="{{ post.user }}">
-			<img src="{{ asset('bundles/erazrsite/image.php?h=100&w=100&src='~post.user.webPath) }}" alt="{{ post.user }}" title="{{ post.user }}" data-toggle="tooltip" data-placement="top" />
+			<img src="{{ asset('bundles/erazrsite/image.php?h=100&w=100&src='~post.user.webPath) }}" alt="{{ post.user }}" title="{{ post.user }}" data-toggle="tooltip" data-placement="top" class="img-profil" />
 			<div class="profil">
 				<h2>{{ post.user }}</h2>
 				<h3 data-created="{{ post.created|date('Y/m/d H:i:s') }}">#</h3>
@@ -46,7 +46,7 @@
 {% for comment in comments %}
 	<article class="comment clearfix" id="comment-{{ comment.id }}">
 		<header>
-			<a href="{{ path('fos_user_profile_show_name', {'username': comment.user}) }}" title="{{ comment.user }}" data-toggle="tooltip" data-placement="top"><img src="{{ asset('bundles/erazrsite/image.php?h=100&w=100&src='~comment.user.webPath) }}" alt="{{ comment.user }}" title="{{ comment.user }}" /></a>
+			<a href="{{ path('fos_user_profile_show_name', {'username': comment.user}) }}" title="{{ comment.user }}" data-toggle="tooltip" data-placement="top"><img src="{{ asset('bundles/erazrsite/image.php?h=100&w=100&src='~comment.user.webPath) }}" alt="{{ comment.user }}" title="{{ comment.user }}" class="img-profil" /></a>
 		</header>
 		<div class="content-wrap">
 			<a href="{{ path('fos_user_profile_show_name', {'username': comment.user}) }}" title="{{ comment.user }}" class="user text-asphalt">{{ comment.user }}</a>

@@ -32,8 +32,6 @@ article.post {
 			float:left;
 			height:5rem;
 			width:5rem;
-			border:.1rem solid rgba(0,0,0,.5);
-			border-radius:50%;
 		}
 		& > a {
 			display:block;
@@ -89,9 +87,7 @@ article.comment {
 		float:left;
 		margin-right:1rem;
 		a {
-			border:1px solid rgba(0,0,0,.5);
 			display:block;
-			border-radius:50%;
 			height:5rem;
 			width:5rem;
 			overflow:hidden;

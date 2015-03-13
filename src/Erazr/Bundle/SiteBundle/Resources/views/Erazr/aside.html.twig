@@ -7,7 +7,7 @@
 		<a href="{{ path('fos_user_security_logout') }}" class="logout" title="Déconnexion" data-toggle="tooltip" data-placement="top"><span class="icon-login"></span></a>
 		<a href="{{ path('fos_user_profile_edit') }}" title="Paramètres" class="params" data-toggle="tooltip" data-placement="top"><span class="icon-options"></span></a>
 		<a href="{{ path('fos_user_profile_show') }}" title="Profil" class="profil">
-			<img src="{{ asset('bundles/erazrsite/image.php?h=100&w=100&src='~app.user.webPath) }}" title="{{ app.user.username }}" alt="{{ app.user.username }}" />
+			<img src="{{ asset('bundles/erazrsite/image.php?h=100&w=100&src='~app.user.webPath) }}" title="{{ app.user.username }}" alt="{{ app.user.username }}" class="img-profil" />
 			<h2>{{ app.user.username }}</h2>
 		</a>
 		<div class="notif-alert">
@@ -49,7 +49,7 @@
 	{% endif %}
 		<ul>
 		{% for myFriends in app.user.myFriends %}
-			<li><a href="{{ path('fos_user_profile_show_name', {'username': myFriends.username }) }}" title="{{ myFriends.username }}"><img src="{{ asset('bundles/erazrsite/image.php?h=100&w=100&src='~myFriends.webPath) }}" alt="{{ myFriends.username }}" title="{{ myFriends.username }}" />{{ myFriends.username }}</a><a href="#" class="chat-btn" data-username="{{ myFriends.username }}"><span class="icon-comment"></span></a></li>
+			<li><a href="{{ path('fos_user_profile_show_name', {'username': myFriends.username }) }}" title="{{ myFriends.username }}"><img src="{{ asset('bundles/erazrsite/image.php?h=100&w=100&src='~myFriends.webPath) }}" alt="{{ myFriends.username }}" title="{{ myFriends.username }}" class="img-profil" />{{ myFriends.username }}</a><a href="#" class="chat-btn" data-username="{{ myFriends.username }}"><span class="icon-comment"></span></a></li>
 		{% endfor %}
 		</ul>
 	</div>
