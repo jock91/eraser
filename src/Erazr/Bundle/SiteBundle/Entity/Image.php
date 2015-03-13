@@ -18,7 +18,7 @@ class Image
 {	
 
 	private $tempFilename;
-	
+
 	/**
      * @Assert\File(maxSize="6000000")
      */
@@ -119,6 +119,11 @@ class Image
 		return __DIR__.'/../../../../../web/'.$this->getUploadDir();
 	}
 
+	public function getWebPath()
+  {
+    return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
+  }
+	
 
 	/**
 	 * @var integer
