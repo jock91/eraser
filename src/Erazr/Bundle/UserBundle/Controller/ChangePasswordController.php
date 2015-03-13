@@ -2,6 +2,10 @@
 namespace Erazr\Bundle\UserBundle\Controller;
 
 use FOS\UserBundle\Controller\ProfileController as BaseController;
+use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * Controller managing the password change
@@ -26,9 +30,8 @@ class ChangePasswordController extends BaseController
 
         $process = $formHandler->process($user);
         if ($process) {
-            $this->setFlash('fos_user_success', 'change_password.flash.success');
+            $this->setFlash('success', 'Ton mot de passe à bien été changer !');
 
-            $this->get('session')->getFlashBag()->add('success', 'Ton mot de passe à bien été changer !');
             return new RedirectResponse($this->getRedirectionUrl($user));
         }
 
