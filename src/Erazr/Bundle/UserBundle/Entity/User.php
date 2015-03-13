@@ -27,7 +27,7 @@ class User extends BaseUser implements ClientInterface
     protected $id;
 
     /**
-    * @ORM\OneToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Image", cascade={"persist"})
+    * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Image", cascade={"persist"})
     */
     private $image;
     /**
@@ -362,4 +362,24 @@ class User extends BaseUser implements ClientInterface
     {
         return $this->image;
     }
+
+    public function getUploadDir()
+    {
+        // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
+        return 'uploads/img';
+    }
+    
+    public function getUploadRootDir()
+    {
+        // On retourne le chemin relatif vers l'image pour notre code PHP
+        return __DIR__.'/../../../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+      { 
+    if( $this->getImage() == null || !file_exists($this->getUploadDir().'/'.$this->getImage()->getId().'.'.$this->getImage()->getUrl())){
+        return $this->getUploadDir().'/0.png';
+      }
+        return $this->getUploadDir().'/'.$this->getImage()->getId().'.'.$this->getImage()->getUrl();
+      }
 }

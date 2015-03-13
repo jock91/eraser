@@ -113,21 +113,17 @@ class Image
 		return 'uploads/img';
 	}
 	
-	protected function getUploadRootDir()
+	public function getUploadRootDir()
 	{
 		// On retourne le chemin relatif vers l'image pour notre code PHP
 		return __DIR__.'/../../../../../web/'.$this->getUploadDir();
 	}
 
 	public function getWebPath()
-	  {
-	    $defaultImg = $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
-	    if($defaultImg != null) {
-			return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
-	    }else {
-	    	return $this->getUploadRootDir().'/0.png';
-	    }
-	    
+	  {	if(!file_exists($this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl())){
+	  	return $this->getUploadRootDir().'/0.png';
+	  }
+	  	return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
 	  }
 
 
@@ -149,6 +145,11 @@ class Image
 	* @ORM\Column(name="alt", type="string", length=255, nullable=true)
 	*/
 	private $alt;
+
+	/**
+    * @ORM\OneToMany(targetEntity="Erazr\Bundle\UserBundle\Entity\User", mappedBy="image")
+    */
+    private $user;
 
 	
 	public function getFile()
@@ -213,5 +214,45 @@ class Image
     public function getAlt()
     {
         return $this->alt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $user
+     * @return Image
+     */
+    public function addUser(\Erazr\Bundle\UserBundle\Entity\User $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \Erazr\Bundle\UserBundle\Entity\User $user
+     */
+    public function removeUser(\Erazr\Bundle\UserBundle\Entity\User $user)
+    {
+        $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
