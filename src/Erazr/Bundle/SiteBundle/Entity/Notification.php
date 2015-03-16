@@ -24,10 +24,10 @@ class Notification
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Liking", inversedBy="notifications" , cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Liking", inversedBy="notifications", cascade={"persist"})
      * @ORM\JoinColumn(name="liking_id", referencedColumnName="id", nullable=true)
      **/
-    private $like;
+    private $liking;
 
     /**
      * @var array
@@ -38,25 +38,25 @@ class Notification
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="notifications")
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="notifExpediteur", cascade={"persist"})
      * @ORM\JoinColumn(name="expediteur_id", referencedColumnName="id", nullable=false)
      */
     private $expediteur;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="notifications" , cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="notifDestinataire", cascade={"persist"})
      * @ORM\JoinColumn(name="destinataire_id", referencedColumnName="id", nullable=false)
      **/
     private $destinataire;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Comment", inversedBy="notifications" , cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Comment", inversedBy="notifications", cascade={"persist"})
      * @ORM\JoinColumn(name="comment_id", referencedColumnName="id", nullable=true)
      **/
     private $comment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", inversedBy="notifications")
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", inversedBy="notifications", cascade={"persist"})
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id", nullable=true)
      **/
     private $post;
@@ -129,26 +129,26 @@ class Notification
     }
 
     /**
-     * Set like
+     * Set liking
      *
-     * @param string $like
+     * @param string $liking
      * @return Notification
      */
-    public function setLike($like)
+    public function setLiking($liking)
     {
-        $this->like = $like;
+        $this->liking = $liking;
 
         return $this;
     }
 
     /**
-     * Get like
+     * Get liking
      *
      * @return string 
      */
-    public function getLike()
+    public function getLiking()
     {
-        return $this->like;
+        return $this->liking;
     }
 
     /**

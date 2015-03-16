@@ -25,20 +25,20 @@ class Liking
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="likings")
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\UserBundle\Entity\User", inversedBy="likings", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", inversedBy="likings")
+     * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", inversedBy="likings", cascade={"persist"})
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id", nullable=false)
      */
     protected $post;
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Notification", mappedBy="liking" , cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Notification", mappedBy="liking", cascade={"persist", "remove"})
      **/
     private $notifications;
 

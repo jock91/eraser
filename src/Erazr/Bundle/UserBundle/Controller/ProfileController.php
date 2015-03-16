@@ -6,8 +6,25 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FOS\UserBundle\Model\UserInterface;
 use Erazr\Bundle\UserBundle\Entity\User;
+use Erazr\Bundle\SiteBundle\Entity\Notification;
 class ProfileController extends BaseController
 {
+
+	public function getDoctrine()
+{
+    return $this->container->get('doctrine');
+}
+
+	protected function deleteNotification ($typ, $search) {
+		$em = $this->getDoctrine()->getManager();
+		$user =	$user = $this->container->get('security.context')->getToken()->getUser();
+
+		$notif = $em->getRepository('ErazrSiteBundle:Notification')->findNotifByUserType($user, $typ, $search);
+		foreach ($notif as $n) {
+			$em->remove($n);
+		}
+		$em->flush();
+	}
 
 	/**
 	* Show the user
@@ -20,6 +37,7 @@ class ProfileController extends BaseController
 				throw new AccessDeniedException('This user does not have access to this section.');
 			}
 		}
+		$this->deleteNotification('friend', 'friend');
 		return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:show.html.'.$this->container->getParameter('fos_user.template.engine'), array('user' => $user));
 	}
 

@@ -1,7 +1,13 @@
 # Todo
 
-	• delete Notifications ajouter un champ type likes friends etc... /!\
+	• Notification dele like OK | delete friend OK | delete comm OK | delete tout si vue ?!?
 
 	• Chat
 
-	• Ajouter post [ si un des champ est rempli mettre l'autre à zéro ]
+# Florian
+
+	• Image de profil dans la recherche aside
+
+	• http://tympanus.net/Development/CreativeGooeyEffects/
+
+	• Ajouter si heure est remplis et que minutes est vide --> mettre minutes à "00"

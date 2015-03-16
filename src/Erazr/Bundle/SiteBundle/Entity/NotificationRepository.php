@@ -14,14 +14,42 @@ use Doctrine\ORM\QueryBuilder;
  */
 class NotificationRepository extends EntityRepository
 {
-	public function findNotifByUseType($destinataireId, $type)
+	public function findNotifByUserType($destinataireId, $type, $search)
     {
-       return $this->createQueryBuilder('n')
-        ->where('n.destinataire = :destinataireId')
-        ->andwhere('n.type = :type')
-        ->setParameter('destinataireId', $destinataireId)
-        ->setParameter('type', $type)
-	    ->getQuery()
-        ->getResult();
+        
+    	$qb = $this ->createQueryBuilder('n')
+                   ->where('n.destinataire = :destinataireId');
+
+       if($type === 'liking'){
+           $qb->andwhere('n.liking = :search');
+       }
+       if($type === 'comment'){
+           $qb->andwhere('n.comment = :search');
+       }
+       if($type === 'friend'){
+           $qb->andwhere('n.friend = :search');
+       }
+
+       return $qb->setParameter('destinataireId', $destinataireId)
+       ->setParameter('search', $search)
+       ->getQuery()
+       ->getResult();
+    }
+	public function findNotifByUserCommPost($destinataireId, $type, $search, $post)
+    {
+        
+    	$qb = $this ->createQueryBuilder('n')
+                   ->where('n.destinataire = :destinataireId');
+
+       if($type === 'comment'){
+           $qb->andwhere('n.comment = :search');
+           $qb->andwhere('n.post = :post');
+       }
+
+       return $qb->setParameter('destinataireId', $destinataireId)
+       ->setParameter('search', $search)
+       ->setParameter('post', $post)
+       ->getQuery()
+       ->getResult();
     }
 }

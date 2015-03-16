@@ -29,10 +29,10 @@ use Erazr\Bundle\SiteBundle\Form\ImageType;
 class SiteController extends Controller
 {   
 
-	protected function addNotification ($like = null, $friend = null, $post = null, $comment = null, $dest) {
+	protected function addNotification ($likes = null, $friend = null, $post = null, $comment = null, $dest) {
 		$notif = new Notification();
 
-		$notif->setLike($like);
+		$notif->setLiking($likes);
 		$notif->setFriend($friend);
 		$notif->setPost($post);
 		$notif->setComment($comment);
@@ -44,9 +44,18 @@ class SiteController extends Controller
 		$em->flush();
 	}
 
-	protected function deleteNotification ($typ) {
+	protected function deleteNotification ($typ, $search) {
 		$em = $this->getDoctrine()->getManager();
-		$notif = $em->getRepository('ErazrSiteBundle:Notification')->findNotifByUseType($this->getUser(), $typ);
+		$notif = $em->getRepository('ErazrSiteBundle:Notification')->findNotifByUserType($this->getUser(), $typ, $search);
+		foreach ($notif as $n) {
+			$em->remove($n);
+		}
+		$em->flush();
+	}
+
+	protected function deleteNotificationComm ($typ, $search, $post) {
+		$em = $this->getDoctrine()->getManager();
+		$notif = $em->getRepository('ErazrSiteBundle:Notification')->findNotifByUserCommPost($this->getUser(), $typ, $search, $post);
 		foreach ($notif as $n) {
 			$em->remove($n);
 		}
@@ -173,7 +182,10 @@ class SiteController extends Controller
 		
 		foreach ($liker as $lik) {
 			$em->remove($lik);
+			
 		}
+		
+		$this->deleteNotification('liking', $liker);
 		$em->flush();
 		$result[] = array(
 			'success' => 'Like enlevé',
@@ -289,7 +301,6 @@ class SiteController extends Controller
 
 		$form->add('submit', 'submit', array('label' => 'Ajouter le post'));
 		$form->handleRequest($this->getRequest());
-
 		if($request->isMethod("POST")){
 			if ($form->isValid()) {
 				$em = $this->getDoctrine()->getManager(); 
@@ -301,11 +312,14 @@ class SiteController extends Controller
 
 				if($hourTimer === null) {
 					$interval = "00:10:00";
-				} else {
-					$interval= $hourTimer->format("H:i:s");
+				}elseif ($hourTimer->format("i") === null && $hourTimer->format('H') != null) {
+					$interval = $hourTimer->format("H:". "00" .":s");
+				}
+				 else {
+					$interval = $hourTimer->format("H:i:s");
 				}
 
-				
+					
 				
 				$now = new \DateTime("now");
 				$now->add(new \DateInterval("P0000-00-00T".$interval));
@@ -349,14 +363,18 @@ class SiteController extends Controller
 
 		if ($form->isValid()) {
 			$comment->setPost($post);
-			$this->addNotification( null, null, null, $comment, $post->getUser());
+			$this->addNotification( null, null, $post, $comment, $post->getUser());
 			$em->persist($comment);
 			$em->flush();
 
 			$this->get('session')->getFlashBag()->add('success', 'Ton commentaire a bien été posté');
 			return $this->redirect($this->generateUrl('_postView', array('id' => $post->getId())));
 		}
-	
+
+		foreach($comments as $com){
+			$this->deleteNotificationComm('comment', $com, $post);
+		}
+		
 
 		return array(
 			'post' => $post,

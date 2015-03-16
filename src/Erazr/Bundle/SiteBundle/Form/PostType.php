@@ -19,6 +19,9 @@ class PostType extends AbstractType
             ->add('timer', 'time', array(
                 'widget' => 'text',
                 'required' => false,
+                //'data'  => new \DateTime("now"),
+                'invalid_message' => 'Veuillez rentrer des heures et des minutes', 
+
                 )
             )
             ->add('color', 'choice', array(

@@ -45,13 +45,13 @@ class Post
     private $timer;
 
     /**
-     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Liking", mappedBy="post", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Liking", mappedBy="post", cascade={"persist", "remove"})
      */
     private $likings;
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Notification", mappedBy="post" , cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Notification", mappedBy="post" , cascade={"persist", "remove"})
      **/
     private $notifications;
 

@@ -29,12 +29,14 @@ class User extends BaseUser implements ClientInterface
     protected $id;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Image", cascade={"persist"})
+    * @ORM\ManyToOne(targetEntity="Erazr\Bundle\SiteBundle\Entity\Image", inversedBy="user", cascade={"persist"})
+    * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
     * @Assert\Valid()
     */
     private $image;
+
     /**
-     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Post", mappedBy="user", cascade={"persist", "remove"})
      */
     protected $posts;
 
@@ -42,6 +44,16 @@ class User extends BaseUser implements ClientInterface
     * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Comment", mappedBy="user", cascade={"persist"})
     */
     protected $comments;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Notification", mappedBy="expediteur")
+    */
+   private $notifExpediteur;
+
+   /**
+    * @ORM\OneToMany(targetEntity="Erazr\Bundle\SiteBundle\Entity\Notification", mappedBy="destinataire")
+    */
+   private $notifDestinataire;
 
     /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
     protected $facebookId;
