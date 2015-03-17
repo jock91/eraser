@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "22bf777c61ed4595b1c966a73ef51190",
+    "hash": "cde02025b7dc0a40ef1923b1dff93d83",
     "packages": [
         {
             "name": "cboden/ratchet",
@@ -1695,6 +1695,53 @@
                 "stream"
             ],
             "time": "2014-02-16 19:48:52"
+        },
+        {
+            "name": "reactorcoder/symfony2-nodesocket",
+            "version": "1.0.12",
+            "target-dir": "Reactorcoder/Symfony2NodesocketBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactorcoder/symfony2-nodesocket.git",
+                "reference": "69613dde6d2225c7af2de1379992fc66bb6c986e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactorcoder/symfony2-nodesocket/zipball/69613dde6d2225c7af2de1379992fc66bb6c986e",
+                "reference": "69613dde6d2225c7af2de1379992fc66bb6c986e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0",
+                "symfony/console": "~2.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Reactorcoder\\Symfony2NodesocketBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marin Sagovac",
+                    "email": "marin@sagovac.com"
+                }
+            ],
+            "description": "A symfony package bundle for event-driven socket application.",
+            "keywords": [
+                "Node.js",
+                "Socket.io",
+                "elephant.io",
+                "emiter",
+                "node",
+                "npm",
+                "react.io"
+            ],
+            "time": "2015-02-23 19:54:22"
         },
         {
             "name": "sensio/distribution-bundle",

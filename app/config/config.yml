@@ -105,3 +105,14 @@ p2_ratchet:
     provider: erazr_user_provider            # The client provider to use, null for default
     address: 127.0.0.1        # The address to receive sockets on (0.0.0.0 means receive from any)
     port: 8080              # The port the socket server will listen on
+
+reactorcoder_symfony2_nodesocket:
+    host:   localhost                  # domain.ltd
+    port:   3000     # 3001
+    origin: localhost:*                # domain.ltd:*
+    allowedServers: [127.0.0.1]             # separate with comma to add hosts
+    dbOptions: null                         # 
+    checkClientOrigin: null                 #
+    sessionVarName: null                    #
+    socketLogFile:  null                    # A log path file for process ID
+    pidFile: null                           # runtime PID file
