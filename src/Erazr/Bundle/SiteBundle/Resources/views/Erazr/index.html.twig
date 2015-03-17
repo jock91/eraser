@@ -7,6 +7,15 @@
 <div class="ajout">
 	{% include 'ErazrSiteBundle:Post:new.html.twig' %}
 </div>
+<div class="row">
+	<div class="col-sm-12">
+		<h1 class="text-asphalt">
+		{% if posts|length == 0 %}
+			Aucun post à afficher. Créez le premier !
+		{% endif %}
+		</h1>
+	</div>
+</div>
 <div class="column-row">
 {% for post in posts %}
 
