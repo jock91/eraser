@@ -16,4 +16,12 @@ class DefaultController extends Controller
     {
         return array('' => '');
     }
+    /**
+     * @Route("/chatot")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        return array('' => '');
+    }
 }
