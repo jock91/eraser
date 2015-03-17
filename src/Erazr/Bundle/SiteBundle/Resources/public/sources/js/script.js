@@ -30,6 +30,8 @@ function init(){
 	search_ajax();
 // Likes
 	like_ajax();
+// Fixe des minutes si vide dans l'ajout de post
+	add_post();
 
 $('input[type="file"]').change(function(){
 	var val = $(this).val();
@@ -316,6 +318,14 @@ function like_ajax(){
 			});
 		}
 		return false;
+	});
+}
+
+function add_post(){
+	$('form[name="erazr_bundle_sitebundle_post"]').submit(function(){
+		if($('#erazr_bundle_sitebundle_post_timer_minute').val() == "" && $('#erazr_bundle_sitebundle_post_timer_hour').val() != ""){
+			$('#erazr_bundle_sitebundle_post_timer_minute').val('00');
+		}
 	});
 }
 
