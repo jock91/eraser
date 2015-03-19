@@ -12,7 +12,7 @@ Version: **1.0.0**
 ### Configuration
 
 Ajouter votre facebook ID et Client secret
-```php
+```yaml
     # app/config/parameters.yml
     parameters:
         facebook_client_id:     # Client Id
@@ -20,31 +20,11 @@ Ajouter votre facebook ID et Client secret
 
 ```
 
-### Getting started
+### Déploiement de la base de donnée
 
-
-
-```php
-# src/Acme/Bundle/ChatBundle/WebSocket/Application.php
-<?php
-
-namespace Acme\Bundle\ChatBundle\WebSocket;
-
-use P2\Bundle\RatchetBundle\WebSocket\Server\ApplicationInterface;
-
-class Application implements ApplicationInterface
-{
-    public static function getSubscribedEvents()
-    {
-        return array(
-            'acme.websocket.some.event' => 'onSomeEvent'
-            // ...
-        );
-    }
-
-    // put your event handler code here ...
-}
-
+```bash
+    php app/console doctrine:database:create
+    php app/console doctrine:database:update 
 ```
 
 #### Service DI Configuration
