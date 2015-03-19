@@ -14,6 +14,7 @@ Version: **1.0.0**
 
 ##### Téléchargement de Composer et configuration d'Erazr
 https://getcomposer.org/download/
+
 Exécuter la commande dans le répertoire Erazr téléchargé précédemment.
 ```bash
     curl -sS https://getcomposer.org/installer | php
