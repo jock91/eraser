@@ -362,7 +362,11 @@ class SiteController extends Controller
 		$em = $this->getDoctrine()->getManager();
 
 		$comments = $em->getRepository('ErazrSiteBundle:Comment')->findByPost($post);
+		
+		$liker = $em->getRepository('ErazrSiteBundle:Liking')->findByPost($post);
 
+		$this->deleteNotification('liking', $liker);
+		
 		$comment = new Comment();
 		$form = $this->createCommentForm($comment, $post->getId());
 		$form->handleRequest($request);
