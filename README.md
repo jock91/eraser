@@ -52,6 +52,10 @@ Ajouter votre facebook ID et Client secret
     php app/console doctrine:database:create
     php app/console doctrine:schema:update 
 ```
+##### fixtures
+```bash
+    php app/console doctrine:fixtures:load
+```
 
 #### À vous de jouer ! 
 
