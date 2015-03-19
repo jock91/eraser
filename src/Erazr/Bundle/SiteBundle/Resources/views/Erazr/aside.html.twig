@@ -20,7 +20,10 @@
 		</div>
 	</div>
 
-{# Récupérer les notifications #}
+{{ dump(app.user) }}
+{# {% for expediteur in app.user.notifExpediteur %}
+	{{ dump(expediteur) }}
+{% endfor %} #}
 
 	<div class="sideFriends">
 	{% if app.user.myFriends|length == 0 %}
