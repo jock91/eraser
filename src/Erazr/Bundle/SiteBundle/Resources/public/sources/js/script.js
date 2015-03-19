@@ -34,6 +34,8 @@ function init(){
 	add_post();
 // Konami
 	konami();
+// Lol
+	lol();
 
 $('input[type="file"]').change(function(){
 	var val = $(this).val();
@@ -47,6 +49,12 @@ function resize(){
 }
 
 /* ------------------------ */
+
+function center(el){
+	var elH = $(el).height(),
+		elW = $(el).width();
+	$(el).css({'margin-top':-elH/2,'margin-left':-elW/2});
+}
 
 function fullHeight(e,min){
 	var winH = $(document).height();
@@ -221,13 +229,15 @@ function search_ajax(){
 			form = $(this);
 		$('#form_recherche .icon-loading').show();
 		if($(input).val() == "Je t'aime" || $(input).val() == "je t'aime"){
+			$('#btn-more-search').hide();
 			setTimeout(function(){
-				$('#form_recherche .icon-loading').hide();
+				$('#form_recherche .icon-loading').hide().parents('form').find('input').val('');
 				$('.searchFriends').html('').append('<li style="padding:1rem 2rem"><span class="icon-heart"></span> Erazr vous aime aussi</li>');
 			}, 500);
 		}else if($(input).val() == "Poney" || $(input).val() == "poney"){
 			setTimeout(function(){
-				$('#form_recherche .icon-loading').hide();
+				$('#btn-more-search').hide();
+				$('#form_recherche .icon-loading').hide().parents('form').find('input').val('');
 				$('.searchFriends').html('').append('<li style="padding:1rem 2rem;margin-bottom:-1rem;height:5.6rem;">
 					<img class="poney" src="https://ssl.gstatic.com/chat/babble/ee/ni.gif" />
 					<img class="poney" src="https://ssl.gstatic.com/chat/babble/ee/lw.gif" />
@@ -236,13 +246,46 @@ function search_ajax(){
 				</li>');
 				ponies();
 			}, 500);
+		}else if($(input).val() == "LOL" || $(input).val() == "lol"){
+			setTimeout(function(){
+				$('#form_recherche .icon-loading').hide().parents('form').find('input').val('');
+				$('.lol').remove();
+				$('body').append('
+					<div class="lol">
+						<img src="/bundles/erazrsite/img/lol.gif" />
+					</div>
+				');
+				center('.lol img');
+			}, 500);
+		}else if($(input).val() == "Dead" || $(input).val() == "dead"){
+			setTimeout(function(){
+				$('#form_recherche .icon-loading').hide().parents('form').find('input').val('');
+				$('.lol').remove();
+				$('body').append('
+					<div class="lol">
+						<img src="/bundles/erazrsite/img/dead.gif" />
+					</div>
+				');
+				center('.lol img');
+			}, 500);
+		}else if($(input).val() == "groin" || $(input).val() == "porc" || $(input).val() == "cochon" || $(input).val() == "Groin" || $(input).val() == "Porc" || $(input).val() == "Cochon"){
+			setTimeout(function(){
+				$('#form_recherche .icon-loading').hide().parents('form').find('input').val('');
+				$('.lol').remove();
+				$('body').append('
+					<div class="lol">
+						<img class="no-border" src="/bundles/erazrsite/img/groin-groin.svg" />
+					</div>
+				');
+				center('.lol img');
+			}, 500);
 		}else{
 			$.ajax({
 				url: $(this).attr('action'),
 				data: {"term" : $(this).find('input').val()},
 				dataType: 'json',
 				success: function(json){
-					$('#form_recherche .icon-loading').hide();
+					$('#form_recherche .icon-loading').hide().parents('form').find('input').val('');
 					$('.searchFriends').html('');
 					if(json.length > 3){
 						$('#btn-more-search').css('display','inline-block').attr('href',json[0].urlMore);
@@ -430,6 +473,12 @@ function konami(){
 			});
 		},timeout);
 	}
+}
+
+function lol(){
+	$(document).on('click','.lol',function(){
+		$(this).fadeOut(function(){$(this).remove();});
+	});
 }
 
 /* ------------------------ */

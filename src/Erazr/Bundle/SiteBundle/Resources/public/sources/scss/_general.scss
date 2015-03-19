@@ -7,6 +7,26 @@ body {
 	background:#F2F2F2;
 }
 
+.lol {
+	position:fixed;z-index:9999;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background:rgba(0,0,0,.6);
+	img {
+		position:absolute;
+		top:50%;
+		left:50%;
+		border-radius:1rem;
+		border:.5rem solid $clr-light-blue;
+		&.no-border {
+			border:0;
+			border-radius:0;
+		}
+	}
+}
+
 #floated {
 	position:fixed;
 	z-index:999;
