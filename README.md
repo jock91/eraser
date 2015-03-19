@@ -47,8 +47,8 @@ Déclarer les bundles dans app/appKernel.php
 
 #### À vous de jouer ! 
 
-    Commencez par créer un compte dans la partie inscription ou via la connexion facebook.
+Commencez par créer un compte dans la partie inscription ou via la connexion facebook.
 
-    Vous pouvez désormer ajouter des posts/commentaires/ami(e)s/likes
+Vous pouvez désormer ajouter des posts/commentaires/ami(e)s/likes
 
 
