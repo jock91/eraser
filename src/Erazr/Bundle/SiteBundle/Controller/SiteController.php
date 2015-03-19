@@ -152,7 +152,7 @@ class SiteController extends Controller
 				$liking->setUser($this->getUser());
 				$liking->setPost($post); 
 				
-				$this->addNotification($liking, null, null, null, $post->getUser());
+				$this->addNotification($liking, null, $post, null, $post->getUser());
 				
 				$em->persist($liking);
 				$em->flush();
@@ -371,7 +371,7 @@ class SiteController extends Controller
 
 		if ($form->isValid()) {
 			$comment->setPost($post);
-			$this->addNotification( null, null, $post, $comment, $post->getUser());
+			$this->addNotification( null, null, $post , $comment, $post->getUser());
 			$em->persist($comment);
 			$em->flush();
 
