@@ -8,6 +8,33 @@ Version: **1.0.0**
 
 git clone https://github.com/jock91/erazr.git
 
+##### Bundles
+Installer composer https://getcomposer.org/download/
+```bash
+    php composer.phar update
+```
+Déclarer les bundles dans app/appKernel.php
+```php
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new Erazr\Bundle\SiteBundle\ErazrSiteBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Erazr\Bundle\UserBundle\ErazrUserBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new Erazr\Bundle\ChatBundle\ErazrChatBundle(),
+            new P2\Bundle\RatchetBundle\P2RatchetBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            // ...
+        );
+    }
+```
+##### Asset installation
+```bash
+    php app/console assets:install
+```
+
 ##### API facebook
 Ajouter votre facebook ID et Client secret
 ```yaml
@@ -17,27 +44,6 @@ Ajouter votre facebook ID et Client secret
         facebook_client_secret: # Client secret
 ```
 
-##### Bundles
-Installer composer https://getcomposer.org/download/
-```bash
-    php composer.phar update
-```
-Déclarer les bundles dans app/appKernel.php
-```php
-    $bundles = array(
-        # ...
-        new Erazr\Bundle\SiteBundle\ErazrSiteBundle(),
-        new FOS\UserBundle\FOSUserBundle(),
-        new Erazr\Bundle\UserBundle\ErazrUserBundle(),
-        new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-        new Erazr\Bundle\ChatBundle\ErazrChatBundle(),
-        new P2\Bundle\RatchetBundle\P2RatchetBundle(),
-    );
-```
-##### Asset installation
-```bash
-    php app/console assets:install
-```
 ### Déploiement de la base de donnée
 
 ```bash
