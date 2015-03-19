@@ -200,6 +200,13 @@ class SiteController extends Controller
 	* @Template("ErazrSiteBundle:Erazr:aside.html.twig")
 	*/
 	public function asideAction($request) {
+
+		$notif = $this->getDoctrine()
+			->getManager()
+			->getRepository('ErazrSiteBundle:Notification')
+			->findByDestinataire($this->getUser())
+		;
+
 		$formSearch = $this->createForm(new SearchType());
 		if(isset($request->get("erazr_bundle_search")["search"])){
 			$UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"], 3);
@@ -226,6 +233,7 @@ class SiteController extends Controller
 			'myUser' => $UserSearched,
 			'requete' => $requete,
 			'myUserJson' => $UserSearchedJson,
+			'notif' => $notif,
 		);
 	}
 	/**

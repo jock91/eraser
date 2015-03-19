@@ -12,3 +12,4 @@
 /composer.phar
 */.DS_Store
 /node_modules/
+src/Erazr/Bundle/SiteBundle/Resources/public/cache/*.txt
