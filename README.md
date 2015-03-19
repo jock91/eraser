@@ -67,4 +67,4 @@ Ajouter votre facebook ID et Client secret
 
 Commencez par créer un compte dans la partie inscription ou connectez-vous directement via le bouton Facebook.
 
-Vous pouvez désormer ajouter des posts / commentaires / ami(e)s / likes.
+Vous pouvez désormais ajouter des posts / commentaires / ami(e)s / likes.
