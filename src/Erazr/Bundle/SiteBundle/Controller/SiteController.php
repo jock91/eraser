@@ -254,7 +254,7 @@ class SiteController extends Controller
 					'username' => $user->getUsername(),
 					'url' => $this->generateUrl('fos_user_profile_show_name', array('username'=>$user->getUsername())),
 					'urlMore' => $this->generateUrl('_search',array('term'=>$term)),
-					'image' => '/erazr/web/bundles/erazrsite/image.php?h=30&w=30&src='.$user->getWebPath(),
+					'image' => '/bundles/erazrsite/image.php?h=30&w=30&src=/'.$user->getWebPath(),
 				);
 			}
 
