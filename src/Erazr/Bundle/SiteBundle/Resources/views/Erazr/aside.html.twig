@@ -18,28 +18,19 @@
 			<ul data-open="false">
 			{% for notification in notif %}
 				{% if notification.liking|length > 0 %}
-				{% set post_id = notification.liking.id %}
-					<li class="notif-like"><a href="{{ path('_postView', {'id': post_id}) }}"><span class="icon-heart"></span><strong>{{ notification.expediteur.username }}</strong> a aimé un de vos posts</a></li>
+					<li class="notif-like"><a href="{{ path('_postView', {'id': notification.post.id}) }}"><span class="icon-heart"></span><strong>{{ notification.expediteur.username }}</strong> a aimé un de vos posts</a></li>
 				{% endif %}
 				{% if notification.comment|length > 0 %}
-					<li class="notif-comment"><a href="#"><span class="icon-comment"></span><strong>{{ notification.expediteur.username }}</strong> a commenté un de vos posts</a></li>
+					<li class="notif-comment"><a href="{{ path('_postView', {'id': notification.post.id}) }}"><span class="icon-comment"></span><strong>{{ notification.expediteur.username }}</strong> a commenté un de vos posts</a></li>
 				{% endif %}
 				{% if notification.friend|length > 0 %}
-					<li class="notif-friend"><a href="#"><span class="icon-user"></span><strong>{{ notification.expediteur.username }}</strong> vous a ajouter en amis</a></li>
+					<li class="notif-friend"><a href="{{ path('fos_user_profile_show') }}"><span class="icon-user"></span><strong>{{ notification.expediteur.username }}</strong> vous a ajouter en amis</a></li>
 				{% endif %}
 			{% endfor %}
 			</ul>
 		{% endif %}
 		</div>
 	</div>
-
-{% for notification in notif %}
-	{% if notification.liking|length > 0 %}
-	{% set post_id = notification.liking.id %}
-		liking.id = {{ post_id }} <br/>
-		{{ dump(notification.liking) }}
-	{% endif %}
-{% endfor %}
 
 	<div class="sideFriends">
 	{% if app.user.myFriends|length == 0 %}
