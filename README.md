@@ -1,6 +1,6 @@
 # Todo
 
-	• Notification dele like OK | delete friend OK | delete comm OK | delete tout si vue ?!?
+	• FAIRE LA SUPPRESSION DES NOTIFICATIONS LIKE !!!!
 
 	• Chat
 
