@@ -6,9 +6,8 @@ Version: **1.0.0**
 
 ### Installation
 
-    git clone https://github.com/jock91/erazr.git
+git clone https://github.com/jock91/erazr.git
 
-### Configuration
 ##### API facebook
 Ajouter votre facebook ID et Client secret
 ```yaml
@@ -17,10 +16,7 @@ Ajouter votre facebook ID et Client secret
         facebook_client_id:     # Client Id
         facebook_client_secret: # Client secret
 ```
-##### Asset installation
-```bash
-    php app/console assets:install
-```
+
 ##### Bundles
 Installer composer https://getcomposer.org/download/
 ```bash
@@ -38,7 +34,10 @@ Déclarer les bundles dans app/appKernel.php
         new P2\Bundle\RatchetBundle\P2RatchetBundle(),
     );
 ```
-
+##### Asset installation
+```bash
+    php app/console assets:install
+```
 ### Déploiement de la base de donnée
 
 ```bash
@@ -48,6 +47,8 @@ Déclarer les bundles dans app/appKernel.php
 
 #### À vous de jouer ! 
 
-    Commencez par créer un compte dans la partie inscription ou via la connexion facebook
+    Commencez par créer un compte dans la partie inscription ou via la connexion facebook.
+
+    Vous pouvez désormer ajouter des posts/commentaires/ami(e)s/likes
 
 
