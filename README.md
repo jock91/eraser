@@ -20,7 +20,7 @@ Exécuter la commande dans le répertoire Erazr téléchargé précédemment.
     curl -sS https://getcomposer.org/installer | php
     php composer.phar update
 ```
-#### Déclarer les bundles
+##### Déclarer les bundles
 ```php
     # app/appKernel.php
     public function registerBundles()
