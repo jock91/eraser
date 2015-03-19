@@ -213,6 +213,15 @@ aside {
 	}
 	.searchFriends {
 		margin-bottom:1rem;
+		li {
+			position:relative;
+			overflow:hidden;
+			.poney {
+				position:absolute;
+				bottom:0;
+				left:100%;
+			}
+		}
 	}
 	form[name="searchFriend"] {
 		margin-top:1rem;
