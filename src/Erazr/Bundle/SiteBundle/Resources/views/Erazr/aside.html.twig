@@ -24,7 +24,7 @@
 					<li class="notif-comment"><a href="{{ path('_postView', {'id': notification.post.id}) }}"><span class="icon-comment"></span><strong>{{ notification.expediteur.username }}</strong> a commenté un de vos posts</a></li>
 				{% endif %}
 				{% if notification.friend|length > 0 %}
-					<li class="notif-friend"><a href="{{ path('fos_user_profile_show') }}"><span class="icon-user"></span><strong>{{ notification.expediteur.username }}</strong> vous a ajouter en amis</a></li>
+					<li class="notif-friend"><a href="{{ path('fos_user_profile_show_name', {'username': notification.expediteur.username}) }}"><span class="icon-user"></span><strong>{{ notification.expediteur.username }}</strong> vous a ajouter en amis</a></li>
 				{% endif %}
 			{% endfor %}
 			</ul>

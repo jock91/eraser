@@ -7,6 +7,34 @@ body {
 	background:#F2F2F2;
 }
 
+#floated {
+	position:fixed;
+	z-index:999;
+	height:4.1rem;
+	bottom:1rem;
+	left:50%;
+	background-image:url(/bundles/erazrsite/img/konami.png);
+}
+
+.easterEgg {
+	position:fixed;
+	left:0;
+	right:0;
+	bottom:0;
+	height:5.8rem;
+	overflow:hidden;
+	&.egg-1 {
+		transform:rotate(180deg);
+		bottom:auto;
+		top:0;
+	}
+	img {
+		position:absolute;
+		bottom:0;
+		left:100%;
+	}
+}
+
 #erazr {
 	float:left;
 	width:calc(100% - 30rem);

@@ -32,6 +32,8 @@ function init(){
 	like_ajax();
 // Fixe des minutes si vide dans l'ajout de post
 	add_post();
+// Konami
+	konami();
 
 $('input[type="file"]').change(function(){
 	var val = $(this).val();
@@ -218,33 +220,77 @@ function search_ajax(){
 		var input = $(this).find('input'),
 			form = $(this);
 		$('#form_recherche .icon-loading').show();
-		$.ajax({
-			url: $(this).attr('action'),
-			data: {"term" : $(this).find('input').val()},
-			dataType: 'json',
-			success: function(json){
+		if($(input).val() == "Je t'aime" || $(input).val() == "je t'aime"){
+			setTimeout(function(){
 				$('#form_recherche .icon-loading').hide();
-				$('.searchFriends').html('');
-				if(json.length > 3){
-					$('#btn-more-search').css('display','inline-block').attr('href',json[0].urlMore);
-				}else{
-					$('#btn-more-search').hide();
+				$('.searchFriends').html('').append('<li style="padding:1rem 2rem"><span class="icon-heart"></span> Erazr vous aime aussi</li>');
+			}, 500);
+		}else if($(input).val() == "Poney" || $(input).val() == "poney"){
+			setTimeout(function(){
+				$('#form_recherche .icon-loading').hide();
+				$('.searchFriends').html('').append('<li style="padding:1rem 2rem;margin-bottom:-1rem;height:5.6rem;">
+					<img class="poney" src="https://ssl.gstatic.com/chat/babble/ee/ni.gif" />
+					<img class="poney" src="https://ssl.gstatic.com/chat/babble/ee/lw.gif" />
+					<img class="poney" src="https://ssl.gstatic.com/chat/babble/ee/rs.gif" />
+					<img class="poney" src="https://ssl.gstatic.com/chat/babble/ee/cs.gif" />
+				</li>');
+				ponies();
+			}, 500);
+		}else{
+			$.ajax({
+				url: $(this).attr('action'),
+				data: {"term" : $(this).find('input').val()},
+				dataType: 'json',
+				success: function(json){
+					$('#form_recherche .icon-loading').hide();
+					$('.searchFriends').html('');
+					if(json.length > 3){
+						$('#btn-more-search').css('display','inline-block').attr('href',json[0].urlMore);
+					}else{
+						$('#btn-more-search').hide();
+					}
+					if(json == ""){
+						$('.searchFriends').append('<li style="padding:1rem 2rem">Aucun résultat</li>');
+					}else{
+						$.each(json,function(index){
+							if(index < 3){
+								$('.searchFriends').append("<li><a href='"+json[index].url+"' title='"+json[index].username+"'><img src='"+json[index].image+"' alt='"+json[index].username+"' title='"+json[index].username+"' class='img-profil' />"+json[index].username+"</a><a href='#' class='chat-btn' data-username='"+json[index].username+"'><span class='icon-comment'></span></a></li>");
+							}
+						});
+					}
 				}
-				if(json == ""){
-					$('.searchFriends').append('<li style="padding:1rem 2rem">Aucun résultat</li>');
-				}else{
-					$.each(json,function(index){
-						if(index < 3){
-							$('.searchFriends').append("<li><a href='"+json[index].url+"' title='"+json[index].username+"'><img src='"+json[index].image+"' alt='"+json[index].username+"' title='"+json[index].username+"' class='img-profil' />"+json[index].username+"</a><a href='#' class='chat-btn' data-username='"+json[index].username+"'><span class='icon-comment'></span></a></li>");
-						}
-					});
-				}
-			}
-		});
+			});
+		}
 	});
 	$('#form_recherche').submit(function(){
 		return false;
 	});
+}
+
+function ponies(){
+	$('.poney').each(function(index){
+		var el		= $(this),
+			index	= index+1,
+			nb		= Math.ceil(Math.random() * 2),
+			delay	= (Math.random() * 4500) + 4000;
+		if(nb == 1){ // Tourner le poney vers la droite
+			poney_left(el,delay);
+		}else{ // Laisse le poney à gauche
+			poney_right(el,delay);
+		}
+	});
+	function poney_left(el){
+		var delay	= (Math.random() * 4500) + 4000;
+		$(el).css({'transform':'scale(-1,1)','left':'-62px'}).animate({'left':'100%'},delay, function(){
+			poney_right(el);
+		});
+	}
+	function poney_right(el){
+		var delay	= (Math.random() * 4500) + 4000;
+		$(el).css({'transform':'scale(1,1)','left':'100%'}).animate({'left':'-62px'},delay, function(){
+			poney_left(el);
+		});
+	}
 }
 
 function like_ajax(){
@@ -327,6 +373,63 @@ function add_post(){
 			$('#erazr_bundle_sitebundle_post_timer_minute').val('00');
 		}
 	});
+}
+
+function konami(){
+	var k = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65],
+		t = [0, 41, 82, 123, 164, 205, 246, 287, 328, 369, 410],
+		n = 0,
+		a = true;
+	$(document).keydown(function(e){
+		if(e.keyCode === k[n++] && a === true){
+			$('#floated').css({'width':t[n]+'px','margin-left':'-'+t[n]/2+'px'});
+			if(n === k.length){
+				$('#floated').animate({'width':0,'margin-left':0},200);
+				$('#easterEgg').remove();
+				var i = 0;
+				while(i<=1){
+					$('body').append("<div class='easterEgg egg-"+i+"'><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/lw.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/ni.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/rs.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/kr.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/lw.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/ni.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/km.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/dg.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/tl.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mu.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/km.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/nk.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mu.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mk.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/af.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/zf.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/ib.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/bm.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/jl.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mt.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mk.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/nk.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mt.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/af.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/km.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/nk.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/lw.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/rr.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mk.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/cs.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mk.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mu.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/ib.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/ib.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/af.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/bm.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mu.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/dl.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/rs.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/cs.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/af.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/lw.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/af.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/rs.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mu.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/tj.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/km.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/ib.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/tl.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/tj.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/zf.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/rs.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mt.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/ni.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/tj.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/nk.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/cs.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mt.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/bm.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/bm.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/mu.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/kr.gif' /><img class='poney-konami' src='http://ssl.gstatic.com/chat/babble/ee/rr.gif' /></div>");
+					i++;
+				}
+				pony_konami();
+				return !1;
+			}
+		}else{
+			n=0;
+			$('#floated').animate({'width':0,'margin)left':0},200);
+		}
+	});
+	function pony_konami(){
+		$('.poney-konami').each(function(index){
+			var el		= $(this),
+				index	= index+1,
+				nb		= Math.ceil(Math.random() * 2);
+			if(nb == 1){ // Tourner le poney vers la droite
+				poney_left_konami(el);
+			}else{ // Laisse le poney à gauche
+				poney_right_konami(el);
+			}
+		});
+	}
+	function poney_left_konami(el){
+		var delay	= (Math.random() * 4500) + 7000,
+			timeout = Math.floor(Math.random() * 20000) + 6;
+		console.log(timeout);
+		setTimeout(function(){
+			$(el).css({'transform':'scale(-1,1)','left':'-62px'}).animate({'left':'100%'},delay, function(){
+				poney_right_konami(el);
+			});
+		},timeout);
+	}
+	function poney_right_konami(el){
+		var delay	= (Math.random() * 4500) + 7000,
+			timeout = Math.floor(Math.random() * 20000) + 6;
+		setTimeout(function(){
+			$(el).css({'transform':'scale(1,1)','left':'100%'}).animate({'left':'-62px'},delay, function(){
+				poney_left_konami(el);
+			});
+		},timeout);
+	}
 }
 
 /* ------------------------ */
