@@ -9,7 +9,7 @@ Version: **1.0.0**
     git clone https://github.com/jock91/erazr.git
 
 ### Configuration
-## API facebook
+#### API facebook
     Ajouter votre facebook ID et Client secret
     ```yaml
         # app/config/parameters.yml
