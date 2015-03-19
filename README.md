@@ -6,7 +6,9 @@ Version: **1.0.0**
 
 ### Installation
 
-git clone https://github.com/jock91/erazr.git
+```bash
+    git clone https://github.com/jock91/erazr.git
+```
 
 ##### Bundles
 Installer composer https://getcomposer.org/download/
