@@ -254,7 +254,7 @@ class SiteController extends Controller
 					'username' => $user->getUsername(),
 					'url' => $this->generateUrl('fos_user_profile_show_name', array('username'=>$user->getUsername())),
 					'urlMore' => $this->generateUrl('_search',array('term'=>$term)),
-					'image' => '/bundles/erazrsite/image.php?h=30&w=30&src=/'.$user->getWebPath(),
+					'image' => '/erazr/web/bundles/erazrsite/image.php?h=30&w=30&src=/'.$user->getWebPath(),
 				);
 			}
 
@@ -362,7 +362,11 @@ class SiteController extends Controller
 		$em = $this->getDoctrine()->getManager();
 
 		$comments = $em->getRepository('ErazrSiteBundle:Comment')->findByPost($post);
+		
+		$liker = $em->getRepository('ErazrSiteBundle:Liking')->findByPost($post);
 
+		$this->deleteNotification('liking', $liker);
+		
 		$comment = new Comment();
 		$form = $this->createCommentForm($comment, $post->getId());
 		$form->handleRequest($request);
