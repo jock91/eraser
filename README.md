@@ -13,8 +13,9 @@ Version: **1.0.0**
 
 Ajouter votre facebook ID et Client secret
 ```php
+    # app/config/parameters.yml
     parameters:
-        facebook_client_id: # Client Id
+        facebook_client_id:     # Client Id
         facebook_client_secret: # Client secret
 
 ```
