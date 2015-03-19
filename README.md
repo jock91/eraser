@@ -12,11 +12,13 @@ Version: **1.0.0**
 ### Configuration
 
 Ajouter votre facebook ID et Client secret
+```php
     parameters:
         facebook_client_id: 514256792045832
         facebook_client_secret: f0ed18907a98f84b7c5635543ca34d87
 
 
+```
 
 ### Getting started
 
