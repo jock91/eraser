@@ -37,8 +37,8 @@ Déclarer les bundles dans app/appKernel.php
     php app/console assets:install
 ```
 
-##### API facebook
-Ajouter votre facebook ID et Client secret
+##### API Facebook
+Ajouter votre Facebook ID et Client secret
 ```yaml
     # app/config/parameters.yml
     parameters:
@@ -46,21 +46,21 @@ Ajouter votre facebook ID et Client secret
         facebook_client_secret: # Client secret
 ```
 
-### Déploiement de la base de donnée
+### Déploiement de la base de données
 
 ```bash
     php app/console doctrine:database:create
     php app/console doctrine:schema:update 
 ```
-##### fixtures
+##### Fixtures
 ```bash
     php app/console doctrine:fixtures:load
 ```
 
 #### À vous de jouer ! 
 
-Commencez par créer un compte dans la partie inscription ou via la connexion facebook.
+Commencez par créer un compte dans la partie inscription ou via la connexion Facebook.
 
-Vous pouvez désormer ajouter des posts/commentaires/ami(e)s/likes
+Vous pouvez désormer ajouter des posts / commentaires / ami(e)s / likes
 
 
