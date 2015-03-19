@@ -152,7 +152,7 @@ class SiteController extends Controller
 				$liking->setUser($this->getUser());
 				$liking->setPost($post); 
 				
-				$this->addNotification($liking, null, null, null, $post->getUser());
+				$this->addNotification($liking, null, $post, null, $post->getUser());
 				
 				$em->persist($liking);
 				$em->flush();
@@ -200,6 +200,13 @@ class SiteController extends Controller
 	* @Template("ErazrSiteBundle:Erazr:aside.html.twig")
 	*/
 	public function asideAction($request) {
+
+		$notif = $this->getDoctrine()
+			->getManager()
+			->getRepository('ErazrSiteBundle:Notification')
+			->findByDestinataire($this->getUser())
+		;
+
 		$formSearch = $this->createForm(new SearchType());
 		if(isset($request->get("erazr_bundle_search")["search"])){
 			$UserSearched = $this->getDoctrine()->getRepository('ErazrUserBundle:User')->findAllUserBySearch($request->get("erazr_bundle_search")["search"], 3);
@@ -226,6 +233,7 @@ class SiteController extends Controller
 			'myUser' => $UserSearched,
 			'requete' => $requete,
 			'myUserJson' => $UserSearchedJson,
+			'notif' => $notif,
 		);
 	}
 	/**
@@ -246,7 +254,7 @@ class SiteController extends Controller
 					'username' => $user->getUsername(),
 					'url' => $this->generateUrl('fos_user_profile_show_name', array('username'=>$user->getUsername())),
 					'urlMore' => $this->generateUrl('_search',array('term'=>$term)),
-					'image' => '/erazr/web/bundles/erazrsite/image.php?h=30&w=30&src='.$user->getWebPath(),
+					'image' => '/erazr/web/bundles/erazrsite/image.php?h=30&w=30&src=/'.$user->getWebPath(),
 				);
 			}
 
@@ -354,7 +362,11 @@ class SiteController extends Controller
 		$em = $this->getDoctrine()->getManager();
 
 		$comments = $em->getRepository('ErazrSiteBundle:Comment')->findByPost($post);
+		
+		$liker = $em->getRepository('ErazrSiteBundle:Liking')->findByPost($post);
 
+		$this->deleteNotification('liking', $liker);
+		
 		$comment = new Comment();
 		$form = $this->createCommentForm($comment, $post->getId());
 		$form->handleRequest($request);
@@ -363,7 +375,7 @@ class SiteController extends Controller
 
 		if ($form->isValid()) {
 			$comment->setPost($post);
-			$this->addNotification( null, null, $post, $comment, $post->getUser());
+			$this->addNotification( null, null, $post , $comment, $post->getUser());
 			$em->persist($comment);
 			$em->flush();
 

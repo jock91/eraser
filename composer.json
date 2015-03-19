@@ -22,7 +22,8 @@
         "friendsofsymfony/user-bundle": "~1.3",
         "hwi/oauth-bundle": "0.4.*@dev",
         "p2/ratchet-bundle": "dev-master",
-        "reactorcoder/symfony2-nodesocket": "~1"
+        "doctrine/doctrine-fixtures-bundle": "~2.2",
+        "coresphere/console-bundle": "0.1.*"    
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

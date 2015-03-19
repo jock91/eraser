@@ -81,16 +81,17 @@ aside {
 			right:0;
 			display:block;
 			.notif-icon {
+				cursor:default;
 				span {
 					font-size:3rem;
 					display:block;
 				}
-				&:hover span {
-					animation:bounce 1s infinite;
-				}
-				&.active span {
-					animation:bounce 1s infinite;
-					color:$clr-warning;
+				&.active {
+					cursor:pointer;
+					span {
+						animation:bounce 1s infinite;
+						color:$clr-warning;
+					}
 				}
 			}
 			ul {
@@ -212,6 +213,15 @@ aside {
 	}
 	.searchFriends {
 		margin-bottom:1rem;
+		li {
+			position:relative;
+			overflow:hidden;
+			.poney {
+				position:absolute;
+				bottom:0;
+				left:100%;
+			}
+		}
 	}
 	form[name="searchFriend"] {
 		margin-top:1rem;

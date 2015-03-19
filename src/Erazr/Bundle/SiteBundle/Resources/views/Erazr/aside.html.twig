@@ -11,16 +11,26 @@
 			<h2>{{ app.user.username }}</h2>
 		</a>
 		<div class="notif-alert">
-			<a href="#" class="notif-icon active" data-toggle="tooltip" data-placement="top" title="Notifications"><span class="icon-notif"></span></a>
+		{% if notif|length == 0 %}
+			<a href="#" class="notif-icon" data-toggle="tooltip" data-placement="top" title="Aucune notification"><span class="icon-notif"></span></a>
+		{% else %}
+			<a href="#" class="notif-icon active" data-toggle="tooltip" data-placement="top" title="{{ notif|length }} notification{% if notif|length > 1 %}s{% endif %}"><span class="icon-notif"></span></a>
 			<ul data-open="false">
-				<li class="notif-friend"><a href="#"><span class="icon-user"></span><strong>Kévin Desperries</strong> voudrais vous ajouter en amis</a></li>
-				<li class="notif-comment"><a href="#"><span class="icon-comment"></span><strong>Léo Lapujade</strong> a commenté un de vos posts</a></li>
-				<li class="notif-like"><a href="#"><span class="icon-heart"></span><strong>Soheil Sedaghatkish</strong> a aimé un de vos posts</a></li>
+			{% for notification in notif %}
+				{% if notification.liking|length > 0 %}
+					<li class="notif-like"><a href="{{ path('_postView', {'id': notification.post.id}) }}"><span class="icon-heart"></span><strong>{{ notification.expediteur.username }}</strong> a aimé un de vos posts</a></li>
+				{% endif %}
+				{% if notification.comment|length > 0 %}
+					<li class="notif-comment"><a href="{{ path('_postView', {'id': notification.post.id}) }}"><span class="icon-comment"></span><strong>{{ notification.expediteur.username }}</strong> a commenté un de vos posts</a></li>
+				{% endif %}
+				{% if notification.friend|length > 0 %}
+					<li class="notif-friend"><a href="{{ path('fos_user_profile_show_name', {'username': notification.expediteur.username}) }}"><span class="icon-user"></span><strong>{{ notification.expediteur.username }}</strong> vous a ajouter en amis</a></li>
+				{% endif %}
+			{% endfor %}
 			</ul>
+		{% endif %}
 		</div>
 	</div>
-
-{# Récupérer les notifications #}
 
 	<div class="sideFriends">
 	{% if app.user.myFriends|length == 0 %}
