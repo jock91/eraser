@@ -1,0 +1,90 @@
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<h1 id="favicon">Favicon</h1>
+<h1 id="app-php-debug-false">app.php -&gt; debug : false</h1>
+<h1 id="recherche-images">recherche -&gt; images</h1>
+<h1 id="erazr">Erazr</h1>
+<p>Version: <strong>1.0.0</strong></p>
+<h3 id="installation">Installation</h3>
+<h4 id="t-l-chargement-d-erazr">Téléchargement d&#39;Erazr</h4>
+<p>=======</p>
+<h1 id="erazr">Erazr</h1>
+<p>Version: <strong>1.0.0</strong></p>
+<h3 id="installation">Installation</h3>
+<h4 id="t-l-chargement-d-erazr">Téléchargement d&#39;Erazr</h4>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>4ae04fe6cf42f0080fb8f0215d850f8961e326b7</p>
+<pre><code class="lang-bash">    git clone https://github.com/jock91/erazr.git
+</code></pre>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h5 id="t-l-chargement-de-composer-et-configuration-d-erazr">Téléchargement de Composer et configuration d&#39;Erazr</h5>
+<p><a href="https://getcomposer.org/download/">https://getcomposer.org/download/</a></p>
+<p>Exécuter la commande dans le répertoire Erazr téléchargé précédemment.</p>
+<pre><code class="lang-bash">    curl -sS https://getcomposer.org/installer | php
+    php composer.phar update
+</code></pre>
+<h5 id="d-clarer-les-bundles">Déclarer les bundles</h5>
+<pre><code class="lang-php">    # app/appKernel.php
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new Erazr\Bundle\SiteBundle\ErazrSiteBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Erazr\Bundle\UserBundle\ErazrUserBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new Erazr\Bundle\ChatBundle\ErazrChatBundle(),
+            new P2\Bundle\RatchetBundle\P2RatchetBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            // ...
+        );
+    }
+</code></pre>
+<h5 id="installer-les-assets">Installer les assets</h5>
+<pre><code class="lang-bash">    php app/console assets:install --symlink
+</code></pre>
+<h5 id="api-facebook">API facebook</h5>
+<p>Ajouter votre facebook ID et Client secret</p>
+<pre><code class="lang-yaml">    # app/config/parameters.yml
+    parameters:
+        facebook_client_id:     # Client Id
+        facebook_client_secret: # Client secret
+</code></pre>
+<h3 id="d-ploiement-de-la-base-de-donn-e">Déploiement de la base de donnée</h3>
+<pre><code class="lang-bash">    php app/console doctrine:database:create
+    php app/console doctrine:schema:update
+</code></pre>
+<h5 id="fixtures">fixtures</h5>
+<pre><code class="lang-bash">    php app/console doctrine:fixtures:load
+</code></pre>
+<h4 id="-vous-de-jouer-">À vous de jouer !</h4>
+<p>Commencez par créer un compte dans la partie inscription ou connectez-vous directement via le bouton Facebook.</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<h1 id="vous-pouvez-d-sormais-ajouter-des-posts-commentaires-ami-e-s-likes-">Vous pouvez désormais ajouter des posts / commentaires / ami(e)s / likes.</h1>
+<p>Vous pouvez désormais ajouter des posts / commentaires / ami(e)s / likes.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>4ae04fe6cf42f0080fb8f0215d850f8961e326b7</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
