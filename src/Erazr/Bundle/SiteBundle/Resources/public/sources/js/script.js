@@ -255,7 +255,9 @@ function search_ajax(){
 						<img src="/bundles/erazrsite/img/lol.gif" />
 					</div>
 				');
-				center('.lol img');
+				$('.lol img').load(function(){
+					center(this);
+				});
 			}, 500);
 		}else if($(input).val() == "Dead" || $(input).val() == "dead"){
 			setTimeout(function(){
@@ -266,7 +268,9 @@ function search_ajax(){
 						<img src="/bundles/erazrsite/img/dead.gif" />
 					</div>
 				');
-				center('.lol img');
+				$('.lol img').load(function(){
+					center(this);
+				});
 			}, 500);
 		}else if($(input).val() == "groin" || $(input).val() == "porc" || $(input).val() == "cochon" || $(input).val() == "Groin" || $(input).val() == "Porc" || $(input).val() == "Cochon"){
 			setTimeout(function(){
@@ -277,7 +281,9 @@ function search_ajax(){
 						<img class="no-border" src="/bundles/erazrsite/img/groin-groin.svg" />
 					</div>
 				');
-				center('.lol img');
+				$('.lol img').load(function(){
+					center(this);
+				});
 			}, 500);
 		}else{
 			$.ajax({

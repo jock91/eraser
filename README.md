@@ -1,17 +1,4 @@
-<<<<<<< HEAD
 # Favicon
-# app.php -> debug : false
-# recherche -> images
-
-Erazr
-===============
-
-Version: **1.0.0**
-
-
-### Installation
-
-#### Téléchargement d'Erazr
 
 =======
 Erazr
@@ -23,8 +10,6 @@ Version: **1.0.0**
 ### Installation
 
 #### Téléchargement d'Erazr
-
->>>>>>> 4ae04fe6cf42f0080fb8f0215d850f8961e326b7
 ```bash
     git clone https://github.com/jock91/erazr.git
 ```
@@ -84,8 +69,4 @@ Ajouter votre facebook ID et Client secret
 
 Commencez par créer un compte dans la partie inscription ou connectez-vous directement via le bouton Facebook.
 
-<<<<<<< HEAD
 Vous pouvez désormais ajouter des posts / commentaires / ami(e)s / likes.
-=======
-Vous pouvez désormais ajouter des posts / commentaires / ami(e)s / likes.
->>>>>>> 4ae04fe6cf42f0080fb8f0215d850f8961e326b7
